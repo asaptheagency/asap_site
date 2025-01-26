@@ -25,11 +25,11 @@ body, html {
     font-size: 62.5%;
     font-family: 'league_spartanbold';
     font-weight: 400;
-    color: $mainColor;
+    color: $thisWhite;
     width: 100%;
     scroll-padding-top: $navHeight;
     ::selection{
-        background-color: $secondColor;
+        background-color: $thisWhite;
     }
     .cta-orange {
         @include callToAction;

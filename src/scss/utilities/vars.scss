@@ -1,4 +1,7 @@
 //Classy Palette
+$brandBlack: #272727;
+$black: #000000;
+
 $mainColor: #063831;
 $secondColor: #97B1AB;
 $thirdColor: #647C77;
@@ -68,7 +71,7 @@ $thirdH1: 550%;
     cursor: pointer;
     text-decoration: none;
     background-color: #FFA50A;
-    color: $thisWhite;
+    color: $black;
     @include hoverButton;
 }
 @mixin callToAction {
@@ -82,7 +85,7 @@ $thirdH1: 550%;
 @mixin andSection {
     margin-top: -.5%;
     padding: $paddingForCentering;
-    background-color: $thisWhite;
+    background-color: $black;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -141,7 +144,7 @@ $thirdH1: 550%;
     font-family: 'Open Sans', sans-serif;
     font-size: $firstP;
     font-weight: 500;
-    color: $mainColor;
+    color: $thisWhite;
     letter-spacing: .05rem;
 }
 
