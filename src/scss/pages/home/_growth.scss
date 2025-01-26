@@ -42,7 +42,7 @@
 @media screen and (min-width: 470px) {
     .second {
         p {
-            font-size: 300%;
+            font-size: $largeP;
         }
     }
 }
@@ -66,8 +66,8 @@
 
 @media screen and (min-width: 1000px) {
     .second {
-        max-width: 75vw;
-        min-width: 75vw !important;
+        max-width: 80vw;
+        min-width: 80vw !important;
         // min-height: 150vh;
     }
 }

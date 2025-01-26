@@ -45,7 +45,7 @@
     .why {
         &__list {
             p {
-                font-size: 300%;
+                font-size: $largeP;
             }
             h3 {
                 font-size: 350%;
@@ -86,8 +86,8 @@
 
 @media screen and (min-width: 1000px) {
     .why {
-        max-width: 75vw;
-        min-width: 75vw !important;
+        max-width: 80vw;
+        min-width: 80vw !important;
     }
     .tech-focused {
         justify-self: center;

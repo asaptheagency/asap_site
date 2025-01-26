@@ -189,12 +189,12 @@
 }
 @media screen and (min-width: 1000px) {
   .wrapper {
-    max-width: 75vw;
-    min-width: 75vw !important;
+    max-width: 80vw;
+    min-width: 80vw !important;
   }
   .hero {
-    max-width: 75vw;
-    min-width: 75vw !important;
+    max-width: 80vw;
+    min-width: 80vw !important;
   }
   .hero-video {
     height: 100vh;
@@ -261,7 +261,7 @@
 
 @media screen and (min-width: 470px) {
   .second p {
-    font-size: 300%;
+    font-size: 325%;
   }
 }
 @media screen and (min-width: 540px) {
@@ -276,8 +276,8 @@
 }
 @media screen and (min-width: 1000px) {
   .second {
-    max-width: 75vw;
-    min-width: 75vw !important;
+    max-width: 80vw;
+    min-width: 80vw !important;
   }
 }
 @media screen and (min-width: 1050px) {
@@ -350,7 +350,7 @@ summary::marker {
 
 @media screen and (min-width: 470px) {
   .services p {
-    font-size: 300%;
+    font-size: 325%;
   }
   .services__header {
     font-size: 350%;
@@ -371,8 +371,8 @@ summary::marker {
 }
 @media screen and (min-width: 1000px) {
   .services {
-    max-width: 75vw;
-    min-width: 75vw !important;
+    max-width: 80vw;
+    min-width: 80vw !important;
   }
 }
 @media screen and (min-width: 1050px) {
@@ -454,7 +454,7 @@ summary::marker {
 
 @media screen and (min-width: 470px) {
   .why__list p {
-    font-size: 300%;
+    font-size: 325%;
   }
   .why__list h3 {
     font-size: 350%;
@@ -487,8 +487,8 @@ summary::marker {
 }
 @media screen and (min-width: 1000px) {
   .why {
-    max-width: 75vw;
-    min-width: 75vw !important;
+    max-width: 80vw;
+    min-width: 80vw !important;
   }
   .tech-focused {
     justify-self: center;
@@ -664,7 +664,7 @@ summary::marker {
 }
 @media screen and (min-width: 470px) {
   .contact p {
-    font-size: 300%;
+    font-size: 325%;
   }
 }
 @media screen and (min-width: 500px) {
@@ -698,7 +698,7 @@ summary::marker {
     width: 100vw;
   }
   .main {
-    width: 75vw;
+    width: 80vw;
   }
   .contact {
     grid-area: two;
@@ -735,7 +735,7 @@ summary::marker {
   padding: 0 5% 0 5% !important;
   text-align: justify;
   font-family: "Open Sans", sans-serif;
-  font-size: 300%;
+  font-size: 325%;
   font-weight: 500;
   color: #063831;
   letter-spacing: 0.05rem;
@@ -750,7 +750,7 @@ summary::marker {
 }
 .blog li {
   font-family: "Open Sans", sans-serif;
-  font-size: 300%;
+  font-size: 325%;
   font-weight: 500;
   color: #063831;
   letter-spacing: 0.05rem;
@@ -773,7 +773,7 @@ summary::marker {
 
 @media screen and (min-width: 470px) {
   .blog p {
-    font-size: 300%;
+    font-size: 325%;
   }
   .blog h3 {
     font-size: 350%;
@@ -849,7 +849,7 @@ summary::marker {
 }
 .blog-home p {
   font-family: "Open Sans", sans-serif;
-  font-size: 300%;
+  font-size: 325%;
   font-weight: 500;
   color: #063831;
   letter-spacing: 0.05rem;
@@ -883,7 +883,7 @@ summary::marker {
 
 @media screen and (min-width: 470px) {
   .blog-home__list p {
-    font-size: 300%;
+    font-size: 325%;
   }
   .blog-home__list h3 {
     font-size: 350%;
@@ -924,8 +924,8 @@ summary::marker {
 }
 @media screen and (min-width: 1000px) {
   .blog-home {
-    max-width: 75vw;
-    min-width: 75vw !important;
+    max-width: 80vw;
+    min-width: 80vw !important;
   }
 }
 @media screen and (min-width: 1050px) {
@@ -959,7 +959,7 @@ summary::marker {
 }
 .footer {
   min-height: 90.5vh;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(216, 216, 216, 0.47);
   margin-top: -0.5%;
   display: flex;
   flex-direction: column;
@@ -969,7 +969,7 @@ summary::marker {
   min-width: 100vw;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
-  box-shadow: inset 0px 0px 0px 3px #063831;
+  box-shadow: inset 0px 0px 0px 3px #272727;
 }
 .footer hr {
   margin: 1% 0;
@@ -999,7 +999,7 @@ summary::marker {
   width: 65%;
 }
 .footer .footer-mission-statement {
-  font-size: 300%;
+  font-size: 325%;
   font-family: "Open Sans", sans-serif;
   font-weight: 500;
   font-weight: bolder;
@@ -1072,7 +1072,7 @@ summary::marker {
 }
 @media screen and (min-width: 500px) {
   .footer-container {
-    padding: 0 3% !important;
+    padding: 0 7% !important;
   }
   .footer-logo {
     margin-top: 15%;
@@ -1082,7 +1082,7 @@ summary::marker {
     margin: 3% 0 !important;
   }
   .footer-contacts {
-    font-size: 300%;
+    font-size: 325%;
   }
   .footer-social-links__logo {
     width: 60% !important;
@@ -1174,7 +1174,7 @@ summary::marker {
 
 @media screen and (min-width: 470px) {
   .faq p {
-    font-size: 300%;
+    font-size: 325%;
   }
   .faq__header {
     font-size: 350%;
@@ -1195,8 +1195,8 @@ summary::marker {
 }
 @media screen and (min-width: 1000px) {
   .faq {
-    max-width: 75vw;
-    min-width: 75vw !important;
+    max-width: 80vw;
+    min-width: 80vw !important;
   }
 }
 @media screen and (min-width: 1050px) {
@@ -1248,7 +1248,7 @@ body, html {
   scroll-padding-top: 10vh;
 }
 body ::selection, html ::selection {
-  background-color: #FEFDFF;
+  background-color: #97B1AB;
 }
 body .cta-orange, html .cta-orange {
   display: flex;
@@ -1388,8 +1388,8 @@ body h3, html h3 {
     position: relative;
     height: 100vh;
     margin: 0;
-    min-width: 25vw;
-    max-width: 25vw;
+    min-width: 20vw;
+    max-width: 20vw;
     float: right;
   }
 }

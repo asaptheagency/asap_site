@@ -3,6 +3,7 @@
 
 <!--
 
+* make new changes responsive
 * delete old assets
 
 -->

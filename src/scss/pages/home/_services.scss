@@ -40,7 +40,7 @@ summary::marker {font-size: x-large}
 @media screen and (min-width: 470px) {
     .services {
         p {
-            font-size: 300%;
+            font-size: $largeP;
         }
         &__header {
             font-size: 350%;
@@ -69,8 +69,8 @@ summary::marker {font-size: x-large}
 
 @media screen and (min-width: 1000px) {
     .services {
-        max-width: 75vw;
-        min-width: 75vw !important;
+        max-width: 80vw;
+        min-width: 80vw !important;
     }
 }
 

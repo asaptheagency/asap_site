@@ -7,7 +7,7 @@
         padding: 0 5% 0 5% !important;
         text-align: justify;
         font-family: "Open Sans", sans-serif;
-        font-size: 300%;
+        font-size: $largeP;
         font-weight: 500;
         color: #063831;
         letter-spacing: 0.05rem;
@@ -22,7 +22,7 @@
     }
     li {
         font-family: "Open Sans", sans-serif;
-        font-size: 300%;
+        font-size: $largeP;
         font-weight: 500;
         color: #063831;
         letter-spacing: 0.05rem;
@@ -47,7 +47,7 @@
 @media screen and (min-width: 470px) {
     .blog {
         p {
-            font-size: 300%;
+            font-size: $largeP;
         }
         h3 {
             font-size: 350%;
@@ -76,8 +76,8 @@
 
 @media screen and (min-width: 1000px) {
     // .blog {
-    //     max-width: 75vw;
-    //     min-width: 75vw !important;
+    //     max-width: 80vw;
+    //     min-width: 80vw !important;
     // }
 }
 

@@ -21,7 +21,7 @@
     }
     p {
         font-family: "Open Sans", sans-serif;
-        font-size: 300%;
+        font-size: $largeP;
         font-weight: 500;
         color: #063831;
         letter-spacing: 0.05rem;
@@ -71,7 +71,7 @@
     .blog-home {
         &__list {
             p {
-                font-size: 300%;
+                font-size: $largeP;
             }
             h3 {
                 font-size: 350%;
@@ -130,8 +130,8 @@
 
 @media screen and (min-width: 1000px) {
     .blog-home {
-        max-width: 75vw;
-        min-width: 75vw !important;
+        max-width: 80vw;
+        min-width: 80vw !important;
     }
 }
 

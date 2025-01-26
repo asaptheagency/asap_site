@@ -111,12 +111,12 @@
 
 @media screen and (min-width: 1000px) {
     .wrapper {
-        max-width: 75vw;
-        min-width: 75vw !important;
+        max-width: 80vw;
+        min-width: 80vw !important;
     }
     .hero {
-        max-width: 75vw;
-        min-width: 75vw !important;
+        max-width: 80vw;
+        min-width: 80vw !important;
         &-video {
             @include cover;
             overflow: hidden;

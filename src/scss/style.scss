@@ -29,7 +29,7 @@ body, html {
     width: 100%;
     scroll-padding-top: $navHeight;
     ::selection{
-        background-color: $thisWhite;
+        background-color: $secondColor;
     }
     .cta-orange {
         @include callToAction;
@@ -147,8 +147,8 @@ body, html {
         position: relative;
         height: 100vh;
         margin: 0;
-        min-width: 25vw;
-        max-width: 25vw;
+        min-width: 20vw;
+        max-width: 20vw;
         float: right;
     }
 }

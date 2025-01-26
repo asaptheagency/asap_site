@@ -99,7 +99,7 @@
 @media screen and (min-width: 470px) {
     .contact {
         p {
-            font-size: 300%;
+            font-size: $largeP;
         }
     }
 }
@@ -155,7 +155,7 @@
         width: 100vw;
     }
     .main {
-        width: 75vw;
+        width: 80vw;
     }
     .contact {
         grid-area: two;
