@@ -1282,6 +1282,8 @@ body .cta-orange__second--blog, body .cta-orange__services--blog, html .cta-oran
 }
 body h1, html h1 {
   font-size: 450%;
+  -webkit-text-fill-color: #FEFDFF;
+  -webkit-text-stroke: 2.75px #272727;
 }
 body h3, html h3 {
   font-family: "Open Sans", sans-serif;
@@ -1290,6 +1292,8 @@ body h3, html h3 {
   margin-top: 0;
   margin-bottom: 0;
   margin-top: 5%;
+  -webkit-text-fill-color: #FEFDFF;
+  -webkit-text-stroke: 1.75px #272727;
 }
 
 .section-padding {
