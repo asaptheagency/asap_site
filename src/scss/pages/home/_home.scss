@@ -18,14 +18,15 @@
         overflow: hidden;
         max-width: 100%;
         z-index: -1;
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 79%);
+        opacity: .6;
+        // clip-path: polygon(0 0, 100% 0, 100% 100%, 0 79%);
     };
     .hero-video {
         @include cover;
         overflow: hidden;
         max-width: 100%;
         z-index: -1;
-        // opacity: .9;
+        opacity: .8;
     };
     .hero-text-div {
         display: inline-block;

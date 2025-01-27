@@ -25,11 +25,11 @@ body, html {
     font-size: 62.5%;
     font-family: 'league_spartanbold';
     font-weight: 400;
-    color: $thisWhite;
+    color: $black;
     width: 100%;
     scroll-padding-top: $navHeight;
     ::selection{
-        background-color: $secondColor;
+        background-color: $thisWhite;
     }
     .cta-orange {
         @include callToAction;
@@ -42,8 +42,8 @@ body, html {
     }
     h1 {
         font-size: $firstH1;
-        -webkit-text-fill-color: $thisWhite;
-        -webkit-text-stroke: 2.75px #272727;
+        -webkit-text-fill-color: $brandBlack;
+        -webkit-text-stroke: 2.75px $thisWhite;
     }
     & h3 {
         font-family: 'Open Sans', sans-serif;
@@ -52,8 +52,8 @@ body, html {
         margin-top: 0;
         margin-bottom: 0;
         margin-top: 5%;
-        -webkit-text-fill-color: $thisWhite;
-        -webkit-text-stroke: 1.75px #272727;
+        -webkit-text-fill-color: $brandBlack;
+        -webkit-text-stroke: .25px $thisWhite;
     };
 };
 
