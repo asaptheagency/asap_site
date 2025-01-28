@@ -19,8 +19,102 @@
 </head>
 <body>
     <section class="wrapper">
-        <section class='main' id='main'>
-            <div class="heading-box">
+        <section class='main contact--main' id='main'>
+            <section class='hero contact--main'>
+                <video autoplay loop class='hero-video' muted plays-inline>
+                    <source src='../assets/home/hero.mp4' type='video/mp4'>
+                </video>
+                <!-- <img src="./src/assets/home/cover_photo_small.webp" class='cover-photo' alt="cover photo"> -->
+                <div class='hero-text-div'>
+                    <!-- <h1 class='heading heading__hero'>Envysion<br/>Digital<br/>Marketing</h1> -->
+                    <!-- <img alt='logo' src='./src/assets/global/logo.png' class='scroll' id='logo'/> -->
+                </div>
+                <div>
+                    <div class="heading-box">
+                        <h1 class="
+                        scroll 
+                        scroll__left
+                        heading
+                        ">
+                            <span><i>Contact</i></span>
+                        </h1>
+                    </div>
+                    <section class='contact'>
+                        <div class='form-container'>
+                            <form action="./email.php" method="post" name="contact" netlify>
+                                <div class="input-div input-div__first-name">
+                                    <input 
+                                    title="first-name"
+                                    type="text" 
+                                    name="first-name" 
+                                    id="first-name" 
+                                    required='required'
+                                    >
+                                    <span>First Name</span>
+                                </div>
+                                <div class="input-div input-div__last-name">
+                                    <input 
+                                    title="last-name"
+                                    type="text" 
+                                    name="last-name" 
+                                    id="last-name" 
+                                    required='required'
+                                    >
+                                    <span>Last Name</span>
+                                </div>
+                                <div class="input-div input-div__company">
+                                    <input 
+                                    title="company"
+                                    type="text" 
+                                    name="company" 
+                                    id="company" 
+                                    required='required'
+                                    >
+                                    <span>Company</span>
+                                </div>
+                                <div class="input-div input-div__email">
+                                    <input 
+                                    title="email"
+                                    type="email" 
+                                    name="email" 
+                                    id="email" 
+                                    required='required'
+                                    >
+                                    <span>Email</span>
+                                </div>
+                                <div class="input-div input-div__phone">
+                                    <input 
+                                    title="phone"
+                                    type="tel"
+                                    name="phone" 
+                                    id="phone" 
+                                    required='required'
+                                    >
+                                    <span>Phone</span>
+                                </div>
+                                <div class="input-div input-div__interested-in">
+                                    <select title='interested-in' name="interested-in" id="interested-in" required='required'>
+                                        <option value="" disabled selected>Interested In...</option>
+                                        <option value="multiple">Multiple</option>
+                                        <option value="web-dev">Web Design & Development</option>
+                                        <option value="web-dev">AppSnap</option>
+                                        <option value="advertisements">AutoMate</option>
+                                        <option value="blogging">Chatbots</option>
+                                        <option value="blogging">HypeRise</option>
+                                    </select>
+                                </div>
+                                <div class="input-div input-div__submit">
+                                    <input 
+                                    type="submit"
+                                    name="submit" 
+                                    id="submit" >
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </section>
+            <!-- <div class="heading-box">
                 <h1 class="
                 scroll 
                 scroll__left
@@ -103,7 +197,7 @@
                         </div>
                     </form>
                 </div>
-            </section>
+            </section> -->
         </section>
     </section>
     <footer class='footer' id='footer'>

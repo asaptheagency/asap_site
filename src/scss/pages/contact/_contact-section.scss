@@ -21,9 +21,13 @@
     animation-name: moveInRight;
     animation-duration: .7s;
     @include andSection;
+    background-color: rgba(255, 255, 255, 0) !important;
     font-size: 75%;
     margin: 0;
     padding: 0;
+    &--main {
+        display: block !important;
+    }
     .form-container {
         margin: 0;
     }
@@ -73,8 +77,8 @@
         font-size: 200%;
     }
     input[type='submit'] {
-        background: $mainColor;
-        color: $black;
+        background: $brandBlack;
+        color: $thisWhite;
         cursor: pointer;
         border: none;
         max-width: 50%;
@@ -160,11 +164,11 @@
     .contact {
         grid-area: two;
         position: relative;
-        max-width: 70vw;
-        min-width: 70vw;
+        max-width: 80vw;
+        min-width: 80vw;
         overflow: hidden;
         margin-bottom: 0;
-        width: 70vw;
+        width: 80vw;
         margin-bottom: 0;
         .cta-orange__services {
             margin-bottom: 25%;
