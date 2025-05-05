@@ -5,12 +5,12 @@ import image3 from './assets/3.webp';
 import robotLogo from './assets/robot.png';
 import logoTransp from './assets/logo_transp.png';
 
-// Service page images - using specific named files for each service
-import websiteImage from './assets/services/webdesign.webp';
-import automateImage from './assets/services/automate.webp';
-import botspotImage from './assets/services/botspot.webp';
-import appsnapImage from './assets/services/appsnap.webp';
-import hyperiseImage from './assets/services/hyperise.webp';
+// Service page images using the actual images for each service
+import websiteImage from './assets/websites.webp';
+import automateImage from './assets/automate.jpg';
+import botspotImage from './assets/chatbots.jpg';
+import appsnapImage from './assets/appsnap.jpg';
+import hyperiseImage from './assets/hyperise.jpg';
 
 export {
   image1,
