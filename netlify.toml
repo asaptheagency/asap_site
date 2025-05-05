@@ -2,6 +2,10 @@
   command = "node pre-build.js && npm run build"
   publish = "dist/public"
 
+[build.environment]
+  NODE_VERSION = "18"
+  IMAGES_DIR = "true"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -19,5 +23,3 @@
     Cache-Control = "public, max-age=0, must-revalidate"
 
 # Copy images to correct location during build
-[build.environment]
-  IMAGES_DIR = "true"
