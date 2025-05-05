@@ -27,7 +27,6 @@ const WebDesign: React.FC = () => {
             fallbackSrc={websiteImage}
             alt="Professional web design and development services"
             className="w-full h-full object-cover opacity-50"
-            style={{ width: '1200px', height: '630px' }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent"></div>
         </div>
