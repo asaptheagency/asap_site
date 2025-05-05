@@ -33,7 +33,7 @@ const Hero = () => {
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <a 
-                href="#"
+                href="#services"
                 className="px-8 py-3 bg-accent text-accent-foreground font-semibold rounded-md text-center glow-hover hover:bg-accent/90 transition duration-300"
                 onClick={(e) => {
                   e.preventDefault();

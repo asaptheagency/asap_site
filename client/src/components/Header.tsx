@@ -64,7 +64,7 @@ const Header = () => {
             
             {/* Services Link */}
             <a 
-              href="#" 
+              href="#services" 
               className="nav-link text-sm uppercase tracking-wider"
               onClick={(e) => {
                 e.preventDefault();
