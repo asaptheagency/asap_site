@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { fadeIn, slideFromBottom } from "../lib/animations";
+import { image3 } from "../assets";
+import ImageWithFallback from "./ImageWithFallback";
 
 const FrictionlessScaling = () => {
   return (
@@ -41,19 +43,12 @@ const FrictionlessScaling = () => {
                     <div className="absolute -left-2 -bottom-2 w-12 h-12 bg-accent bg-opacity-20 rounded-full blur-lg"></div>
                     <div className="h-56 w-full rounded-md shadow-lg bg-secondary flex items-center justify-center relative overflow-hidden">
                       <div className="absolute w-full h-full bg-gradient-to-t from-accent/20 to-transparent"></div>
-                      <picture>
-                        <source srcSet="/images/3.webp" type="image/webp" />
-                        <img 
-                          src="/images/3.webp" 
-                          alt="Business professional pointing at analytics dashboard" 
-                          className="w-full h-full object-cover object-top"
-                          onError={(e) => {
-                            console.log('Image failed to load: /images/3.webp');
-                            e.currentTarget.onerror = null;
-                            e.currentTarget.src = '3.webp';
-                          }}
-                        />
-                      </picture>
+                      <ImageWithFallback
+                        src={image3}
+                        fallbackSrc={image3}
+                        alt="Business professional pointing at analytics dashboard"
+                        className="w-full h-full object-cover object-top"
+                      />
                     </div>
                   </motion.div>
                   

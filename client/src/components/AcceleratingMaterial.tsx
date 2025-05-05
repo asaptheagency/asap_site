@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { fadeIn, slideFromBottom } from "../lib/animations";
+import { image2 } from "../assets";
+import ImageWithFallback from "./ImageWithFallback";
 
 const CreativeStrategy = () => {
   return (
@@ -40,19 +42,12 @@ const CreativeStrategy = () => {
                     <div className="absolute -right-2 -bottom-2 w-12 h-12 bg-accent bg-opacity-20 rounded-full blur-lg"></div>
                     <div className="h-56 w-full rounded-md shadow-lg bg-background flex items-center justify-center relative overflow-hidden">
                       <div className="absolute w-full h-full bg-gradient-to-l from-accent/20 to-transparent"></div>
-                      <picture>
-                        <source srcSet="/images/2.webp" type="image/webp" />
-                        <img 
-                          src="/images/2.webp" 
-                          alt="People working in modern office with data visualization" 
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            console.log('Image failed to load: /images/2.webp');
-                            e.currentTarget.onerror = null;
-                            e.currentTarget.src = '2.webp';
-                          }}
-                        />
-                      </picture>
+                      <ImageWithFallback
+                        src={image2}
+                        fallbackSrc={image2}
+                        alt="People working in modern office with data visualization"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </motion.div>
                 </div>

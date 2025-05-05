@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { fadeIn, slideFromLeft, slideFromBottom } from "../lib/animations";
+import { image1 } from "../assets";
+import ImageWithFallback from "./ImageWithFallback";
 
 const Problem = () => {
   return (
@@ -59,19 +61,12 @@ const Problem = () => {
                     <div className="absolute -left-2 -top-2 w-12 h-12 bg-accent bg-opacity-20 rounded-full blur-lg"></div>
                     <div className="h-56 w-full rounded-md shadow-lg bg-secondary flex items-center justify-center relative overflow-hidden">
                       <div className="absolute w-full h-full bg-gradient-to-r from-accent/20 to-transparent"></div>
-                      <picture>
-                        <source srcSet="/images/1.webp" type="image/webp" />
-                        <img 
-                          src="/images/1.webp" 
-                          alt="Person working at messy desk with computer" 
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            console.log('Image failed to load: /images/1.webp');
-                            e.currentTarget.onerror = null;
-                            e.currentTarget.src = '1.webp'; // Simple fallback
-                          }}
-                        />
-                      </picture>
+                      <ImageWithFallback
+                        src={image1}
+                        fallbackSrc={image1}
+                        alt="Person working at messy desk with computer"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </motion.div>
                 </div>
