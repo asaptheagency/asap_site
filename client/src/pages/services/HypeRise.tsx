@@ -2,24 +2,30 @@ import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ContactButton from "../../components/ContactButton";
+import FloatingElements from "../../components/FloatingElements";
+import { hyperiseImage } from "../../assets";
+import ImageWithFallback from "../../components/ImageWithFallback";
+import SEOHead from "../../components/SEOHead";
 
 const HypeRise: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
+      <SEOHead 
+        title="HypeRise - High-Ticket Marketing Services" 
+        description="Supercharge your high-ticket sales with precision marketing from HypeRise. Targeted ad campaigns designed to attract qualified leads for service-based businesses."
+        imageUrl={hyperiseImage}
+      />
       <Header />
       
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <picture>
-            <source srcSet="/attached_assets/hyperise.jpg" type="image/jpeg" />
-            <source srcSet="/attached_assets/2.webp" type="image/webp" />
-            <img 
-              src="/attached_assets/2.webp" 
-              alt="HypeRise"
-              className="w-full h-full object-cover opacity-50"
-            />
-          </picture>
+          <ImageWithFallback
+            src={hyperiseImage}
+            fallbackSrc={hyperiseImage}
+            alt="HypeRise"
+            className="w-full h-full object-cover opacity-50"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent"></div>
         </div>
         
@@ -34,7 +40,8 @@ const HypeRise: React.FC = () => {
       <div className="h-16 bg-gradient-to-b from-[rgba(75,184,166,0.2)] to-[rgba(75,184,166,0.2)]"></div>
       
       {/* Content Section */}
-      <main className="flex-grow z-10 relative bg-gradient-to-b from-[rgba(75,184,166,0.2)] to-[rgba(75,184,166,0.3)]">
+      <main className="flex-grow z-10 relative">
+        <FloatingElements className="absolute inset-0" />
         <div className="py-20">
           <div className="container mx-auto px-4">
             {/* First Section */}

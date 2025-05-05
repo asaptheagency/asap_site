@@ -3,24 +3,29 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ContactButton from "../../components/ContactButton";
 import FloatingElements from "../../components/FloatingElements";
+import { appsnapImage } from "../../assets";
+import ImageWithFallback from "../../components/ImageWithFallback";
+import SEOHead from "../../components/SEOHead";
 
 const AppSnap: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
+      <SEOHead 
+        title="AppSnap - Custom App Development" 
+        description="Custom app development for your business with AppSnap. Mobile apps, web apps, and desktop apps tailored to your specific needs and requirements."
+        imageUrl={appsnapImage}
+      />
       <Header />
       
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <picture>
-            <source srcSet="/attached_assets/appsnap.jpg" type="image/jpeg" />
-            <source srcSet="/attached_assets/1.webp" type="image/webp" />
-            <img 
-              src="/attached_assets/1.webp" 
-              alt="AppSnap"
-              className="w-full h-full object-cover opacity-50"
-            />
-          </picture>
+          <ImageWithFallback
+            src={appsnapImage}
+            fallbackSrc={appsnapImage}
+            alt="AppSnap"
+            className="w-full h-full object-cover opacity-50"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent"></div>
         </div>
         
