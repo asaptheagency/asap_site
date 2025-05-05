@@ -4,6 +4,7 @@ import Hero from "../components/Hero";
 import Problem from "../components/Problem";
 import AcceleratingMaterial from "../components/AcceleratingMaterial";
 import FrictionlessScaling from "../components/FrictionlessScaling";
+import Services from "../components/Services";
 import Footer from "../components/Footer";
 import SEOHead from "../components/SEOHead";
 
@@ -15,17 +16,33 @@ const Home = () => {
       if (target.tagName === 'A' && target.getAttribute('href')?.startsWith('#')) {
         e.preventDefault();
         const href = target.getAttribute('href');
-        const element = document.getElementById(href!.substring(1));
+        console.log('Anchor clicked with href:', href);
+        const targetId = href!.substring(1);
+        console.log('Looking for element with ID:', targetId);
+        const element = document.getElementById(targetId);
+        
         if (element) {
+          console.log('Element found, scrolling to:', element.offsetTop);
           window.scrollTo({
-            top: element.offsetTop,
+            top: element.offsetTop - 100, // Offset to account for header
             behavior: 'smooth'
           });
+        } else {
+          console.log('Element not found with ID:', targetId);
         }
       }
     };
 
     document.addEventListener('click', handleAnchorClick);
+
+    // Check if services section exists for debugging
+    setTimeout(() => {
+      const services = document.getElementById('services');
+      console.log('Services section found:', !!services);
+      if (services) {
+        console.log('Services section offset:', services.offsetTop);
+      }
+    }, 1000);
 
     return () => {
       document.removeEventListener('click', handleAnchorClick);
@@ -63,6 +80,13 @@ const Home = () => {
         
         <div>
           <FrictionlessScaling />
+        </div>
+        
+        {/* Transition connector from FrictionlessScaling to Services */}
+        <div className="h-16 bg-gradient-to-b from-[rgba(75,184,166,0.2)] to-[rgba(75,184,166,0.2)]"></div>
+        
+        <div id="services-section">
+          <Services />
         </div>
       </main>
       <Footer />
