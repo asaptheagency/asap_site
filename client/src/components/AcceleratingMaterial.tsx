@@ -41,15 +41,15 @@ const CreativeStrategy = () => {
                     <div className="h-56 w-full rounded-md shadow-lg bg-background flex items-center justify-center relative overflow-hidden">
                       <div className="absolute w-full h-full bg-gradient-to-l from-accent/20 to-transparent"></div>
                       <picture>
-                        <source srcSet="/attached_assets/2.webp" type="image/webp" />
+                        <source srcSet="/images/2.webp" type="image/webp" />
                         <img 
-                          src="/attached_assets/2.webp" 
+                          src="/images/2.webp" 
                           alt="People working in modern office with data visualization" 
                           className="w-full h-full object-cover"
                           onError={(e) => {
-                            console.log('Image failed to load: /attached_assets/2.webp');
+                            console.log('Image failed to load: /images/2.webp');
                             e.currentTarget.onerror = null;
-                            e.currentTarget.src = '/public/attached_assets/2.webp';
+                            e.currentTarget.src = '2.webp';
                           }}
                         />
                       </picture>

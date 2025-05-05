@@ -42,15 +42,15 @@ const FrictionlessScaling = () => {
                     <div className="h-56 w-full rounded-md shadow-lg bg-secondary flex items-center justify-center relative overflow-hidden">
                       <div className="absolute w-full h-full bg-gradient-to-t from-accent/20 to-transparent"></div>
                       <picture>
-                        <source srcSet="/attached_assets/3.webp" type="image/webp" />
+                        <source srcSet="/images/3.webp" type="image/webp" />
                         <img 
-                          src="/attached_assets/3.webp" 
+                          src="/images/3.webp" 
                           alt="Business professional pointing at analytics dashboard" 
                           className="w-full h-full object-cover object-top"
                           onError={(e) => {
-                            console.log('Image failed to load: /attached_assets/3.webp');
+                            console.log('Image failed to load: /images/3.webp');
                             e.currentTarget.onerror = null;
-                            e.currentTarget.src = '/public/attached_assets/3.webp';
+                            e.currentTarget.src = '3.webp';
                           }}
                         />
                       </picture>

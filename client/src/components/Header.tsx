@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation } from "wouter";
 import { motion } from "framer-motion";
-import robotLogo from "../assets/robot.png";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,9 +32,14 @@ const Header = () => {
               setLocation("/");
             }}>
               <img 
-                src={robotLogo} 
+                src="/images/robot.png" 
                 alt="Robot Mascot" 
                 className="h-12 w-auto mr-3"
+                onError={(e) => {
+                  console.log('Logo failed to load');
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = '/images/logo_transp.png';
+                }}
               />
               <span className="text-xl font-bold">
                 A.S.A.P.
