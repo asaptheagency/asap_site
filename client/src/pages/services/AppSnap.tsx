@@ -14,7 +14,7 @@ const AppSnap: React.FC = () => {
         <div className="absolute inset-0 z-0 overflow-hidden">
           <picture>
             <source srcSet="/client/public/assets/services/appsnap.jpg" type="image/jpeg" />
-            <source srcSet="/client/public/assets/services/appsnap.jpg" type="image/webp" />
+            <source srcSet="/client/public/assets/services/appsnap.jpg" type="image/jpeg" />
             <img 
               src="/client/public/assets/services/appsnap.jpg" 
               alt="AppSnap"
