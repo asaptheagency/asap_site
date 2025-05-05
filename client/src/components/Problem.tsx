@@ -60,7 +60,7 @@ const Problem = () => {
                     <div className="h-56 w-full rounded-md shadow-lg bg-secondary flex items-center justify-center relative overflow-hidden">
                       <div className="absolute w-full h-full bg-gradient-to-r from-accent/20 to-transparent"></div>
                       <img 
-                        src="/attached_assets/1.webp" 
+                        src="/attached_assets/1.webp"
                         alt="Person working at messy desk with computer" 
                         className="w-full h-full object-cover"
                       />
