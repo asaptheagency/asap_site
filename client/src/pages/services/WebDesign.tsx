@@ -6,6 +6,8 @@ import { slideFromBottom } from "../../lib/animations";
 import ContactButton from "../../components/ContactButton";
 import SEOHead from "../../components/SEOHead";
 import FloatingElements from "../../components/FloatingElements";
+import { websiteImage } from "../../assets";
+import ImageWithFallback from "../../components/ImageWithFallback";
 
 const WebDesign: React.FC = () => {
   return (
@@ -13,25 +15,20 @@ const WebDesign: React.FC = () => {
       <SEOHead 
         title="Web Design and Development Services" 
         description="Professional website design services that create eye-catching, SEO-friendly websites for your business. Custom web development tailored to your unique needs and preferences."
-        imageUrl="/attached_assets/websites.webp"
+        imageUrl={websiteImage}
       />
       <Header />
       
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <picture>
-            <source srcSet="/attached_assets/websites.webp" type="image/webp" />
-            <source srcSet="/attached_assets/1.webp" type="image/webp" />
-            <img 
-              src="/attached_assets/websites.webp" 
-              alt="Professional web design and development services" 
-              className="w-full h-full object-cover opacity-50"
-              width="1200"
-              height="630"
-              loading="eager"
-            />
-          </picture>
+          <ImageWithFallback
+            src={websiteImage}
+            fallbackSrc={websiteImage}
+            alt="Professional web design and development services"
+            className="w-full h-full object-cover opacity-50"
+            style={{ width: '1200px', height: '630px' }}
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent"></div>
         </div>
         
