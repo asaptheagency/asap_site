@@ -1,0 +1,143 @@
+import { Switch, Route, useLocation, useRoute } from "wouter";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./lib/queryClient";
+import { Toaster } from "@/components/ui/toaster";
+import NotFound from "@/pages/not-found";
+import Home from "@/pages/Home";
+import { LanguageProvider } from "./context/LanguageContext";
+import { useEffect, lazy, Suspense, useState } from "react";
+import { HomeSkeleton, ServicePageSkeleton, PageSkeleton } from "@/components/SkeletonLoaders";
+import PageTransition from "@/components/PageTransition";
+
+// Lazy load service pages for better performance
+const WebDesign = lazy(() => import("./pages/services/WebDesign"));
+const AutoMate = lazy(() => import("./pages/services/AutoMate"));
+const BotSpot = lazy(() => import("./pages/services/BotSpot"));
+const AppSnap = lazy(() => import("./pages/services/AppSnap"));
+const HypeRise = lazy(() => import("./pages/services/HypeRise"));
+const TestPage = lazy(() => import("./pages/services/TestPage"));
+
+// Handle scrolling to top on route changes
+function RouteChangeListener() {
+  const [location] = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    console.log('Route changed, scrolling to top');
+  }, [location]);
+  
+  return null;
+}
+
+// Custom loading handler that selects appropriate skeleton based on route
+function LoadingHandler() {
+  const [location] = useLocation();
+  const isHomePage = useRoute("/")[0];
+  const isServicePage = location.includes("/services/");
+  
+  if (isHomePage) {
+    return <HomeSkeleton />;
+  } else if (isServicePage) {
+    return <ServicePageSkeleton />;
+  } else {
+    return <PageSkeleton />;
+  }
+}
+
+function Router() {
+  return (
+    <Suspense fallback={<LoadingHandler />}>
+      <RouteChangeListener />
+      <PageTransition>
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/services/web-design" component={WebDesign} />
+          <Route path="/services/automate" component={AutoMate} />
+          <Route path="/services/botspot" component={BotSpot} />
+          <Route path="/services/appsnap" component={AppSnap} />
+          <Route path="/services/hyperise" component={HypeRise} />
+          <Route path="/services/test" component={TestPage} />
+          <Route component={NotFound} />
+        </Switch>
+      </PageTransition>
+    </Suspense>
+  );
+}
+
+function App() {
+  useEffect(() => {
+    // Cursor glow effect with throttling for performance
+    let lastMove = 0;
+    const handleMouseMove = (e: MouseEvent) => {
+      const now = Date.now();
+      // Throttle updates to every 10ms for better performance
+      if (now - lastMove < 10) return;
+      lastMove = now;
+      
+      document.body.classList.add('has-cursor-glow');
+      
+      // Position the glow effect at the cursor location using CSS variables for better performance
+      document.body.style.setProperty('--cursor-x', `${e.clientX}px`);
+      document.body.style.setProperty('--cursor-y', `${e.clientY}px`);
+      
+      // Create larger glow effect when hovering over interactive elements
+      const target = e.target as HTMLElement;
+      const isInteractive = 
+        target.tagName === 'A' || 
+        target.tagName === 'BUTTON' || 
+        target.classList.contains('glow-hover');
+      
+      if (isInteractive) {
+        document.body.classList.add('enhanced-glow');
+      } else {
+        document.body.classList.remove('enhanced-glow');
+      }
+    };
+
+    // Add scroll-to-top button
+    const createScrollToTopButton = () => {
+      const button = document.createElement('button');
+      button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>';
+      button.className = 'scroll-to-top';
+      button.setAttribute('aria-label', 'Scroll to top');
+      button.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.body.appendChild(button);
+
+      // Show button only when scrolled down
+      const toggleButtonVisibility = () => {
+        if (window.scrollY > 500) {
+          button.classList.add('visible');
+        } else {
+          button.classList.remove('visible');
+        }
+      };
+
+      window.addEventListener('scroll', toggleButtonVisibility);
+      toggleButtonVisibility(); // Initial check
+    };
+
+    // Add event listeners
+    document.addEventListener('mousemove', handleMouseMove);
+    createScrollToTopButton();
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      const scrollButton = document.querySelector('.scroll-to-top');
+      if (scrollButton) {
+        document.body.removeChild(scrollButton);
+      }
+    };
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <LanguageProvider>
+        <Router />
+        <Toaster />
+      </LanguageProvider>
+    </QueryClientProvider>
+  );
+}
+
+export default App;
