@@ -14,9 +14,9 @@ const AppSnap: React.FC = () => {
         <div className="absolute inset-0 z-0 overflow-hidden">
           <picture>
             <source srcSet="/client/public/assets/services/appsnap.jpg" type="image/jpeg" />
-            <source srcSet="/attached_assets/1.webp" type="image/webp" />
+            <source srcSet="/client/public/assets/services/appsnap.jpg" type="image/webp" />
             <img 
-              src="/attached_assets/1.webp" 
+              src="/client/public/assets/services/appsnap.jpg" 
               alt="AppSnap"
               className="w-full h-full object-cover opacity-50"
             />
