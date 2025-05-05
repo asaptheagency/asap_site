@@ -118,7 +118,7 @@ const Footer = () => {
       
       {/* Attribution section */}
       <div className="py-3 bg-[#272727] text-center text-sm text-white">
-        Developed & Designed by…<a href="/" rel="noopener noreferrer" className="text-accent hover:underline">A.S.A.P.</a> 😉
+        Developed & Designed by…<a href="https://www.asaptheagency.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">A.S.A.P.</a> 😉
       </div>
     </>
   );

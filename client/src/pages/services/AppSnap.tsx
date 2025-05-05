@@ -13,10 +13,10 @@ const AppSnap: React.FC = () => {
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <picture>
-            <source srcSet="/client/public/assets/services/appsnap.jpg" type="image/jpeg" />
-            <source srcSet="/client/public/assets/services/appsnap.jpg" type="image/jpeg" />
+            <source srcSet="/attached_assets/appsnap.jpg" type="image/jpeg" />
+            <source srcSet="/attached_assets/1.webp" type="image/webp" />
             <img 
-              src="/client/public/assets/services/appsnap.jpg" 
+              src="/attached_assets/1.webp" 
               alt="AppSnap"
               className="w-full h-full object-cover opacity-50"
             />

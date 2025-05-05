@@ -40,11 +40,19 @@ const CreativeStrategy = () => {
                     <div className="absolute -right-2 -bottom-2 w-12 h-12 bg-accent bg-opacity-20 rounded-full blur-lg"></div>
                     <div className="h-56 w-full rounded-md shadow-lg bg-background flex items-center justify-center relative overflow-hidden">
                       <div className="absolute w-full h-full bg-gradient-to-l from-accent/20 to-transparent"></div>
-                      <img 
-                        src="/attached_assets/2.webp" 
-                        alt="People working in modern office with data visualization" 
-                        className="w-full h-full object-cover"
-                      />
+                      <picture>
+                        <source srcSet="/attached_assets/2.webp" type="image/webp" />
+                        <img 
+                          src="/attached_assets/2.webp" 
+                          alt="People working in modern office with data visualization" 
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            console.log('Image failed to load: /attached_assets/2.webp');
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = '/public/attached_assets/2.webp';
+                          }}
+                        />
+                      </picture>
                     </div>
                   </motion.div>
                 </div>

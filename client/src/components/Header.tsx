@@ -1,11 +1,26 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useLocation } from "wouter";
 import { motion } from "framer-motion";
 import robotLogo from "../assets/robot.png";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const [, setLocation] = useLocation();
+  
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    }
+    
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
   
   return (
     <header className="fixed w-full top-0 z-50 bg-background/30 backdrop-blur-sm border-b border-white/5">
@@ -43,20 +58,28 @@ const Header = () => {
             </a>
             
             {/* Services Dropdown */}
-            <div className="relative group">
-              <button className="flex items-center space-x-1 text-sm uppercase tracking-wider">
+            <div className="relative" ref={dropdownRef}>
+              <button 
+                className="flex items-center space-x-1 text-sm uppercase tracking-wider"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                onMouseEnter={() => setDropdownOpen(true)}
+              >
                 <span>Solutions</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <div className="hidden group-hover:block absolute left-0 mt-2 bg-secondary/90 backdrop-blur-md min-w-[220px] shadow-lg rounded-md border border-border">
+              <div 
+                className={`absolute left-0 mt-2 bg-secondary/90 backdrop-blur-md min-w-[220px] shadow-lg rounded-md border border-border ${dropdownOpen ? 'block' : 'hidden'}`}
+                onMouseLeave={() => setDropdownOpen(false)}
+              >
                 <a 
                   href="/services/web-design" 
                   className="block px-4 py-2 text-sm hover:text-accent"
                   onClick={(e) => {
                     e.preventDefault();
                     setLocation("/services/web-design");
+                    setDropdownOpen(false);
                     window.scrollTo(0, 0);
                   }}
                 >
@@ -68,6 +91,7 @@ const Header = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     setLocation("/services/automate");
+                    setDropdownOpen(false);
                     window.scrollTo(0, 0);
                   }}
                 >
@@ -79,6 +103,7 @@ const Header = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     setLocation("/services/botspot");
+                    setDropdownOpen(false);
                     window.scrollTo(0, 0);
                   }}
                 >
@@ -90,6 +115,7 @@ const Header = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     setLocation("/services/appsnap");
+                    setDropdownOpen(false);
                     window.scrollTo(0, 0);
                   }}
                 >
@@ -101,6 +127,7 @@ const Header = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     setLocation("/services/hyperise");
+                    setDropdownOpen(false);
                     window.scrollTo(0, 0);
                   }}
                 >
