@@ -45,7 +45,7 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <section id="services" className="py-20 relative">
+    <section id="services" className="py-20 relative scroll-mt-[200px]">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/90 to-black/70 z-0"></div>
       

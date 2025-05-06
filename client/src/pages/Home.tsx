@@ -85,7 +85,8 @@ const Home = () => {
         {/* Transition connector from FrictionlessScaling to Services */}
         <div className="h-16 bg-gradient-to-b from-[rgba(75,184,166,0.2)] to-[rgba(75,184,166,0.2)]"></div>
         
-        <div id="services-section">
+        {/* Services section wrapped with both IDs for different targeting options */}
+        <div id="services-section" className="scroll-mt-[120px]">
           <Services />
         </div>
       </main>

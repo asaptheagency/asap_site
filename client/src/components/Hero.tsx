@@ -31,30 +31,12 @@ const Hero = () => {
             <p className="text-lg text-muted-foreground mb-8">
               Welcome to ASAP! We believe in automation before promotion. First, we streamline your operations with AI and custom software solutions. Then, we help you market effectively once your business is ready to handle growth.
             </p>
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <a 
-                href="#services"
-                className="px-8 py-3 bg-accent text-accent-foreground font-semibold rounded-md text-center glow-hover hover:bg-accent/90 transition duration-300"
-                onClick={(e) => {
-                  e.preventDefault();
-                  console.log("Our Services button clicked directly from hero");
-                  // Try to find the services section directly
-                  const servicesSection = document.getElementById('services');
-                  if (servicesSection) {
-                    console.log("Found services section, scrolling to it directly");
-                    servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  } else {
-                    console.log("Could not find services section directly");
-                  }
-                }}
-              >
-                Our Services
-              </a>
+            <div className="flex justify-center">
               <a 
                 href="https://calendar.app.google/nuQzaVZ8opKfm8bo8" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-3 border border-accent text-foreground font-semibold rounded-md text-center glow-hover hover:bg-accent hover:text-accent-foreground hover:border-transparent transition duration-300"
+                className="px-8 py-3 bg-accent text-accent-foreground font-semibold rounded-md text-center glow-hover hover:bg-accent/90 transition duration-300"
               >
                 Contact Us
               </a>

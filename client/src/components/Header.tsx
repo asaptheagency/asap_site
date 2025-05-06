@@ -62,41 +62,6 @@ const Header = () => {
               Home
             </a>
             
-            {/* Services Link */}
-            <a 
-              href="#services" 
-              className="nav-link text-sm uppercase tracking-wider"
-              onClick={(e) => {
-                e.preventDefault();
-                console.log("Services link clicked from header");
-                if (window.location.pathname !== '/') {
-                  console.log("Not on homepage, redirecting first");
-                  setLocation('/');
-                  // Need a slight delay to allow the page to change before scrolling
-                  setTimeout(() => {
-                    const servicesSection = document.getElementById('services');
-                    if (servicesSection) {
-                      console.log("Found services section after navigation");
-                      servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else {
-                      console.log("Could not find services section after navigation");
-                    }
-                  }, 100);
-                } else {
-                  console.log("On homepage, scrolling directly");
-                  const servicesSection = document.getElementById('services');
-                  if (servicesSection) {
-                    console.log("Found services section");
-                    servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  } else {
-                    console.log("Could not find services section");
-                  }
-                }
-              }}
-            >
-              Services
-            </a>
-            
             {/* Solutions Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button 
@@ -220,43 +185,6 @@ const Header = () => {
               }}
             >
               Home
-            </a>
-            
-            {/* Services Link */}
-            <a 
-              href="#" 
-              className="py-2 text-sm uppercase tracking-wider"
-              onClick={(e) => {
-                e.preventDefault();
-                console.log("Services link clicked from mobile menu");
-                if (window.location.pathname !== '/') {
-                  console.log("Not on homepage, redirecting first from mobile");
-                  setLocation('/');
-                  setMobileMenuOpen(false);
-                  // Need a slight delay to allow the page to change before scrolling
-                  setTimeout(() => {
-                    const servicesSection = document.getElementById('services');
-                    if (servicesSection) {
-                      console.log("Found services section after navigation from mobile");
-                      servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else {
-                      console.log("Could not find services section after navigation from mobile");
-                    }
-                  }, 100);
-                } else {
-                  console.log("On homepage, scrolling directly from mobile");
-                  const servicesSection = document.getElementById('services');
-                  if (servicesSection) {
-                    console.log("Found services section from mobile");
-                    servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    setMobileMenuOpen(false);
-                  } else {
-                    console.log("Could not find services section from mobile");
-                  }
-                }
-              }}
-            >
-              Services
             </a>
             
             {/* Mobile Services Menu */}
