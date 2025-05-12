@@ -1,13 +1,15 @@
 import { Switch, Route, useLocation, useRoute } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
-import { Toaster } from "@/components/ui/toaster";
-import NotFound from "@/pages/not-found";
-import Home from "@/pages/Home";
+import { Toaster } from "./components/ui/toaster";
+import NotFound from "./pages/not-found";
+import Home from "./pages/Home";
 import { LanguageProvider } from "./context/LanguageContext";
 import { useEffect, lazy, Suspense, useState } from "react";
-import { HomeSkeleton, ServicePageSkeleton, PageSkeleton } from "@/components/SkeletonLoaders";
-import PageTransition from "@/components/PageTransition";
+import { HomeSkeleton, ServicePageSkeleton, PageSkeleton } from "./components/SkeletonLoaders";
+import PageTransition from "./components/PageTransition";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 // Lazy load service pages for better performance
 const WebDesign = lazy(() => import("./pages/services/WebDesign"));
@@ -15,7 +17,12 @@ const AutoMate = lazy(() => import("./pages/services/AutoMate"));
 const BotSpot = lazy(() => import("./pages/services/BotSpot"));
 const AppSnap = lazy(() => import("./pages/services/AppSnap"));
 const HypeRise = lazy(() => import("./pages/services/HypeRise"));
+const ReviewGenerators = lazy(() => import("./pages/services/ReviewGenerators"));
 const TestPage = lazy(() => import("./pages/services/TestPage"));
+
+// Hidden review generator pages
+const ReviewGenerator = lazy(() => import("./pages/ReviewGenerator"));
+const EmbeddableReviewGenerator = lazy(() => import("./pages/EmbeddableReviewGenerator"));
 
 // Handle scrolling to top on route changes
 function RouteChangeListener() {
@@ -34,31 +41,60 @@ function LoadingHandler() {
   const [location] = useLocation();
   const isHomePage = useRoute("/")[0];
   const isServicePage = location.includes("/services/");
+  const isReviewGenerator = location.includes("/review-generator") || location.includes("/embed/review-generator");
   
   if (isHomePage) {
     return <HomeSkeleton />;
   } else if (isServicePage) {
     return <ServicePageSkeleton />;
+  } else if (isReviewGenerator) {
+    // Review generator pages don't show header/footer, so use a simple skeleton
+    return <PageSkeleton />;
   } else {
     return <PageSkeleton />;
   }
 }
 
+// Layout with header and footer
+const MainLayout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </>
+  );
+};
+
 function Router() {
+  const [location] = useLocation();
+  const isReviewGenerator = location.includes("/review-generator") || location.includes("/embed/review-generator");
+  
   return (
     <Suspense fallback={<LoadingHandler />}>
       <RouteChangeListener />
       <PageTransition>
-        <Switch>
-          <Route path="/" component={Home} />
-          <Route path="/services/web-design" component={WebDesign} />
-          <Route path="/services/automate" component={AutoMate} />
-          <Route path="/services/botspot" component={BotSpot} />
-          <Route path="/services/appsnap" component={AppSnap} />
-          <Route path="/services/hyperise" component={HypeRise} />
-          <Route path="/services/test" component={TestPage} />
-          <Route component={NotFound} />
-        </Switch>
+        {/* Apply the main layout conditionally */}
+        {isReviewGenerator ? (
+          <Switch>
+            <Route path="/review-generator" component={ReviewGenerator} />
+            <Route path="/embed/review-generator" component={EmbeddableReviewGenerator} />
+          </Switch>
+        ) : (
+          <MainLayout>
+            <Switch>
+              <Route path="/" component={Home} />
+              <Route path="/services/web-design" component={WebDesign} />
+              <Route path="/services/automate" component={AutoMate} />
+              <Route path="/services/botspot" component={BotSpot} />
+              <Route path="/services/appsnap" component={AppSnap} />
+              <Route path="/services/hyperise" component={HypeRise} />
+              <Route path="/services/review-generators" component={ReviewGenerators} />
+              <Route path="/services/test" component={TestPage} />
+              <Route component={NotFound} />
+            </Switch>
+          </MainLayout>
+        )}
       </PageTransition>
     </Suspense>
   );

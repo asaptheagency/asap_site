@@ -5,7 +5,6 @@ import Problem from "../components/Problem";
 import AcceleratingMaterial from "../components/AcceleratingMaterial";
 import FrictionlessScaling from "../components/FrictionlessScaling";
 import Services from "../components/Services";
-import Footer from "../components/Footer";
 import SEOHead from "../components/SEOHead";
 
 const Home = () => {
@@ -53,9 +52,9 @@ const Home = () => {
     <div className="min-h-screen bg-background text-foreground scroll-smooth">
       <SEOHead 
         title="Digital Solutions & Automation First Agency" 
-        description="A.S.A.P. THE AGENCY helps businesses automate processes and scale digital operations with targeted web design, app development, and marketing services." 
+        description="ASAP helps businesses automate processes and scale digital operations with targeted web design, app development, and marketing services." 
       />
-      <Header />
+      {/* Header is provided by MainLayout */}
       <main>
         <div>
           <Hero />
@@ -90,7 +89,6 @@ const Home = () => {
           <Services />
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

@@ -11,6 +11,7 @@ import automateImage from './assets/automate.jpg';
 import botspotImage from './assets/chatbots.jpg';
 import appsnapImage from './assets/appsnap.jpg';
 import hyperiseImage from './assets/hyperise.jpg';
+import reviewGeneratorsImage from './assets/review_gen.jpeg';
 
 export {
   image1,
@@ -24,5 +25,6 @@ export {
   automateImage,
   botspotImage,
   appsnapImage,
-  hyperiseImage
+  hyperiseImage,
+  reviewGeneratorsImage
 };

@@ -13,7 +13,7 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
             <div>
               <a href="/" className="inline-block mb-6">
-                <span className="text-2xl font-bold">A.S.A.P. THE AGENCY</span>
+                <span className="text-2xl font-bold">ASAP</span>
               </a>
               <p className="text-muted-foreground mb-6">
                 Pioneering automation-first solutions that streamline business operations and enable sustainable growth through effective promotion strategies.
@@ -90,6 +90,18 @@ const Footer = () => {
                     HypeRise
                   </a>
                 </li>
+                <li>
+                  <a 
+                    href="/services/review-generators" 
+                    className="text-muted-foreground hover:text-accent"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setLocation("/services/review-generators");
+                    }}
+                  >
+                    Review Generators
+                  </a>
+                </li>
               </ul>
             </div>
             
@@ -107,10 +119,14 @@ const Footer = () => {
           </div>
           
           <div className="pt-8 border-t border-muted">
-            <div className="flex flex-col md:flex-row items-center justify-center">
+            <div className="flex flex-col md:flex-row items-center justify-center mb-4">
               <p className="text-sm text-muted-foreground">
-                &copy; {currentYear} A.S.A.P. THE AGENCY. All rights reserved.
+                &copy; {currentYear} ASAP All rights reserved <a href="https://www.asaptheagency.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">www.asaptheagency.com</a>
               </p>
+            </div>
+            
+            <div className="flex flex-wrap justify-center gap-4 text-xs text-gray-500">
+              {/* Footer links can be added here if needed */}
             </div>
           </div>
         </div>
@@ -118,7 +134,7 @@ const Footer = () => {
       
       {/* Attribution section */}
       <div className="py-3 bg-[#272727] text-center text-sm text-white">
-        Developed & Designed by…<a href="https://www.asaptheagency.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">A.S.A.P.</a> 😉
+        Developed & Designed by…<a href="https://www.asaptheagency.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">ASAP</a> 😉
       </div>
     </>
   );

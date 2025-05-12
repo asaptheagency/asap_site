@@ -15,9 +15,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   type = 'website'
 }) => {
   const [location] = useLocation();
-  const siteName = 'A.S.A.P. THE AGENCY';
-  const defaultTitle = 'A.S.A.P. THE AGENCY - Digital Solutions & Automation';
-  const defaultDescription = 'A.S.A.P. THE AGENCY provides digital solutions, automation, web design, app development, and targeted marketing services to help your business thrive.';
+  const siteName = 'ASAP';
+  const defaultTitle = 'ASAP - Digital Solutions & Automation';
+  const defaultDescription = 'ASAP provides digital solutions, automation, web design, app development, and targeted marketing services to help your business thrive.';
   
   const pageTitle = title ? `${title} | ${siteName}` : defaultTitle;
   const pageDescription = description || defaultDescription;

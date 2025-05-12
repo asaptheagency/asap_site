@@ -1,8 +1,6 @@
 import { fadeIn } from "../lib/animations";
 import { motion } from "framer-motion";
 import React, { ReactNode, useEffect } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
 
 interface ServiceLayoutProps {
   title: string;
@@ -32,7 +30,7 @@ const ServiceLayout: React.FC<ServiceLayoutProps> = ({
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
-      <Header />
+      {/* Header is provided by MainLayout */}
       
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
@@ -70,8 +68,6 @@ const ServiceLayout: React.FC<ServiceLayoutProps> = ({
           </div>
         </div>
       </main>
-      
-      <Footer />
     </div>
   );
 }

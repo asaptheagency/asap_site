@@ -2,7 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { slideFromBottom } from '../lib/animations';
 import { Link } from 'wouter';
-import { websiteImage, automateImage, botspotImage, appsnapImage, hyperiseImage } from '../assets';
+import { 
+  websiteImage, 
+  automateImage, 
+  botspotImage, 
+  appsnapImage, 
+  hyperiseImage,
+  reviewGeneratorsImage 
+} from '../assets';
 import ImageWithFallback from './ImageWithFallback';
 
 const Services: React.FC = () => {
@@ -41,6 +48,13 @@ const Services: React.FC = () => {
       image: hyperiseImage,
       link: "/services/hyperise",
       fallback: hyperiseImage
+    },
+    {
+      title: "Review Generators",
+      description: "Boost your online reputation with our customizable review generators. Available in basic and premium versions, these tools help showcase customer satisfaction and build trust with potential clients.",
+      image: reviewGeneratorsImage,
+      link: "/services/review-generators",
+      fallback: hyperiseImage // Using hyperiseImage as fallback in case the reviewGeneratorsImage fails
     }
   ];
 

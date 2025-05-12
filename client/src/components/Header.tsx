@@ -138,6 +138,18 @@ const Header = () => {
                 >
                   HypeRise
                 </a>
+                <a 
+                  href="/services/review-generators" 
+                  className="block px-4 py-2 text-sm hover:text-accent"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation("/services/review-generators");
+                    setDropdownOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  Review Generators
+                </a>
               </div>
             </div>
             
@@ -250,6 +262,18 @@ const Header = () => {
                   }}
                 >
                   HypeRise
+                </a>
+                <a 
+                  href="/services/review-generators" 
+                  className="py-1 text-sm hover:text-accent"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation("/services/review-generators");
+                    setMobileMenuOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  Review Generators
                 </a>
               </div>
             </div>
