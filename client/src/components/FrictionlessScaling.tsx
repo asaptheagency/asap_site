@@ -5,7 +5,7 @@ import ImageWithFallback from "./ImageWithFallback";
 
 const FrictionlessScaling = () => {
   return (
-    <section id="technology" className="py-20 relative bg-gradient-to-b from-[#000000] to-[rgba(75,184,166,0.15)]">
+    <section id="technology" className="pt-20 pb-12 relative bg-gradient-to-b from-[rgba(0,0,0,0.55)] to-[rgba(75,184,166,0.08)]">
       {/* Direct gradient background */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col-reverse md:flex-row">

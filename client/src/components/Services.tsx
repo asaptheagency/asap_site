@@ -65,9 +65,9 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <section id="services" className="py-20 relative scroll-mt-[200px]">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/90 to-black/70 z-0"></div>
+    <section id="services" className="pt-4 pb-20 relative scroll-mt-[200px]">
+      {/* Background gradient - blending with the previous section */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/80 to-black/70 z-0"></div>
       
       {/* Content container */}
       <div className="container mx-auto px-4 relative z-10">

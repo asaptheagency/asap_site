@@ -3,12 +3,10 @@ import { fadeIn, slideFromLeft, slideFromRight } from "../lib/animations";
 import robotLogo from "../assets/robot.png";
 
 const Hero = () => {
+  
   return (
-    <section 
-      id="home" 
-      className="pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden bg-gradient-to-b from-[#000000] via-[rgba(75,184,166,0.05)] via-15% to-[rgba(75,184,166,0.2)] hero-mobile-gradient"
-    >
-      {/* Background with gradient that adjusts for mobile */}
+    <section id="home" className="pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden bg-gradient-to-b from-[#000000] to-[rgba(75,184,166,0.2)]">
+      {/* Background with direct gradient */}
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
