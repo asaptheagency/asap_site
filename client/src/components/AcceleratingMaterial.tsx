@@ -19,7 +19,7 @@ const CreativeStrategy = () => {
               <div className="flex flex-col md:flex-row">
                 <div className="mr-8 mb-4 md:mb-0">
                   <div className="flex items-center justify-center w-16 h-16 bg-secondary rounded-full border border-accent text-2xl font-bold text-accent glow-hover">
-                    02
+                    01
                   </div>
                 </div>
                 <div>

@@ -20,7 +20,7 @@ const FrictionlessScaling = () => {
               <div className="flex">
                 <div className="mr-8">
                   <div className="flex items-center justify-center w-16 h-16 bg-background rounded-full border border-accent text-2xl font-bold text-accent">
-                    03
+                    02
                   </div>
                 </div>
                 <div>

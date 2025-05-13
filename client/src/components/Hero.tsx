@@ -29,7 +29,7 @@ const Hero = () => {
               <span className="text-primary">Software Automation & Promotion</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              Welcome to ASAP! We believe in automation before promotion. First, we streamline your operations with AI and custom software solutions. Then, we help you market effectively once your business is ready to handle growth.
+              Welcome to ASAP! We believe in giving you the choice to focus on what matters most. You can start by streamlining your operations with AI and custom software solutions, or if you're ready, dive straight into effective marketing. Whether you prefer to automate first or start promoting your business, we're here to support your unique growth journey.
             </p>
             <div className="flex justify-center">
               <a 

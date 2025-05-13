@@ -30,7 +30,7 @@ const ReviewGenerators: React.FC = () => {
             >
               <h2 className="text-3xl md:text-4xl font-bold">Boost Your Business Reputation</h2>
               <p className="text-lg text-muted-foreground">
-                Our custom-built Review Generator tools help businesses showcase their value through authentic customer testimonials. Available in two versions to fit your specific needs.
+                Our AI-powered Review Generator tools streamline the customer feedback process. With just a click, these tools create authentic-sounding reviews, copy them to the user's clipboard, and direct them to your Google Maps business profile to leave a review.
               </p>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
@@ -39,7 +39,7 @@ const ReviewGenerators: React.FC = () => {
                       <path d="M20 6 9 17l-5-5" />
                     </svg>
                   </div>
-                  <p>Generate professional, personalized reviews that highlight your business strengths</p>
+                  <p>Uses AI to generate professional, personalized reviews based on your business strengths</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="mt-1 text-accent">
@@ -47,7 +47,7 @@ const ReviewGenerators: React.FC = () => {
                       <path d="M20 6 9 17l-5-5" />
                     </svg>
                   </div>
-                  <p>Easy integration with any website platform through iframe embedding</p>
+                  <p>Automatically copies generated reviews to clipboard for easy posting</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="mt-1 text-accent">
@@ -55,7 +55,7 @@ const ReviewGenerators: React.FC = () => {
                       <path d="M20 6 9 17l-5-5" />
                     </svg>
                   </div>
-                  <p>Customizable to match your brand's voice, style, and specific offerings</p>
+                  <p>Directs users to your Google Maps business page to increase review count</p>
                 </div>
               </div>
             </motion.div>
@@ -84,7 +84,7 @@ const ReviewGenerators: React.FC = () => {
                       onClick={() => window.open("/embed/review-generator", "_blank")}
                       variant="outline"
                     >
-                      Basic Version
+                      Standard Version
                     </Button>
                   </div>
                 </div>

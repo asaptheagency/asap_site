@@ -168,7 +168,12 @@ const EmbeddableReviewGenerator: React.FC = () => {
             {!generatedReview ? (
               <div className="text-center">
                 <p className="mb-6 text-gray-300 text-sm">
-                  Click the button below to instantly generate a positive review for {businessDetails.name}
+                  When you click the button below the review generator will do the following:
+                  <ul className="list-disc text-left ml-6 mt-3 space-y-1">
+                    <li>Generate a positive review for {businessDetails.name} through the use of AI integration</li>
+                    <li>Copy the AI generated review to your clipboard</li>
+                    <li>Open Google Maps</li>
+                  </ul>
                 </p>
                 <Button 
                   onClick={generateReview} 

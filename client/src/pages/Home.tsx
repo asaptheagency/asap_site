@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
-import Problem from "../components/Problem";
 import AcceleratingMaterial from "../components/AcceleratingMaterial";
 import FrictionlessScaling from "../components/FrictionlessScaling";
 import Services from "../components/Services";
@@ -60,15 +59,8 @@ const Home = () => {
           <Hero />
         </div>
         
-        {/* Transition connector from Hero to Problem */}
-        <div className="h-16 bg-gradient-to-b from-[rgba(75,184,166,0.2)] to-[rgba(75,184,166,0.2)]"></div>
-        
-        <div>
-          <Problem />
-        </div>
-        
-        {/* Transition connector from Problem to AcceleratingMaterial */}
-        <div className="h-16 bg-gradient-to-b from-[rgba(75,184,166,0.3)] to-[rgba(75,184,166,0.3)]"></div>
+        {/* Transition connector from Hero to AcceleratingMaterial */}
+        <div className="h-16 bg-gradient-to-b from-[rgba(75,184,166,0.2)] to-[rgba(75,184,166,0.3)]"></div>
         
         <div>
           <AcceleratingMaterial />
