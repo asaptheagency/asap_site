@@ -1,15 +1,20 @@
 import { motion } from "framer-motion";
 import { fadeIn, slideFromLeft, slideFromRight } from "../lib/animations";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
+import logoVideo from "../assets/videos/logo_video.mp4";
+// Import a fallback image in case the video fails to load
+import robotLogo from "../assets/robot.png";
 
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoError, setVideoError] = useState(false);
   
   // Auto-play video when component mounts
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.play().catch(error => {
         console.error("Video autoplay failed:", error);
+        setVideoError(true);
       });
     }
   }, []);
@@ -27,15 +32,33 @@ const Hero = () => {
             className="flex flex-col items-start"
           >
             <div className="w-48 mb-8 relative">
-              <video 
-                ref={videoRef}
-                src="/logo_video.mp4" 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                className="w-full rounded-md"
-              />
+              {videoError ? (
+                // Show fallback image if video fails to load
+                <img 
+                  src={robotLogo} 
+                  alt="Robot Mascot" 
+                  className="w-full rounded-md"
+                />
+              ) : (
+                // Try to show video with multiple sources for better compatibility
+                <video 
+                  ref={videoRef}
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  className="w-full rounded-md"
+                  onError={() => setVideoError(true)}
+                >
+                  {/* Try imported source first */}
+                  <source src={logoVideo} type="video/mp4" />
+                  {/* Fallback to public folder */}
+                  <source src="/logo_video.mp4" type="video/mp4" />
+                  {/* Fallback to client/public folder */}
+                  <source src="/client/public/logo_video.mp4" type="video/mp4" />
+                  {/* If all video sources fail, the onError will show the fallback image */}
+                </video>
+              )}
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
