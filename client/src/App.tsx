@@ -18,11 +18,15 @@ const BotSpot = lazy(() => import("./pages/services/BotSpot"));
 const AppSnap = lazy(() => import("./pages/services/AppSnap"));
 const HypeRise = lazy(() => import("./pages/services/HypeRise"));
 const ReviewGenerators = lazy(() => import("./pages/services/ReviewGenerators"));
+const ReviewGeneratorsSimple = lazy(() => import("./pages/services/ReviewGeneratorsSimple"));
 const TestPage = lazy(() => import("./pages/services/TestPage"));
 
 // Hidden review generator pages
 const ReviewGenerator = lazy(() => import("./pages/ReviewGenerator"));
 const EmbeddableReviewGenerator = lazy(() => import("./pages/EmbeddableReviewGenerator"));
+
+// Preload the ReviewGeneratorsSimple component to avoid 404 flash
+import("./pages/services/ReviewGeneratorsSimple");
 
 // Handle scrolling to top on route changes
 function RouteChangeListener() {
@@ -68,17 +72,20 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
 function Router() {
   const [location] = useLocation();
-  const isReviewGenerator = location.includes("/review-generator") || location.includes("/embed/review-generator");
+  const isSpecialPage = location.includes("/review-generator") || 
+                        location.includes("/embed/review-generator") ||
+                        location.includes("/services/review-generators");
   
   return (
     <Suspense fallback={<LoadingHandler />}>
       <RouteChangeListener />
       <PageTransition>
         {/* Apply the main layout conditionally */}
-        {isReviewGenerator ? (
+        {isSpecialPage ? (
           <Switch>
             <Route path="/review-generator" component={ReviewGenerator} />
             <Route path="/embed/review-generator" component={EmbeddableReviewGenerator} />
+            <Route path="/services/review-generators" component={ReviewGeneratorsSimple} />
           </Switch>
         ) : (
           <MainLayout>
@@ -89,7 +96,6 @@ function Router() {
               <Route path="/services/botspot" component={BotSpot} />
               <Route path="/services/appsnap" component={AppSnap} />
               <Route path="/services/hyperise" component={HypeRise} />
-              <Route path="/services/review-generators" component={ReviewGenerators} />
               <Route path="/services/test" component={TestPage} />
               <Route component={NotFound} />
             </Switch>

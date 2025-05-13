@@ -16,34 +16,39 @@ const Services: React.FC = () => {
   const services = [
     {
       title: "Web Design & Development",
+      subtitle: "",
       description: "Professional, eye-catching websites designed to make a great first impression and encourage customers to reach out. Our skilled team creates custom sites that exceed expectations.",
       image: websiteImage,
       link: "/services/web-design",
       fallback: websiteImage
     },
     {
-      title: "AutoMate",
+      title: "Business Automation",
+      subtitle: "AutoMate",
       description: "Streamline your business with custom automation solutions. From workflow to lead generation, our personalized approach integrates seamlessly with your systems to boost efficiency.",
       image: automateImage,
       link: "/services/automate",
       fallback: automateImage
     },
     {
-      title: "BotSpot & LeadSeed",
+      title: "AI Chatbot Solutions",
+      subtitle: "BotSpot & LeadSeed",
       description: "Transform customer service with smart chatbots. BotSpot handles routine inquiries while LeadSeed qualifies leads for high-ticket service businesses, saving time and boosting sales.",
       image: botspotImage,
       link: "/services/botspot",
       fallback: botspotImage
     },
     {
-      title: "AppSnap",
+      title: "Custom App Development",
+      subtitle: "AppSnap",
       description: "Custom mobile, web, or desktop app development tailored to your business needs. Our team builds user-friendly, functional applications that help streamline operations and serve customers better.",
       image: appsnapImage,
       link: "/services/appsnap",
       fallback: appsnapImage
     },
     {
-      title: "HypeRise",
+      title: "Marketing Strategies",
+      subtitle: "HypeRise",
       description: "Elevate your high-ticket service business with targeted marketing strategies. Reach the right customers, generate quality leads, and boost conversions with our comprehensive approach.",
       image: hyperiseImage,
       link: "/services/hyperise",
@@ -51,6 +56,7 @@ const Services: React.FC = () => {
     },
     {
       title: "Review Generators",
+      subtitle: "",
       description: "Boost your online reputation with our customizable review generators. Available in basic and premium versions, these tools help showcase customer satisfaction and build trust with potential clients.",
       image: reviewGeneratorsImage,
       link: "/services/review-generators",
@@ -105,7 +111,10 @@ const Services: React.FC = () => {
               </div>
               
               <div className="p-6 flex-grow flex flex-col">
-                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                <h3 className="text-xl font-bold mb-1">{service.title}</h3>
+                {service.subtitle && (
+                  <h4 className="text-sm text-accent/90 mb-3">{service.subtitle}</h4>
+                )}
                 <p className="text-muted-foreground mb-4 flex-grow">{service.description}</p>
                 <Link href={service.link}>
                   <div className="inline-flex items-center justify-center px-4 py-2 border border-accent/40 bg-accent/10 text-accent rounded-md hover:bg-accent/20 transition-colors w-full cursor-pointer">

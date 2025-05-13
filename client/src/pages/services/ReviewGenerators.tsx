@@ -16,7 +16,7 @@ const ReviewGenerators: React.FC = () => {
     <ServiceLayout
       title="Review Generators"
       subtitle="AI-powered review generation tools for your business"
-      heroImage={reviewGeneratorsImage}
+      heroImage="/review_gen.jpeg"
     >
       <ServiceSection className="py-16 md:py-24">
         <div className="container mx-auto px-4">
@@ -75,16 +75,16 @@ const ReviewGenerators: React.FC = () => {
                   </p>
                   <div className="flex flex-col md:flex-row gap-4 justify-center">
                     <Button 
-                      onClick={() => window.open("/review-generator", "_blank")}
-                      className="bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700"
-                    >
-                      Premium Version
-                    </Button>
-                    <Button 
                       onClick={() => window.open("/embed/review-generator", "_blank")}
                       variant="outline"
                     >
                       Standard Version
+                    </Button>
+                    <Button 
+                      onClick={() => window.open("/review-generator", "_blank")}
+                      variant="outline"
+                    >
+                      Premium Version
                     </Button>
                   </div>
                 </div>

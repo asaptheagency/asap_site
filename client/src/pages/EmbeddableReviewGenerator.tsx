@@ -172,7 +172,7 @@ const EmbeddableReviewGenerator: React.FC = () => {
                   <ul className="list-disc text-left ml-6 mt-3 space-y-1">
                     <li>Generate a positive review for {businessDetails.name} through the use of AI integration</li>
                     <li>Copy the AI generated review to your clipboard</li>
-                    <li>Open Google Maps</li>
+                    <li>Open the Google Maps page for {businessDetails.name}</li>
                   </ul>
                 </p>
                 <Button 

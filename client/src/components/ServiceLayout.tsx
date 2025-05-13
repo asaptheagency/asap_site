@@ -1,6 +1,8 @@
 import { fadeIn } from "../lib/animations";
 import { motion } from "framer-motion";
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
+import { ImageWithFallback } from "./ImageWithFallback";
+import { image1 } from "../assets";
 
 interface ServiceLayoutProps {
   title: string;
@@ -22,11 +24,13 @@ const ServiceLayout: React.FC<ServiceLayoutProps> = ({
     console.log("Children:", children);
   }, [title, heroImage, children]);
 
-  // Use a default image if the heroImage fails to load
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    console.log(`Image failed to load: ${heroImage}`);
-    e.currentTarget.src = "/attached_assets/1.webp";
-  };
+  // We don't need this anymore since we're using ImageWithFallback
+  useEffect(() => {
+    // Add a null check for heroImage
+    if (!heroImage) {
+      console.error("Hero image is undefined or null");
+    }
+  }, [heroImage]);
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
@@ -35,12 +39,15 @@ const ServiceLayout: React.FC<ServiceLayoutProps> = ({
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <img 
-            src={heroImage} 
-            alt={title}
-            onError={handleImageError}
-            className="w-full h-full object-cover opacity-50"
-          />
+          {/* Use ImageWithFallback instead of standard img */}
+          <div className="w-full h-full">
+            <ImageWithFallback 
+              src={heroImage} 
+              fallbackSrc={image1}
+              alt={title}
+              className="w-full h-full object-cover opacity-50"
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent"></div>
         </div>
         

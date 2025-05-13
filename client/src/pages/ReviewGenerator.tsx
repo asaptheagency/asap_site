@@ -241,7 +241,12 @@ const ReviewGenerator: React.FC = () => {
             {businessData.businessName} Review Generator
           </h1>
           <p className="mt-3 text-gray-300 max-w-2xl mx-auto">
-            Customize and generate authentic-sounding reviews for {businessData.businessName}.
+            When you click the button below the review generator will do the following:
+            <ul className="list-disc text-left ml-8 mt-3 space-y-1 max-w-md mx-auto">
+              <li>Generate a positive review for {businessData.businessName} through the use of AI integration</li>
+              <li>Copy the AI generated review to your clipboard</li>
+              <li>Open the Google Maps page for {businessData.businessName}</li>
+            </ul>
           </p>
         </div>
 
@@ -363,45 +368,6 @@ const ReviewGenerator: React.FC = () => {
                       rows={3}
                       className="w-full px-3 py-2 mt-1 bg-gray-800 border border-gray-700 rounded text-white"
                     />
-                  </div>
-                  
-                  <div>
-                    <label className="text-sm text-gray-400">Review Style</label>
-                    <div className="grid grid-cols-2 gap-4 mt-2">
-                      <div>
-                        <label className="text-sm text-gray-400">Tone</label>
-                        <Select
-                          value={reviewOptions.tone}
-                          onValueChange={(value) => handleSelectChange('tone', value as 'casual' | 'professional' | 'enthusiastic')}
-                        >
-                          <SelectTrigger className="bg-gray-800 border-gray-700 mt-1">
-                            <SelectValue placeholder="Select tone" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="casual">Casual</SelectItem>
-                            <SelectItem value="professional">Professional</SelectItem>
-                            <SelectItem value="enthusiastic">Enthusiastic</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      
-                      <div>
-                        <label className="text-sm text-gray-400">Length</label>
-                        <Select
-                          value={reviewOptions.length}
-                          onValueChange={(value) => handleSelectChange('length', value as 'short' | 'medium' | 'long')}
-                        >
-                          <SelectTrigger className="bg-gray-800 border-gray-700 mt-1">
-                            <SelectValue placeholder="Select length" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="short">Short</SelectItem>
-                            <SelectItem value="medium">Medium</SelectItem>
-                            <SelectItem value="long">Long</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

@@ -1,8 +1,18 @@
 import { motion } from "framer-motion";
 import { fadeIn, slideFromLeft, slideFromRight } from "../lib/animations";
-import robotLogo from "../assets/robot.png";
+import { useRef, useEffect } from "react";
 
 const Hero = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  
+  // Auto-play video when component mounts
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error("Video autoplay failed:", error);
+      });
+    }
+  }, []);
   
   return (
     <section id="home" className="pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden bg-gradient-to-b from-[#000000] to-[rgba(75,184,166,0.2)]">
@@ -16,11 +26,17 @@ const Hero = () => {
             animate="show"
             className="flex flex-col items-start"
           >
-            <img 
-              src={robotLogo} 
-              alt="Robot Mascot" 
-              className="w-48 mb-8"
-            />
+            <div className="w-48 mb-8 relative">
+              <video 
+                ref={videoRef}
+                src="/logo_video.mp4" 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="w-full rounded-md"
+              />
+            </div>
             
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
               <span>Aspire</span>
