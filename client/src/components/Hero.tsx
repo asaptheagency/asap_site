@@ -1,27 +1,14 @@
 import { motion } from "framer-motion";
 import { fadeIn, slideFromLeft, slideFromRight } from "../lib/animations";
-import { useRef, useEffect, useState } from "react";
-import logoVideo from "../assets/videos/logo_video.mp4";
-// Import a fallback image in case the video fails to load
 import robotLogo from "../assets/robot.png";
 
 const Hero = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoError, setVideoError] = useState(false);
-  
-  // Auto-play video when component mounts
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.error("Video autoplay failed:", error);
-        setVideoError(true);
-      });
-    }
-  }, []);
-  
   return (
-    <section id="home" className="pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden bg-gradient-to-b from-[#000000] to-[rgba(75,184,166,0.2)]">
-      {/* Background with direct gradient */}
+    <section 
+      id="home" 
+      className="pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden bg-gradient-to-b from-[#000000] via-[rgba(75,184,166,0.05)] via-15% to-[rgba(75,184,166,0.2)] hero-mobile-gradient"
+    >
+      {/* Background with gradient that adjusts for mobile */}
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -31,35 +18,11 @@ const Hero = () => {
             animate="show"
             className="flex flex-col items-start"
           >
-            <div className="w-48 mb-8 relative">
-              {videoError ? (
-                // Show fallback image if video fails to load
-                <img 
-                  src={robotLogo} 
-                  alt="Robot Mascot" 
-                  className="w-full rounded-md"
-                />
-              ) : (
-                // Try to show video with multiple sources for better compatibility
-                <video 
-                  ref={videoRef}
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline
-                  className="w-full rounded-md"
-                  onError={() => setVideoError(true)}
-                >
-                  {/* Try imported source first */}
-                  <source src={logoVideo} type="video/mp4" />
-                  {/* Fallback to public folder */}
-                  <source src="/logo_video.mp4" type="video/mp4" />
-                  {/* Fallback to client/public folder */}
-                  <source src="/client/public/logo_video.mp4" type="video/mp4" />
-                  {/* If all video sources fail, the onError will show the fallback image */}
-                </video>
-              )}
-            </div>
+            <img 
+              src={robotLogo} 
+              alt="Robot Mascot" 
+              className="w-48 mb-8"
+            />
             
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
               <span>Aspire</span>
