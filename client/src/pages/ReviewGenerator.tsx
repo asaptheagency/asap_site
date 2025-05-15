@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Button } from '../components/ui/button';
 import ImageWithFallback from '../components/ImageWithFallback';
 import { Card, CardContent } from '../components/ui/card';
+import { DEFAULT_ASAP_GOOGLE_MAPS_URL } from '../config';
 
 import logoImage from '../assets/logo_transp.png';
 
@@ -119,99 +120,98 @@ const ReviewGenerator: React.FC = () => {
   };
 
   // Generate the review, copy to clipboard, and navigate to Google Maps
-  const generateReview = () => {
+  const generateReview = async () => {
     // Don't allow submission if form is invalid
     if (!isFormValid()) return;
     
     setIsGenerating(true);
     
-    // Simulate API call with timeout
-    setTimeout(() => {
+    try {
       const { businessName, businessType, serviceUsed, positivePoints } = businessData;
-      const { staffMember, wasServiceTimely, serviceHighlight, wouldRecommend, wouldVisitAgain, additionalComments, length, tone } = reviewOptions;
+      const { staffMember, wasServiceTimely, serviceHighlight, wouldRecommend, wouldVisitAgain, additionalComments, length } = reviewOptions;
       
-      // Staff interaction part
-      const staffPart = staffMember ? 
-        (tone === 'enthusiastic' ? 
-          `${staffMember} was AMAZING to work with! ` : 
-          tone === 'professional' ? 
-            `I particularly appreciated the assistance provided by ${staffMember}. ` : 
-            `${staffMember} was really helpful. `) 
-        : '';
-
-      // Timeliness part
-      const timelinessPart = wasServiceTimely ? 
-        (tone === 'enthusiastic' ? 
-          "Their service was incredibly prompt! " : 
-          tone === 'professional' ? 
-            "The timeliness of their service was commendable. " : 
-            "They were very timely with their service. ") 
-        : '';
-
-      // Service highlight part
-      const highlightPart = serviceHighlight ? 
-        (tone === 'enthusiastic' ? 
-          `What really stood out was ${serviceHighlight}! ` : 
-          tone === 'professional' ? 
-            `I was particularly impressed by ${serviceHighlight}. ` : 
-            `I really liked ${serviceHighlight}. `) 
-        : '';
-
-      // Recommendation part
-      const recommendPart = wouldRecommend ? 
-        (tone === 'enthusiastic' ? 
-          `I would DEFINITELY recommend ${businessName} to anyone! ` : 
-          tone === 'professional' ? 
-            `I would confidently recommend ${businessName} to colleagues and friends. ` : 
-            `I'd recommend ${businessName} to others. `) 
-        : '';
-
-      // Visit again part
-      const visitAgainPart = wouldVisitAgain ? 
-        (tone === 'enthusiastic' ? 
-          `I'll absolutely be coming back again! ` : 
-          tone === 'professional' ? 
-            `I plan to utilize their services again in the future. ` : 
-            `I would visit again. `) 
-        : '';
-
-      // Additional comments part
-      const commentsPart = additionalComments ? 
-        (tone === 'enthusiastic' ? 
-          `${additionalComments.toUpperCase()}! ` : 
-          tone === 'professional' ? 
-            `${additionalComments}. ` : 
-            `${additionalComments}. `) 
-        : '';
-
-      // Base description of business
-      const businessPart = tone === 'enthusiastic' ? 
-        `I recently used ${businessName} for their ${serviceUsed} and was BLOWN AWAY! ` : 
-        tone === 'professional' ? 
-          `I recently engaged the services of ${businessName} for their ${serviceUsed} and was thoroughly satisfied with the experience. ` : 
-          `I used ${businessName} for ${serviceUsed} recently and was really happy with it. `;
-
-      // Construct review based on length
-      let review = '';
-      if (length === 'short') {
-        review = `${businessPart}${staffPart}${highlightPart}${recommendPart}`;
-      } else if (length === 'medium') {
-        review = `${businessPart}${staffPart}${timelinessPart}${highlightPart}${recommendPart}${visitAgainPart}`;
-      } else {
-        review = `${businessPart}${staffPart}${timelinessPart}${highlightPart}${positivePoints} ${recommendPart}${visitAgainPart}${commentsPart}`;
+      // Build user feedback summary to include in the prompt
+      let feedbackPoints = [];
+      
+      if (staffMember) {
+        feedbackPoints.push(`They worked with ${staffMember} who provided excellent service`);
       }
-
-      const reviewText = review.trim();
+      
+      if (wasServiceTimely) {
+        feedbackPoints.push(`The service was very timely and efficient`);
+      }
+      
+      if (serviceHighlight) {
+        feedbackPoints.push(`What stood out most was: ${serviceHighlight}`);
+      }
+      
+      if (wouldRecommend) {
+        feedbackPoints.push(`They would recommend ${businessName} to others`);
+      }
+      
+      if (wouldVisitAgain) {
+        feedbackPoints.push(`They plan to use ${businessName}'s services again in the future`);
+      }
+      
+      if (additionalComments) {
+        feedbackPoints.push(`Additional feedback: ${additionalComments}`);
+      }
+      
+      const feedbackText = feedbackPoints.join('. ');
+      
+      // Build the prompt for OpenAI
+      const prompt = `Generate a positive customer review for ${businessName}, a ${businessType}, based on the following customer feedback:
+      
+      Customer satisfaction points: ${positivePoints}
+      ${feedbackText}
+      
+      Focus solely on overall customer satisfaction and experience rather than specific service details.
+      Make the review sound natural and authentic, from the customer's perspective.
+      The review should be 3-5 sentences long and focus on how the customer felt about their experience with the business.
+      Avoid mentioning specific service details or processes.`;
+      
+      // Call the API
+      const response = await fetch('/api/openai/generate-review', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          prompt,
+          // Pass through customer feedback to help with review customization
+          customerFeedback: {
+            staffMember,
+            wasServiceTimely,
+            serviceHighlight,
+            wouldRecommend,
+            wouldVisitAgain,
+            additionalComments
+          }
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Error generating review. Please try again later.');
+      }
+      
+      const data = await response.json();
+      const reviewText = data.review.trim();
+      
       setGeneratedReview(reviewText);
-      setIsGenerating(false);
       
       // Copy to clipboard
       navigator.clipboard.writeText(reviewText);
       
-      // Open Google Maps in a new tab - client specific if provided or generic if not
-      const mapsUrl = businessData.googleMapsUrl || "https://www.google.com/maps";
+      // Open Google Maps in a new tab - client specific if provided or ASAP's default if not
+      // This is the premium version used directly on ASAP's site
+      const mapsUrl = businessData.googleMapsUrl || DEFAULT_ASAP_GOOGLE_MAPS_URL;
       window.open(mapsUrl, "_blank");
-    }, 1000);
+    } catch (error) {
+      console.error('Error generating review:', error);
+      alert('There was an error generating the review. Please try again later.');
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   // Reset options

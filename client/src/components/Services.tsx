@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { slideFromBottom } from '../lib/animations';
+import { slideFromBottom, fadeIn, fadeInScale, staggerFadeIn } from '../lib/animations';
 import { Link } from 'wouter';
 import { 
   websiteImage, 
@@ -11,6 +11,8 @@ import {
   reviewGeneratorsImage 
 } from '../assets';
 import ImageWithFallback from './ImageWithFallback';
+import SimpleParallax from './SimpleParallax';
+import GlowingElement from './GlowingElement';
 
 const Services: React.FC = () => {
   const services = [
@@ -69,60 +71,101 @@ const Services: React.FC = () => {
       {/* Background gradient - blending with the previous section */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/80 to-black/70 z-0"></div>
       
+      {/* Parallax background elements */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <SimpleParallax speed={0.2} direction="up" className="absolute top-[20%] right-[10%] w-48 h-48">
+          <div className="w-full h-full rounded-full bg-gradient-to-br from-primary to-transparent opacity-10"></div>
+        </SimpleParallax>
+        
+        <SimpleParallax speed={0.3} direction="left" className="absolute bottom-[30%] left-[5%] w-64 h-64">
+          <div className="w-full h-full rounded-full bg-gradient-to-tr from-accent to-transparent opacity-10"></div>
+        </SimpleParallax>
+      </div>
+      
       {/* Content container */}
       <div className="container mx-auto px-4 relative z-10">
         <motion.div 
           className="text-center mb-16"
-          variants={slideFromBottom}
+          variants={staggerFadeIn}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Our <span className="text-accent italic">Services</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive digital solutions designed to automate, optimize, and scale your business.
-          </p>
+          <SimpleParallax speed={0.3} direction="up">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Our <span className="text-accent italic">Services</span>
+            </h2>
+          </SimpleParallax>
+          
+          <SimpleParallax speed={0.2} direction="up" delay={100}>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Comprehensive digital solutions designed to automate, optimize, and scale your business.
+            </p>
+          </SimpleParallax>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <motion.div
-              key={index}
-              className="bg-background/30 rounded-lg overflow-hidden border border-accent/10 shadow-lg backdrop-blur-sm hover:shadow-accent/20 transition-all duration-300 flex flex-col h-full"
-              variants={slideFromBottom}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              whileHover={{ 
-                scale: 1.03,
-                transition: { duration: 0.3 }
-              }}
+            <SimpleParallax 
+              key={index} 
+              speed={0.15} 
+              direction="up" 
+              delay={index * 50} // Staggered delay based on index
+              maxOffset={30}
             >
-              <div className="relative h-52 overflow-hidden">
-                <ImageWithFallback
-                  src={service.image}
-                  fallbackSrc={service.fallback}
-                  alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-              </div>
-              
-              <div className="p-6 flex-grow flex flex-col">
-                <h3 className="text-xl font-bold mb-1">{service.title}</h3>
-                {service.subtitle && (
-                  <h4 className="text-sm text-accent/90 mb-3">{service.subtitle}</h4>
-                )}
-                <p className="text-muted-foreground mb-4 flex-grow">{service.description}</p>
-                <Link href={service.link}>
-                  <div className="inline-flex items-center justify-center px-4 py-2 border border-accent/40 bg-accent/10 text-accent rounded-md hover:bg-accent/20 transition-colors w-full cursor-pointer">
-                    Learn More
-                  </div>
-                </Link>
-              </div>
-            </motion.div>
+              <motion.div
+                className="bg-background/30 rounded-lg overflow-hidden border border-accent/10 shadow-lg backdrop-blur-sm transition-all duration-300 flex flex-col h-full card-glow-effect"
+                variants={fadeInScale}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-50px" }}
+                custom={index}
+                whileHover={{ 
+                  rotate: -1, // Slight counterclockwise rotation on hover
+                  transition: { duration: 0.3 }
+                }}
+              >
+                <div className="relative h-52 overflow-hidden">
+                  <SimpleParallax 
+                    speed={0.2} 
+                    direction="up" 
+                    scale={true}
+                    opacityEffect={true}
+                  >
+                    <ImageWithFallback
+                      src={service.image}
+                      fallbackSrc={service.fallback}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-300"
+                    />
+                  </SimpleParallax>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                </div>
+                
+                <div className="p-6 flex-grow flex flex-col">
+                  <SimpleParallax speed={0.15} direction="right" maxOffset={10}>
+                    <h3 className="text-xl font-bold mb-1">{service.title}</h3>
+                    {service.subtitle && (
+                      <h4 className="text-sm text-accent/90 mb-3">{service.subtitle}</h4>
+                    )}
+                  </SimpleParallax>
+                  
+                  <SimpleParallax speed={0.1} direction="left" maxOffset={8}>
+                    <p className="text-muted-foreground mb-4 flex-grow">{service.description}</p>
+                  </SimpleParallax>
+                  
+                  <SimpleParallax speed={0.12} direction="up" maxOffset={5}>
+                    <div className="w-full relative">
+                      <Link href={service.link}>
+                        <div className="inline-flex items-center justify-center px-4 py-2 border border-accent/40 bg-accent/10 text-accent rounded-md w-full cursor-pointer relative card-glow-effect accent-glow">
+                          Learn More
+                        </div>
+                      </Link>
+                    </div>
+                  </SimpleParallax>
+                </div>
+              </motion.div>
+            </SimpleParallax>
           ))}
         </div>
       </div>

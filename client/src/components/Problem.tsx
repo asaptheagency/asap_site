@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { fadeIn, slideFromLeft, slideFromBottom } from "../lib/animations";
+import { fadeIn, slideFromLeft, slideFromBottom, fadeInScale, staggerFadeIn } from "../lib/animations";
 import { image1 } from "../assets";
 import ImageWithFallback from "./ImageWithFallback";
 
@@ -11,10 +11,10 @@ const Problem = () => {
           <div className="md:w-1/4 mb-8 md:mb-0">
             <motion.div 
               className="sticky top-32"
-              variants={slideFromLeft}
+              variants={fadeInScale}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
             >
               <div className="flex items-center space-x-4 mb-4">
                 <div className="h-0.5 w-12 bg-accent"></div>
@@ -30,10 +30,10 @@ const Problem = () => {
           <div className="md:w-3/4 md:pl-12">
             <motion.div 
               className="mb-24 relative"
-              variants={slideFromBottom}
+              variants={fadeInScale}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
             >
               <div className="flex flex-col md:flex-row">
                 <div className="mr-8 mb-4 md:mb-0">
@@ -50,10 +50,14 @@ const Problem = () => {
                     Before scaling your marketing efforts, you need streamlined processes, automated workflows, and integrated systems. Marketing without proper automation is like driving with the brakes on - you'll burn fuel (resources) without gaining the speed (growth) you want.
                   </p>
                   <motion.div 
-                    className="bg-background rounded-lg p-6 relative group"
-                    variants={fadeIn}
+                    className="bg-background rounded-lg p-6 relative group card-glow-effect"
+                    variants={fadeInScale}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-100px" }}
                     whileHover={{ 
                       rotate: -3,
+                      scale: 1.02,
                       transition: { duration: 0.3 }
                     }}
                     whileTap={{ scale: 0.98 }}

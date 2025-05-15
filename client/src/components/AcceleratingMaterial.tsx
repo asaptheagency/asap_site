@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { fadeIn, slideFromBottom } from "../lib/animations";
+import { fadeIn, slideFromBottom, fadeInScale, staggerFadeIn } from "../lib/animations";
 import { image2 } from "../assets";
 import ImageWithFallback from "./ImageWithFallback";
 
@@ -11,10 +11,10 @@ const CreativeStrategy = () => {
           <div className="md:w-3/4 md:pr-12">
             <motion.div 
               className="mb-24 relative mt-12 md:mt-0"
-              variants={slideFromBottom}
+              variants={fadeInScale}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
             >
               <div className="flex flex-col md:flex-row">
                 <div className="mr-8 mb-4 md:mb-0">
@@ -31,10 +31,14 @@ const CreativeStrategy = () => {
                     From customer service chatbots to workflow automation systems, we build intelligent tools that run 24/7, eliminating bottlenecks and ensuring consistent quality in every customer interaction.
                   </p>
                   <motion.div 
-                    className="bg-secondary rounded-lg p-6 relative group"
-                    variants={fadeIn}
+                    className="bg-secondary rounded-lg p-6 relative group card-glow-effect"
+                    variants={fadeInScale}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-100px" }}
                     whileHover={{ 
                       rotate: -3,
+                      scale: 1.02,
                       transition: { duration: 0.3 }
                     }}
                     whileTap={{ scale: 0.98 }}
@@ -55,9 +59,15 @@ const CreativeStrategy = () => {
             </motion.div>
           </div>
           
-          <div className="md:w-1/4 vertical-text text-6xl font-bold opacity-20 flex items-center justify-center text-accent uppercase tracking-widest">
+          <motion.div 
+            className="md:w-1/4 vertical-text text-6xl font-bold opacity-20 flex items-center justify-center text-accent uppercase tracking-widest"
+            variants={staggerFadeIn}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
             AUTOMATE
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

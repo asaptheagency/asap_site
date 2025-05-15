@@ -46,6 +46,78 @@
   text-shadow: 0 0 10px rgba(255, 140, 0, 0.7);
 }
 
+/* Enhanced card glow effects for all rectangles/cards */
+.card-glow-effect {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 1;
+}
+
+.card-glow-effect::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 50%,
+    hsl(var(--accent)) 150%,
+    hsl(var(--primary)) 200%
+  );
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card-glow-effect::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 140, 0, 0.5) -50%,
+    rgba(75, 184, 166, 0.5) 150%
+  );
+  z-index: -1;
+  opacity: 0;
+  filter: blur(16px);
+  transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card-glow-effect:hover {
+  transform: translateY(-2px) scale(1.01);
+}
+
+.card-glow-effect:hover::before {
+  opacity: 0.5;
+}
+
+.card-glow-effect:hover::after {
+  opacity: 0.7;
+}
+
+/* Custom variant for primary glow */
+.primary-glow::before,
+.primary-glow::after {
+  background: linear-gradient(
+    135deg,
+    rgba(75, 184, 166, 0.2) -50%,
+    rgba(75, 184, 166, 0.5) 150%
+  );
+}
+
+/* Custom variant for accent glow */
+.accent-glow::before,
+.accent-glow::after {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 140, 0, 0.2) -50%,
+    rgba(255, 140, 0, 0.5) 150%
+  );
+}
+
 /* Mouse glow effect */
 :root {
   --cursor-x: 0px;

@@ -128,6 +128,7 @@ const ReviewGeneratorsSimple: React.FC = () => {
                             Premium Version
                           </a>
                         </div>
+
                       </div>
                     </div>
                   </motion.div>
@@ -170,6 +171,7 @@ const ReviewGeneratorsSimple: React.FC = () => {
                           <p className="text-gray-300">
                             The review generator can be integrated into your website in multiple ways - as a dedicated page, embedded in existing pages, or as a popup. We handle all the technical implementation.
                           </p>
+
                         </div>
                       </div>
                       

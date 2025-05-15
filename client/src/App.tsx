@@ -24,6 +24,8 @@ const TestPage = lazy(() => import("./pages/services/TestPage"));
 // Hidden review generator pages
 const ReviewGenerator = lazy(() => import("./pages/ReviewGenerator"));
 const EmbeddableReviewGenerator = lazy(() => import("./pages/EmbeddableReviewGenerator"));
+const ClientKeyReviewGenerator = lazy(() => import("./pages/ClientKeyReviewGenerator"));
+const ClientIframeReviewGenerator = lazy(() => import("./pages/ClientIframeReviewGenerator"));
 
 // Preload the ReviewGeneratorsSimple component to avoid 404 flash
 import("./pages/services/ReviewGeneratorsSimple");
@@ -74,6 +76,8 @@ function Router() {
   const [location] = useLocation();
   const isSpecialPage = location.includes("/review-generator") || 
                         location.includes("/embed/review-generator") ||
+                        location.includes("/client-key-review-generator") ||
+                        location.includes("/client-iframe-review-generator") ||
                         location.includes("/services/review-generators");
   
   return (
@@ -85,6 +89,8 @@ function Router() {
           <Switch>
             <Route path="/review-generator" component={ReviewGenerator} />
             <Route path="/embed/review-generator" component={EmbeddableReviewGenerator} />
+            <Route path="/client-key-review-generator" component={ClientKeyReviewGenerator} />
+            <Route path="/client-iframe-review-generator" component={ClientIframeReviewGenerator} />
             <Route path="/services/review-generators" component={ReviewGeneratorsSimple} />
           </Switch>
         ) : (

@@ -16,7 +16,7 @@ const ReviewGenerators: React.FC = () => {
     <ServiceLayout
       title="Review Generators"
       subtitle="AI-powered review generation tools for your business"
-      heroImage="/review_gen.jpeg"
+      heroImage={reviewGeneratorsImage}
     >
       <ServiceSection className="py-16 md:py-24">
         <div className="container mx-auto px-4">

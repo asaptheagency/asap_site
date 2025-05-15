@@ -6,6 +6,7 @@ import { z } from "zod";
 import { eq } from "drizzle-orm";
 import path from "path";
 import express from "express";
+import OpenAI from "openai";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Serve static files from public directory
@@ -129,6 +130,72 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Error deleting subscriber:', error);
       return res.status(500).json({ error: 'Failed to delete subscriber' });
+    }
+  });
+
+  // POST /api/openai/generate-review - Generate a review using OpenAI API
+  app.post(`${apiPrefix}/openai/generate-review`, async (req, res) => {
+    try {
+      const { prompt, customerFeedback } = req.body;
+      
+      if (!prompt) {
+        return res.status(400).json({ error: 'Prompt is required' });
+      }
+      
+      // Initialize OpenAI client with API key from environment variable
+      const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+      
+      if (!process.env.OPENAI_API_KEY) {
+        console.error('OPENAI_API_KEY environment variable is not set');
+        return res.status(500).json({ 
+          error: 'OpenAI API key is not configured. Please contact the administrator.'
+        });
+      }
+      
+      // Make request to OpenAI
+      const response = await openai.chat.completions.create({
+        model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024
+        messages: [
+          {
+            role: "system",
+            content: "You are a helpful assistant that generates authentic-sounding customer reviews based on provided information."
+          },
+          {
+            role: "user",
+            content: prompt
+          }
+        ],
+        temperature: 0.7,
+        max_tokens: 350
+      });
+      
+      // Extract the content safely with nullish coalescing
+      const content = response.choices[0]?.message?.content || '';
+      const reviewText = content.trim() || 'Review could not be generated';
+      
+      return res.status(200).json({ review: reviewText });
+    } catch (error: unknown) {
+      console.error('Error generating review with OpenAI:', error);
+      
+      // Format error message based on OpenAI error structure
+      let errorMessage = 'Failed to generate review';
+      
+      // Type guard for objects with response property
+      if (error && typeof error === 'object') {
+        // For OpenAI API errors
+        const apiError = error as { response?: { data?: { error?: { message?: string } } } };
+        if (apiError.response?.data?.error?.message) {
+          errorMessage = apiError.response.data.error.message;
+        }
+        
+        // For standard Error objects
+        const stdError = error as { message?: string };
+        if (stdError.message) {
+          errorMessage = stdError.message;
+        }
+      }
+      
+      return res.status(500).json({ error: errorMessage });
     }
   });
 

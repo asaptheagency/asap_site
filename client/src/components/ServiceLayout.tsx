@@ -7,7 +7,7 @@ import { image1 } from "../assets";
 interface ServiceLayoutProps {
   title: string;
   subtitle?: string;
-  heroImage: string;
+  heroImage: string | any; // Allow imported image objects as well as string URLs
   children: ReactNode;
 }
 

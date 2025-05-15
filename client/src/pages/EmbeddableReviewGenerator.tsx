@@ -5,6 +5,7 @@ import { fadeIn } from '../lib/animations';
 import { ImageWithFallback } from '../components/ImageWithFallback';
 import { Card, CardContent } from '../components/ui/card';
 import logoImage from '../assets/logo_transp.png';
+import { DEFAULT_ASAP_GOOGLE_MAPS_URL } from '../config';
 
 // Business details interface
 interface BusinessDetails {
@@ -91,48 +92,53 @@ const EmbeddableReviewGenerator: React.FC = () => {
     setBusinessDetails(details);
   }, []);
 
-  // Generate a random review with one click, copy to clipboard, and navigate to Google Maps
-  const generateReview = () => {
+  // Generate a review using OpenAI API, copy to clipboard, and navigate to Google Maps
+  const generateReview = async () => {
     setIsGenerating(true);
     
-    // Simulate API call with timeout
-    setTimeout(() => {
-      // Pick random elements
-      const service = businessDetails.services[Math.floor(Math.random() * businessDetails.services.length)];
-      const highlight1 = businessDetails.highlights[Math.floor(Math.random() * businessDetails.highlights.length)];
-      const highlight2 = businessDetails.highlights[Math.floor(Math.random() * businessDetails.highlights.length)];
+    try {
+      // Get random location and tone for variety, but focus on customer satisfaction
       const location = businessDetails.locations[Math.floor(Math.random() * businessDetails.locations.length)];
       const tone = businessDetails.tones[Math.floor(Math.random() * businessDetails.tones.length)];
-      const rating = Math.floor(Math.random() * 2) + 4; // 4 or 5
       
-      // Generate review based on tone
-      let review = '';
+      const prompt = `Generate a positive customer review for ${businessDetails.name}, a ${businessDetails.type}.
+      Focus on overall customer satisfaction and experience rather than specific service details.
+      Make the review sound authentic, as if written by a happy customer from ${location}.
+      The tone should be ${tone}.
+      The review should be 3-5 sentences long, focus on how the customer felt about their experience, and avoid mentioning specific service details.`;
       
-      switch(tone) {
-        case 'enthusiastic':
-          review = `Wow! ${businessDetails.name} is absolutely AMAZING! I worked with them on a ${service} project and I couldn't be happier with the results! ${highlight1}! ${highlight2}! As someone from ${location}, I can say they're definitely the best service provider I've worked with - ${rating}/5 stars easily!`;
-          break;
-        case 'professional':
-          review = `I recently engaged ${businessDetails.name} for their ${service} services and found the experience to be excellent. ${highlight1}. Additionally, ${highlight2.toLowerCase()}. Based in ${location}, I've worked with several providers, and I would rate their service a ${rating}/5. I would recommend them to colleagues seeking quality service.`;
-          break;
-        case 'casual':
-          review = `I used ${businessDetails.name} for ${service} work recently and had a great experience. ${highlight1} and ${highlight2.toLowerCase()}. I'm from ${location} and have tried a few different options, but these guys were definitely worth the ${rating}/5 stars I'd give them. If you need this kind of service, check them out!`;
-          break;
-        default:
-          review = `Working with ${businessDetails.name} on my ${service} project was a great experience. ${highlight1}. ${highlight2}. Highly recommended! ${rating}/5 stars.`;
+      const response = await fetch('/api/openai/generate-review', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Error generating review. Please try again later.');
       }
       
+      const data = await response.json();
+      const reviewText = data.review.trim();
+      
       // Save the generated review
-      setGeneratedReview(review);
-      setIsGenerating(false);
+      setGeneratedReview(reviewText);
       
       // Copy to clipboard
-      navigator.clipboard.writeText(review);
+      navigator.clipboard.writeText(reviewText);
       
-      // Open Google Maps in a new tab - client specific if provided or generic if not
-      const mapsUrl = businessDetails.googleMapsUrl || "https://www.google.com/maps";
+      // Open Google Maps in a new tab - client specific if provided or ASAP default if not
+      // This version is the embedded version that can be either used for ASAP or clients
+      const mapsUrl = businessDetails.googleMapsUrl || DEFAULT_ASAP_GOOGLE_MAPS_URL;
       window.open(mapsUrl, "_blank");
-    }, 1000);
+    } catch (error) {
+      console.error('Error generating review:', error);
+      // Show an error message or handle as needed
+      alert('There was an error generating the review. Please try again later.');
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   // Generate a new review

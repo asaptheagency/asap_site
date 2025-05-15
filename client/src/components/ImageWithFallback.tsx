@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 interface ImageWithFallbackProps {
-  src: string;
-  fallbackSrc: string;
+  src: string | any; // Allow imported image objects as well as string URLs
+  fallbackSrc: string | any; // Allow imported image objects as well as string URLs
   alt: string;
   className?: string;
   style?: React.CSSProperties;
