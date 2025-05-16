@@ -122,32 +122,79 @@
 :root {
   --cursor-x: 0px;
   --cursor-y: 0px;
+  --cursor-trail-x: 0px;
+  --cursor-trail-y: 0px;
 }
 
+/* Main cursor glow */
 body::before {
   content: '';
   position: fixed;
   left: var(--cursor-x);
   top: var(--cursor-y);
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 140, 0, 0.4) 0%, rgba(255, 140, 0, 0) 70%);
+  background: radial-gradient(circle, 
+    rgba(255, 140, 0, 0.7) 0%, 
+    rgba(75, 184, 166, 0.4) 40%, 
+    rgba(255, 140, 0, 0) 80%);
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.2s ease;
+  mix-blend-mode: screen;
+  filter: blur(8px);
+  box-shadow: 0 0 30px 10px rgba(255, 140, 0, 0.3);
 }
 
-body.has-cursor-glow::before {
+/* Trailing glow effect */
+body::after {
+  content: '';
+  position: fixed;
+  left: var(--cursor-trail-x);
+  top: var(--cursor-trail-y);
+  width: 140px;
+  height: 80px; /* Elongated for trail effect */
+  border-radius: 50%;
+  background: radial-gradient(ellipse, 
+    rgba(75, 184, 166, 0.6) 0%, 
+    rgba(255, 140, 0, 0.3) 30%, 
+    rgba(75, 184, 166, 0) 70%);
+  pointer-events: none;
+  z-index: 9998; /* Behind the main cursor */
+  transform: translate(-50%, -50%) rotate(var(--cursor-angle, 0deg)) scale(1, 1.5);
+  opacity: 0;
+  transition: opacity 0.1s ease, transform 0.2s ease;
+  mix-blend-mode: screen;
+  filter: blur(12px);
+}
+
+body.has-cursor-glow::before,
+body.has-cursor-glow::after {
   opacity: 1;
 }
 
 body.enhanced-glow::before {
-  width: 60px;
-  height: 60px;
-  background: radial-gradient(circle, rgba(255, 140, 0, 0.6) 0%, rgba(255, 140, 0, 0) 70%);
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, 
+    rgba(255, 140, 0, 0.85) 0%,
+    rgba(75, 184, 166, 0.6) 30%,
+    rgba(255, 140, 0, 0) 70%);
+  filter: blur(12px);
+  box-shadow: 0 0 40px 20px rgba(255, 140, 0, 0.5);
+}
+
+body.enhanced-glow::after {
+  width: 160px;
+  height: 80px;
+  background: radial-gradient(ellipse, 
+    rgba(75, 184, 166, 0.7) 0%,
+    rgba(255, 140, 0, 0.3) 40%,
+    rgba(75, 184, 166, 0) 70%);
+  filter: blur(15px);
 }
 
 .vertical-text {

@@ -114,25 +114,50 @@ function Router() {
 
 function App() {
   useEffect(() => {
-    // Cursor glow effect with throttling for performance
+    // Cursor glow effect with trailing effect
     let lastMove = 0;
+    let lastX = 0;
+    let lastY = 0;
+    let trailTimeout: number | null = null;
+    
     const handleMouseMove = (e: MouseEvent) => {
       const now = Date.now();
-      // Throttle updates to every 10ms for better performance
-      if (now - lastMove < 10) return;
-      lastMove = now;
+      // Throttle updates to every 5ms for more responsive glow
+      if (now - lastMove < 5) return;
       
+      const currentX = e.clientX;
+      const currentY = e.clientY;
+      
+      // Calculate angle for the trail based on movement direction
+      if (lastX !== 0 && lastY !== 0) {
+        const deltaX = currentX - lastX;
+        const deltaY = currentY - lastY;
+        
+        if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
+          const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+          document.body.style.setProperty('--cursor-angle', `${angle + 90}deg`);
+        }
+      }
+      
+      // Main cursor glow
       document.body.classList.add('has-cursor-glow');
+      document.body.style.setProperty('--cursor-x', `${currentX}px`);
+      document.body.style.setProperty('--cursor-y', `${currentY}px`);
       
-      // Position the glow effect at the cursor location using CSS variables for better performance
-      document.body.style.setProperty('--cursor-x', `${e.clientX}px`);
-      document.body.style.setProperty('--cursor-y', `${e.clientY}px`);
+      // Set trail position with a delay
+      if (trailTimeout) clearTimeout(trailTimeout);
+      trailTimeout = window.setTimeout(() => {
+        document.body.style.setProperty('--cursor-trail-x', `${currentX}px`);
+        document.body.style.setProperty('--cursor-trail-y', `${currentY}px`);
+      }, 120); // Increased delay for more noticeable trail effect
       
       // Create larger glow effect when hovering over interactive elements
       const target = e.target as HTMLElement;
       const isInteractive = 
         target.tagName === 'A' || 
         target.tagName === 'BUTTON' || 
+        target.tagName === 'INPUT' ||
+        target.closest('.card-glow-effect') !== null ||
         target.classList.contains('glow-hover');
       
       if (isInteractive) {
@@ -140,6 +165,11 @@ function App() {
       } else {
         document.body.classList.remove('enhanced-glow');
       }
+      
+      // Store current position for next calculation
+      lastX = currentX;
+      lastY = currentY;
+      lastMove = now;
     };
 
     // Add scroll-to-top button
