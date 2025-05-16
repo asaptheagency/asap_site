@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+
+
 
 const TestPage: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
-      <Header />
+      {/* Header is now handled by MainLayout */}
       
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
@@ -61,7 +61,7 @@ const TestPage: React.FC = () => {
         </div>
       </main>
       
-      <Footer />
+      {/* Footer is now handled by MainLayout */}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+
+
 import ContactButton from "../../components/ContactButton";
 import FloatingElements from "../../components/FloatingElements";
 import { automateImage } from "../../assets";
@@ -16,7 +16,7 @@ const AutoMate: React.FC = () => {
         description="Streamline your business processes with AutoMate. Our custom automation solutions help reduce manual work, eliminate errors, and increase productivity."
         imageUrl={automateImage}
       />
-      <Header />
+      {/* Header is now handled by MainLayout */}
       
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
@@ -181,7 +181,7 @@ const AutoMate: React.FC = () => {
         </div>
       </main>
       
-      <Footer />
+      {/* Footer is now handled by MainLayout */}
     </div>
   );
 };

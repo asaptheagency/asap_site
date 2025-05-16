@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+
+{/* Footer is now handled by MainLayout */}
 import { motion } from "framer-motion";
 import { slideFromBottom } from "../../lib/animations";
 import ContactButton from "../../components/ContactButton";
@@ -17,7 +17,7 @@ const WebDesign: React.FC = () => {
         description="Professional website design services that create eye-catching, SEO-friendly websites for your business. Custom web development tailored to your unique needs and preferences."
         imageUrl={websiteImage}
       />
-      <Header />
+      {/* Header is now handled by MainLayout */}
       
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
@@ -291,7 +291,7 @@ const WebDesign: React.FC = () => {
         </div>
       </main>
       
-      <Footer />
+      {/* Footer is now handled by MainLayout */}
     </div>
   );
 };

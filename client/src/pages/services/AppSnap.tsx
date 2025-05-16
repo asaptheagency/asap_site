@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+
+
 import ContactButton from "../../components/ContactButton";
 import FloatingElements from "../../components/FloatingElements";
 import { appsnapImage } from "../../assets";
@@ -15,7 +15,7 @@ const AppSnap: React.FC = () => {
         description="Custom app development for your business with AppSnap. Mobile apps, web apps, and desktop apps tailored to your specific needs and requirements."
         imageUrl={appsnapImage}
       />
-      <Header />
+      {/* Header is now handled by MainLayout */}
       
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
@@ -221,7 +221,7 @@ const AppSnap: React.FC = () => {
         </div>
       </main>
       
-      <Footer />
+      {/* Footer is now handled by MainLayout */}
     </div>
   );
 };

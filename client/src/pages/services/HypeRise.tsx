@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+
+
 import ContactButton from "../../components/ContactButton";
 import FloatingElements from "../../components/FloatingElements";
 import { hyperiseImage } from "../../assets";
@@ -15,7 +15,7 @@ const HypeRise: React.FC = () => {
         description="Supercharge your high-ticket sales with precision marketing from HypeRise. Targeted ad campaigns designed to attract qualified leads for service-based businesses."
         imageUrl={hyperiseImage}
       />
-      <Header />
+      {/* Header is now handled by MainLayout */}
       
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
@@ -156,7 +156,7 @@ const HypeRise: React.FC = () => {
         </div>
       </main>
       
-      <Footer />
+      {/* Footer is now handled by MainLayout */}
     </div>
   );
 };

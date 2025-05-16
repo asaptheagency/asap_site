@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+
+
 import ContactButton from "../../components/ContactButton";
 import FloatingElements from "../../components/FloatingElements";
 import { botspotImage } from "../../assets";
@@ -15,7 +15,7 @@ const BotSpot: React.FC = () => {
         description="Transform your customer service and lead generation with BotSpot and LeadSeed, two powerful chatbot solutions designed to handle routine inquiries and qualify leads."
         imageUrl={botspotImage}
       />
-      <Header />
+      {/* Header is now handled by MainLayout */}
       
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
@@ -158,7 +158,7 @@ const BotSpot: React.FC = () => {
         </div>
       </main>
       
-      <Footer />
+      {/* Footer is now handled by MainLayout */}
     </div>
   );
 };
