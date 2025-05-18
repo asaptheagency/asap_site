@@ -3,7 +3,7 @@ import React from "react";
 
 import ContactButton from "../../components/ContactButton";
 import FloatingElements from "../../components/FloatingElements";
-import { botspotImage } from "../../assets";
+import { botspotImage, newBotspotImage } from "../../assets";
 import ImageWithFallback from "../../components/ImageWithFallback";
 import SEOHead from "../../components/SEOHead";
 
@@ -13,7 +13,7 @@ const BotSpot: React.FC = () => {
       <SEOHead 
         title="BotSpot & LeadSeed - Chatbot Solutions" 
         description="Transform your customer service and lead generation with BotSpot and LeadSeed, two powerful chatbot solutions designed to handle routine inquiries and qualify leads."
-        imageUrl={botspotImage}
+        imageUrl={newBotspotImage}
       />
       {/* Header is now handled by MainLayout */}
       
@@ -21,7 +21,7 @@ const BotSpot: React.FC = () => {
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <ImageWithFallback
-            src={botspotImage}
+            src={newBotspotImage}
             fallbackSrc={botspotImage}
             alt="BotSpot and LeadSeed"
             className="w-full h-full object-cover opacity-50"

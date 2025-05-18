@@ -8,7 +8,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ContactButton from "../../components/ContactButton";
 import FloatingElements from "../../components/FloatingElements";
-import { reviewGeneratorsImage } from "../../assets";
+import { reviewGeneratorsImage, newReviewGeneratorsImage } from "../../assets";
 import ImageWithFallback from "../../components/ImageWithFallback";
 import SEOHead from "../../components/SEOHead";
 import { motion } from "framer-motion";
@@ -21,7 +21,7 @@ const ReviewGeneratorsSimple: React.FC = () => {
       <SEOHead
         title="Review Generators - AI-Powered Review Tools"
         description="Boost your business reputation with our AI-powered review generation tools. Help customers provide authentic, meaningful feedback with just a few clicks."
-        imageUrl={reviewGeneratorsImage}
+        imageUrl={newReviewGeneratorsImage}
       />
       <Header />
       
@@ -29,8 +29,8 @@ const ReviewGeneratorsSimple: React.FC = () => {
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <ImageWithFallback
-            src={reviewGeneratorsImage}
-            fallbackSrc="/review_gen.jpeg"
+            src={newReviewGeneratorsImage}
+            fallbackSrc={reviewGeneratorsImage}
             alt="Review Generators"
             className="w-full h-full object-cover opacity-50"
           />

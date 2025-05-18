@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import ContactButton from "../../components/ContactButton";
 import FloatingElements from "../../components/FloatingElements";
-import { automateImage } from "../../assets";
+import { automateImage, newAutomateImage } from "../../assets";
 import ImageWithFallback from "../../components/ImageWithFallback";
 import SEOHead from "../../components/SEOHead";
 
@@ -14,7 +14,7 @@ const AutoMate: React.FC = () => {
       <SEOHead 
         title="AutoMate - Business Automation Solutions" 
         description="Streamline your business processes with AutoMate. Our custom automation solutions help reduce manual work, eliminate errors, and increase productivity."
-        imageUrl={automateImage}
+        imageUrl={newAutomateImage}
       />
       {/* Header is now handled by MainLayout */}
       
@@ -22,7 +22,7 @@ const AutoMate: React.FC = () => {
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <ImageWithFallback
-            src={automateImage}
+            src={newAutomateImage}
             fallbackSrc={automateImage}
             alt="AutoMate"
             className="w-full h-full object-cover opacity-50"

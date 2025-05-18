@@ -3,12 +3,20 @@ import { motion } from 'framer-motion';
 import { slideFromBottom, fadeIn, fadeInScale, staggerFadeIn } from '../lib/animations';
 import { Link } from 'wouter';
 import { 
+  // Original images (kept as backup)
   websiteImage, 
   automateImage, 
   botspotImage, 
   appsnapImage, 
   hyperiseImage,
-  reviewGeneratorsImage 
+  reviewGeneratorsImage,
+  // New robot-themed images
+  newWebsiteImage,
+  newAutomateImage,
+  newBotspotImage,
+  newAppsnapImage,
+  newHyperiseImage,
+  newReviewGeneratorsImage
 } from '../assets';
 import ImageWithFallback from './ImageWithFallback';
 import SimpleParallax from './SimpleParallax';
@@ -20,7 +28,7 @@ const Services: React.FC = () => {
       title: "Web Design & Development",
       subtitle: "",
       description: "Professional, eye-catching websites designed to make a great first impression and encourage customers to reach out. Our skilled team creates custom sites that exceed expectations.",
-      image: websiteImage,
+      image: newWebsiteImage,
       link: "/services/web-design",
       fallback: websiteImage
     },
@@ -28,7 +36,7 @@ const Services: React.FC = () => {
       title: "Business Automation",
       subtitle: "AutoMate",
       description: "Streamline your business with custom automation solutions. From workflow to lead generation, our personalized approach integrates seamlessly with your systems to boost efficiency.",
-      image: automateImage,
+      image: newAutomateImage,
       link: "/services/automate",
       fallback: automateImage
     },
@@ -36,7 +44,7 @@ const Services: React.FC = () => {
       title: "AI Chatbot Solutions",
       subtitle: "BotSpot & LeadSeed",
       description: "Transform customer service with smart chatbots. BotSpot handles routine inquiries while LeadSeed qualifies leads for high-ticket service businesses, saving time and boosting sales.",
-      image: botspotImage,
+      image: newBotspotImage,
       link: "/services/botspot",
       fallback: botspotImage
     },
@@ -44,7 +52,7 @@ const Services: React.FC = () => {
       title: "Custom App Development",
       subtitle: "AppSnap",
       description: "Custom mobile, web, or desktop app development tailored to your business needs. Our team builds user-friendly, functional applications that help streamline operations and serve customers better.",
-      image: appsnapImage,
+      image: newAppsnapImage,
       link: "/services/appsnap",
       fallback: appsnapImage
     },
@@ -52,7 +60,7 @@ const Services: React.FC = () => {
       title: "Marketing Strategies",
       subtitle: "HypeRise",
       description: "Elevate your high-ticket service business with targeted marketing strategies. Reach the right customers, generate quality leads, and boost conversions with our comprehensive approach.",
-      image: hyperiseImage,
+      image: newHyperiseImage,
       link: "/services/hyperise",
       fallback: hyperiseImage
     },
@@ -60,9 +68,9 @@ const Services: React.FC = () => {
       title: "Review Generators",
       subtitle: "",
       description: "Boost your online reputation with our customizable review generators. Available in basic and premium versions, these tools help showcase customer satisfaction and build trust with potential clients.",
-      image: reviewGeneratorsImage,
+      image: newReviewGeneratorsImage,
       link: "/services/review-generators",
-      fallback: hyperiseImage // Using hyperiseImage as fallback in case the reviewGeneratorsImage fails
+      fallback: reviewGeneratorsImage
     }
   ];
 

@@ -3,7 +3,7 @@ import React from "react";
 
 import ContactButton from "../../components/ContactButton";
 import FloatingElements from "../../components/FloatingElements";
-import { appsnapImage } from "../../assets";
+import { appsnapImage, newAppsnapImage } from "../../assets";
 import ImageWithFallback from "../../components/ImageWithFallback";
 import SEOHead from "../../components/SEOHead";
 
@@ -13,7 +13,7 @@ const AppSnap: React.FC = () => {
       <SEOHead 
         title="AppSnap - Custom App Development" 
         description="Custom app development for your business with AppSnap. Mobile apps, web apps, and desktop apps tailored to your specific needs and requirements."
-        imageUrl={appsnapImage}
+        imageUrl={newAppsnapImage}
       />
       {/* Header is now handled by MainLayout */}
       
@@ -21,7 +21,7 @@ const AppSnap: React.FC = () => {
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <ImageWithFallback
-            src={appsnapImage}
+            src={newAppsnapImage}
             fallbackSrc={appsnapImage}
             alt="AppSnap"
             className="w-full h-full object-cover opacity-50"

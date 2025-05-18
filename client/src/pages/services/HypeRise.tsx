@@ -3,7 +3,7 @@ import React from "react";
 
 import ContactButton from "../../components/ContactButton";
 import FloatingElements from "../../components/FloatingElements";
-import { hyperiseImage } from "../../assets";
+import { hyperiseImage, newHyperiseImage } from "../../assets";
 import ImageWithFallback from "../../components/ImageWithFallback";
 import SEOHead from "../../components/SEOHead";
 
@@ -13,7 +13,7 @@ const HypeRise: React.FC = () => {
       <SEOHead 
         title="HypeRise - High-Ticket Marketing Services" 
         description="Supercharge your high-ticket sales with precision marketing from HypeRise. Targeted ad campaigns designed to attract qualified leads for service-based businesses."
-        imageUrl={hyperiseImage}
+        imageUrl={newHyperiseImage}
       />
       {/* Header is now handled by MainLayout */}
       
@@ -21,7 +21,7 @@ const HypeRise: React.FC = () => {
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <ImageWithFallback
-            src={hyperiseImage}
+            src={newHyperiseImage}
             fallbackSrc={hyperiseImage}
             alt="HypeRise"
             className="w-full h-full object-cover opacity-50"

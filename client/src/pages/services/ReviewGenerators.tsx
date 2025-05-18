@@ -7,7 +7,7 @@ import ServiceSection from '../../components/ServiceSection';
 import { ImageWithFallback } from '../../components/ImageWithFallback';
 import { useLocation } from 'wouter';
 
-import { reviewGeneratorsImage } from '../../assets';
+import { reviewGeneratorsImage, newReviewGeneratorsImage } from '../../assets';
 
 const ReviewGenerators: React.FC = () => {
   const [, setLocation] = useLocation();
@@ -16,7 +16,7 @@ const ReviewGenerators: React.FC = () => {
     <ServiceLayout
       title="Review Generators"
       subtitle="AI-powered review generation tools for your business"
-      heroImage={reviewGeneratorsImage}
+      heroImage={newReviewGeneratorsImage}
     >
       <ServiceSection className="py-16 md:py-24">
         <div className="container mx-auto px-4">

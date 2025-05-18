@@ -6,7 +6,7 @@ import { slideFromBottom } from "../../lib/animations";
 import ContactButton from "../../components/ContactButton";
 import SEOHead from "../../components/SEOHead";
 import FloatingElements from "../../components/FloatingElements";
-import { websiteImage } from "../../assets";
+import { websiteImage, newWebsiteImage } from "../../assets";
 import ImageWithFallback from "../../components/ImageWithFallback";
 
 const WebDesign: React.FC = () => {
@@ -15,7 +15,7 @@ const WebDesign: React.FC = () => {
       <SEOHead 
         title="Web Design and Development Services" 
         description="Professional website design services that create eye-catching, SEO-friendly websites for your business. Custom web development tailored to your unique needs and preferences."
-        imageUrl={websiteImage}
+        imageUrl={newWebsiteImage}
       />
       {/* Header is now handled by MainLayout */}
       
@@ -23,7 +23,7 @@ const WebDesign: React.FC = () => {
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gray-950">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <ImageWithFallback
-            src={websiteImage}
+            src={newWebsiteImage}
             fallbackSrc={websiteImage}
             alt="Professional web design and development services"
             className="w-full h-full object-cover opacity-50"
