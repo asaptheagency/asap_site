@@ -6,7 +6,6 @@ import { ImageWithFallback } from '../components/ImageWithFallback';
 import { Card, CardContent } from '../components/ui/card';
 import logoImage from '../assets/logo_transp.png';
 import { DEFAULT_ASAP_GOOGLE_MAPS_URL } from '../config';
-import { generateFallbackReview } from '../backend';
 
 // Business details interface
 interface BusinessDetails {
@@ -43,18 +42,42 @@ const SimpleReviewGenerator: React.FC = () => {
     console.log("SimpleReviewGenerator: Loaded from URL:", { name, type, url });
   }, []);
 
-  // Generate a fallback review, copy to clipboard, and navigate to Google Maps
+  // Generate a static review, copy to clipboard, and navigate to Google Maps
   const generateReview = () => {
     console.log("SimpleReviewGenerator: Generating review for", businessName, businessType);
     setIsGenerating(true);
     
     try {
-      // Generate a static review
+      // Predefined set of professional-sounding reviews that can be customized
+      const reviewTemplates = [
+        `I recently visited {{business}} and had an amazing experience! The team was professional, friendly, and made me feel valued as a customer. I highly recommend their {{service}} services to anyone in {{location}} looking for a quality {{type}} provider.`,
+        
+        `{{business}} exceeded all my expectations! Their attention to detail and commitment to customer satisfaction really sets them apart from other {{type}} providers. I've been telling all my friends about my great experience with their {{service}}.`,
+        
+        `I can't say enough good things about {{business}}. From start to finish, the experience was exceptional. The staff was knowledgeable and friendly, making the whole process incredibly smooth. Definitely giving them 5 stars!`,
+        
+        `If you're looking for top-notch {{type}} services, look no further than {{business}}. Their team is professional, efficient, and truly cares about delivering quality results. I'm so glad I found them!`,
+        
+        `What a fantastic experience with {{business}}! The level of professionalism and service quality was outstanding. I'll definitely be using their {{service}} services again and recommending them to everyone in {{location}}.`
+      ];
+      
+      // Generate a static review with custom information
       const locations = ["Los Angeles", "New York", "Miami", "Chicago", "Denver"];
       const location = locations[Math.floor(Math.random() * locations.length)];
       
-      // Use our static fallback generator which doesn't require API calls
-      const review = generateFallbackReview(businessName, businessType, location);
+      const services = ["digital marketing", "web design", "automation", "chatbot", "development"];
+      const service = services[Math.floor(Math.random() * services.length)];
+      
+      // Pick a random template
+      const template = reviewTemplates[Math.floor(Math.random() * reviewTemplates.length)];
+      
+      // Replace placeholders with actual business details
+      const review = template
+        .replace(/{{business}}/g, businessName)
+        .replace(/{{type}}/g, businessType)
+        .replace(/{{location}}/g, location)
+        .replace(/{{service}}/g, service);
+      
       console.log("SimpleReviewGenerator: Generated review:", review);
       
       // Save the generated review 
