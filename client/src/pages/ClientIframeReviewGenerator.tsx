@@ -193,12 +193,19 @@ const ClientIframeReviewGenerator: React.FC = () => {
 
   // Generate a review using the API key from the URL
   const generateReview = async () => {
-    if (!businessDetails.apiKey) {
+    // For the ASAP website itself, we don't require an API key in the URL
+    // We'll use the server-side API endpoint in this case
+    const isAsapWebsite = 
+      window.location.hostname.includes('asaptheagency.com') || 
+      window.location.hostname.includes('localhost') ||
+      window.location.hostname.includes('.replit.app');
+    
+    if (!isAsapWebsite && !businessDetails.apiKey) {
       setError("No API key provided. Please contact the site administrator.");
       return;
     }
     
-    if (!businessDetails.googleMapsUrl) {
+    if (!isAsapWebsite && !businessDetails.googleMapsUrl) {
       setError("No Google Maps URL provided. The client implementation requires a specific Google Maps URL.");
       return;
     }
@@ -226,28 +233,48 @@ const ClientIframeReviewGenerator: React.FC = () => {
       The tone should be ${tone}.
       The review should be 3-5 sentences long, focus on how the customer felt about their experience, and avoid mentioning specific service details.`;
       
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${businessDetails.apiKey}`
-        },
-        body: JSON.stringify({
-          model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
-          messages: [
-            {
-              role: "system",
-              content: "You are a helpful assistant that generates realistic customer reviews based on the provided information."
-            },
-            {
-              role: "user",
-              content: prompt
-            }
-          ],
-          temperature: 0.7,
-          max_tokens: 350
-        })
-      });
+      // Check again if we're on the ASAP website
+      const isAsapWebsite = 
+        window.location.hostname.includes('asaptheagency.com') || 
+        window.location.hostname.includes('localhost') ||
+        window.location.hostname.includes('.replit.app');
+      
+      let response;
+      
+      if (isAsapWebsite) {
+        // For ASAP website, use the server endpoint that has API key in environment
+        response = await fetch('/api/openai/generate-review', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ prompt })
+        });
+      } else {
+        // For client websites, use their API key directly
+        response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${businessDetails.apiKey}`
+          },
+          body: JSON.stringify({
+            model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
+            messages: [
+              {
+                role: "system",
+                content: "You are a helpful assistant that generates realistic customer reviews based on the provided information."
+              },
+              {
+                role: "user",
+                content: prompt
+              }
+            ],
+            temperature: 0.7,
+            max_tokens: 350
+          })
+        });
+      }
       
       if (!response.ok) {
         const errorData = await response.json();
@@ -255,7 +282,16 @@ const ClientIframeReviewGenerator: React.FC = () => {
       }
       
       const data = await response.json();
-      const reviewText = data.choices[0].message.content.trim();
+      
+      // Handle different response formats between server API and direct OpenAI call
+      let reviewText = '';
+      if (isAsapWebsite) {
+        // Format from server API endpoint
+        reviewText = data.review.trim();
+      } else {
+        // Format from direct OpenAI API call
+        reviewText = data.choices[0].message.content.trim();
+      }
       
       // Track this usage
       trackUsage();
@@ -266,9 +302,17 @@ const ClientIframeReviewGenerator: React.FC = () => {
       // Copy to clipboard
       navigator.clipboard.writeText(reviewText);
       
-      // For client implementations, we ONLY use their provided URL, not ASAP's default
-      // Client implementations REQUIRE both a business-specific Google Maps URL and API key
-      if (businessDetails.googleMapsUrl) {
+      // Check if this is the ASAP website or a client implementation
+      const isAsapWebsite = 
+        window.location.hostname.includes('asaptheagency.com') || 
+        window.location.hostname.includes('localhost') ||
+        window.location.hostname.includes('.replit.app');
+      
+      if (isAsapWebsite) {
+        // For ASAP website, use the default URL from config
+        window.open(DEFAULT_ASAP_GOOGLE_MAPS_URL, "_blank");
+      } else if (businessDetails.googleMapsUrl) {
+        // For client implementations, use their specific URL
         window.open(businessDetails.googleMapsUrl, "_blank");
       } else {
         console.warn("No Google Maps URL provided for client. This implementation requires a client-specific URL.");
