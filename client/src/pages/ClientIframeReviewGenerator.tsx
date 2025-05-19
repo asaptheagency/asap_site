@@ -169,27 +169,40 @@ export default function ClientIframeReviewGenerator() {
     // Clear any previous errors
     setError("");
     
+    console.log("REVIEW GENERATOR - Starting review generation");
+    console.log("REVIEW GENERATOR - Current URL:", window.location.href);
+    console.log("REVIEW GENERATOR - Origin:", window.location.origin);
+    console.log("REVIEW GENERATOR - Host:", window.location.hostname);
+    console.log("REVIEW GENERATOR - Business details:", businessDetails);
+    
     // Check if we need to use client API key (embedded mode) or server API (ASAP website)
     const useDirectApi = !!businessDetails.apiKey && !!businessDetails.googleMapsUrl;
+    console.log("REVIEW GENERATOR - Using direct API?", useDirectApi);
     
     // For embedded client sites, we need API key and Google Maps URL
     if (useDirectApi && !businessDetails.apiKey) {
-      setError("No API key provided. Please contact the site administrator.");
+      const errorMsg = "No API key provided. Please contact the site administrator.";
+      console.error("REVIEW GENERATOR - ERROR:", errorMsg);
+      setError(errorMsg);
       return;
     }
     
     if (useDirectApi && !businessDetails.googleMapsUrl) {
-      setError("No Google Maps URL provided. This implementation requires a client-specific URL.");
+      const errorMsg = "No Google Maps URL provided. This implementation requires a client-specific URL.";
+      console.error("REVIEW GENERATOR - ERROR:", errorMsg);
+      setError(errorMsg);
       return;
     }
     
     // Check rate limits
     if (!canGenerateReview()) {
+      console.log("REVIEW GENERATOR - Rate limit check failed");
       return;
     }
     
     // Start generating
     setIsGenerating(true);
+    console.log("REVIEW GENERATOR - Generation started");
     
     try {
       // Get random items from arrays
@@ -209,33 +222,45 @@ export default function ClientIframeReviewGenerator() {
       if (!useDirectApi) {
         try {
           // For ASAP website, use the server endpoint that has API key in environment
-          // Use the full URL to ensure it works in all environments including production
+          console.log("REVIEW GENERATOR - Using server API endpoint");
+          
+          // Try both relative and absolute URL approaches to ensure one works
+          // First attempt with full origin URL
           const baseUrl = window.location.origin;
           const apiUrl = `${baseUrl}/api/openai/generate-review`;
           
-          console.log(`Making API request to: ${apiUrl}`);
-          console.log(`Request body:`, JSON.stringify({ prompt }));
+          console.log(`REVIEW GENERATOR - Making API request to: ${apiUrl}`);
+          console.log(`REVIEW GENERATOR - Request body:`, JSON.stringify({ prompt }));
           
-          response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              prompt
-            })
-          });
+          // Try with a few different approaches to make API calls to handle various production setups
+          try {
+            console.log("REVIEW GENERATOR - Attempting method 1: Full URL with origin");
+            response = await fetch(apiUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ prompt })
+            });
+          } catch (err) {
+            console.log("REVIEW GENERATOR - Method 1 failed, trying method 2: Relative URL");
+            
+            // If the first attempt fails, try with a relative URL
+            response = await fetch('/api/openai/generate-review', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ prompt })
+            });
+          }
           
-          console.log(`API response status: ${response.status}`);
+          console.log(`REVIEW GENERATOR - API response status: ${response.status}`);
           
           // If there's a problem with the API call, catch it early with detailed info
           if (!response.ok) {
             const errorText = await response.text();
-            console.error(`API error (${response.status}): ${errorText}`);
+            console.error(`REVIEW GENERATOR - API error (${response.status}): ${errorText}`);
             throw new Error(`Server API Error (${response.status}): ${errorText || 'Unknown error'}`);
           }
         } catch (apiError) {
-          console.error('Server API call failed:', apiError);
+          console.error('REVIEW GENERATOR - Server API call failed:', apiError);
           throw apiError; // Re-throw to be caught by the outer try/catch
         }
       } else {
