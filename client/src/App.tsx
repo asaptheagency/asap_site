@@ -28,7 +28,7 @@ const ClientKeyReviewGenerator = lazy(() => import("./pages/ClientKeyReviewGener
 const ClientIframeReviewGenerator = lazy(() => import("./pages/ClientIframeReviewGenerator"));
 const ProductionReviewGenerator = lazy(() => import("./pages/ProductionReviewGenerator"));
 const SimpleReviewGenerator = lazy(() => import("./pages/SimpleReviewGenerator"));
-const PremiumReviewGenerator = lazy(() => import("./pages/PremiumReviewGenerator"));
+const AdvancedReviewGenerator = lazy(() => import("./pages/AdvancedReviewGenerator"));
 
 // Preload the ReviewGeneratorsSimple component to avoid 404 flash
 import("./pages/services/ReviewGeneratorsSimple");
@@ -96,8 +96,8 @@ function Router() {
             <Route path="/client/review-generator" component={SimpleReviewGenerator} />
             
             {/* Premium version with customization options */}
-            <Route path="/review-generator" component={ReviewGenerator} />
-            <Route path="/client-key-review-generator" component={ReviewGenerator} />
+            <Route path="/review-generator" component={AdvancedReviewGenerator} />
+            <Route path="/client-key-review-generator" component={AdvancedReviewGenerator} />
             <Route path="/services/review-generators" component={ReviewGeneratorsSimple} />
           </Switch>
         ) : (
