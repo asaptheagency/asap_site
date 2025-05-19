@@ -6,6 +6,7 @@ import { ImageWithFallback } from '../components/ImageWithFallback';
 import { Card, CardContent } from '../components/ui/card';
 import logoImage from '../assets/logo_transp.png';
 import { DEFAULT_ASAP_GOOGLE_MAPS_URL } from '../config';
+import { generateFallbackReview } from '../backend';
 
 // Business details interface
 interface BusinessDetails {
@@ -109,82 +110,83 @@ const EmbeddableReviewGenerator: React.FC = () => {
       The tone should be ${tone}.
       The review should be 3-5 sentences long, focus on how the customer felt about their experience, and avoid mentioning specific service details.`;
       
-      // Detect if we're in production
-      const isProduction = 
-        window.location.hostname === 'asaptheagency.com' || 
-        window.location.hostname.includes('.netlify.app') ||
-        (!window.location.hostname.includes('localhost') && !window.location.hostname.includes('.replit.app'));
+      console.log("Review Generator - Starting review generation process");
       
-      console.log("Review Generator - Environment detection:", isProduction ? "Production" : "Development");
-      console.log("Review Generator - Current hostname:", window.location.hostname);
-      
-      // For production, use the OpenAI API directly if we have an API key in URL parameters
-      let response;
-      
-      if (isProduction && businessDetails.apiKey) {
-        console.log("Review Generator - Using direct OpenAI API with client key");
-        
-        // Use the OpenAI API directly with the client's API key
-        response = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${businessDetails.apiKey}`
-          },
-          body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            messages: [
-              {
-                role: "system",
-                content: "You are a helpful assistant that generates authentic-sounding customer reviews."
-              },
-              {
-                role: "user",
-                content: prompt
-              }
-            ],
-            temperature: 0.7,
-            max_tokens: 250
-          })
-        });
-      } else {
-        // For development, use the local API endpoint
-        console.log("Review Generator - Using server API endpoint");
-        response = await fetch('/api/openai/generate-review', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ prompt })
-        });
-      }
-      
-      if (!response.ok) {
-        throw new Error('Error generating review. Please try again later.');
-      }
-      
-      const data = await response.json();
-      console.log("Review Generator - API Response Data:", data);
-      
-      // Handle different response formats based on API source
       let reviewText = '';
+      let success = false;
       
-      if (isProduction && businessDetails.apiKey) {
-        // For direct OpenAI API calls (using client API key)
-        if (data.choices && data.choices[0] && data.choices[0].message) {
-          reviewText = data.choices[0].message.content.trim();
-        } else {
-          console.error("Review Generator - Unexpected OpenAI API response format:", data);
-          throw new Error("The API returned an unexpected response format");
+      // APPROACH 1: Try direct OpenAI API call with client API key if available
+      if (businessDetails.apiKey && !success) {
+        try {
+          console.log("Review Generator - Trying direct OpenAI API with client key");
+          
+          const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${businessDetails.apiKey}`
+            },
+            body: JSON.stringify({
+              model: "gpt-3.5-turbo",
+              messages: [
+                {
+                  role: "system",
+                  content: "You are a helpful assistant that generates authentic-sounding customer reviews."
+                },
+                {
+                  role: "user",
+                  content: prompt
+                }
+              ],
+              temperature: 0.7,
+              max_tokens: 250
+            })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.choices && data.choices[0] && data.choices[0].message) {
+              reviewText = data.choices[0].message.content.trim();
+              success = true;
+              console.log("Review Generator - Successfully generated with client API key");
+            }
+          }
+        } catch (error) {
+          console.error("Review Generator - Client API key attempt failed:", error);
         }
-      } else {
-        // For server API endpoint (using server API key)
-        if (data.review) {
-          reviewText = data.review.trim();
-        } else {
-          console.error("Review Generator - Unexpected server API response format:", data);
-          throw new Error("The server returned an unexpected response format");
+      }
+      
+      // APPROACH 2: Try server endpoint if client key failed or wasn't provided
+      if (!success) {
+        try {
+          console.log("Review Generator - Trying server API endpoint");
+          
+          const response = await fetch('/api/openai/generate-review', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ prompt })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.review) {
+              reviewText = data.review.trim();
+              success = true;
+              console.log("Review Generator - Successfully generated with server endpoint");
+            }
+          }
+        } catch (error) {
+          console.error("Review Generator - Server endpoint attempt failed:", error);
         }
+      }
+      
+      // APPROACH 3: Use fallback if both API attempts failed
+      if (!success) {
+        console.log("Review Generator - Using fallback generator");
+        reviewText = generateFallbackReview(businessDetails.name, businessDetails.type, location);
+        success = true;
       }
       
       console.log("Review Generator - Generated review text:", reviewText);

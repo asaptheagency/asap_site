@@ -6,6 +6,7 @@ import { Button } from '../components/ui/button';
 import ImageWithFallback from '../components/ImageWithFallback';
 import { Card, CardContent } from '../components/ui/card';
 import { DEFAULT_ASAP_GOOGLE_MAPS_URL } from '../config';
+import { generateFallbackReview } from '../backend';
 
 import logoImage from '../assets/logo_transp.png';
 
@@ -170,69 +171,145 @@ const ReviewGenerator: React.FC = () => {
       The review should be 3-5 sentences long and focus on how the customer felt about their experience with the business.
       Avoid mentioning specific service details or processes.`;
       
-      // Detect if we're in production
-      const isProduction = 
-        window.location.hostname === 'asaptheagency.com' || 
-        window.location.hostname.includes('.netlify.app') ||
-        (!window.location.hostname.includes('localhost') && !window.location.hostname.includes('.replit.app'));
-      
-      console.log("Premium Review Generator - Environment detection:", isProduction ? "Production" : "Development");
-      console.log("Premium Review Generator - Current hostname:", window.location.hostname);
-      
       // Get the URL parameters to check for API key
       const currentUrlParams = new URLSearchParams(window.location.search);
       const apiKey = currentUrlParams.get('apiKey');
       
-      // For production, use the OpenAI API directly if we have an API key parameter
-      let response;
+      console.log("Premium Review Generator - Starting API call sequence");
+      console.log("Premium Review Generator - Current hostname:", window.location.hostname);
+      console.log("Premium Review Generator - API key available:", !!apiKey);
       
-      if (isProduction && apiKey) {
-        console.log("Premium Review Generator - Using direct OpenAI API with API key parameter");
-        
-        // Use the OpenAI API directly with the provided API key
-        response = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
-          },
-          body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            messages: [
-              {
-                role: "system",
-                content: "You are a helpful assistant that generates authentic-sounding customer reviews."
-              },
-              {
-                role: "user",
-                content: prompt
+      // Try multiple approaches to ensure one works
+      let response = null;
+      let errorMessages = [];
+      
+      // Try direct OpenAI API call if API key is available
+      if (apiKey) {
+        try {
+          console.log("Premium Review Generator - Attempt 1: Using direct OpenAI API with API key parameter");
+          
+          response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+              model: "gpt-3.5-turbo",
+              messages: [
+                {
+                  role: "system",
+                  content: "You are a helpful assistant that generates authentic-sounding customer reviews."
+                },
+                {
+                  role: "user",
+                  content: prompt
+                }
+              ],
+              temperature: 0.7,
+              max_tokens: 250
+            })
+          });
+          
+          console.log("Premium Review Generator - Attempt 1 response status:", response.status);
+          
+          if (!response.ok) {
+            const errorText = await response.text();
+            console.error("Premium Review Generator - Attempt 1 error:", errorText);
+            errorMessages.push(`Direct API Error: ${response.status} - ${errorText}`);
+            response = null; // Reset for next attempt
+          }
+        } catch (error: any) {
+          console.error("Premium Review Generator - Attempt 1 exception:", error);
+          errorMessages.push(`Direct API Exception: ${error?.message || 'Unknown error'}`);
+          response = null; // Reset for next attempt
+        }
+      }
+      
+      // If first attempt failed or no API key, try server endpoint
+      if (!response) {
+        try {
+          console.log("Premium Review Generator - Attempt 2: Using server API endpoint");
+          
+          response = await fetch('/api/openai/generate-review', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+              prompt,
+              // Pass through customer feedback to help with review customization
+              customerFeedback: {
+                staffMember,
+                wasServiceTimely,
+                serviceHighlight,
+                wouldRecommend,
+                wouldVisitAgain,
+                additionalComments
               }
-            ],
-            temperature: 0.7,
-            max_tokens: 250
-          })
-        });
-      } else {
-        // For development, use the local API endpoint
-        console.log("Premium Review Generator - Using server API endpoint");
-        response = await fetch('/api/openai/generate-review', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ 
-            prompt,
-            // Pass through customer feedback to help with review customization
-            customerFeedback: {
-              staffMember,
-              wasServiceTimely,
-              serviceHighlight,
-              wouldRecommend,
-              wouldVisitAgain,
-              additionalComments
-            }
-          })
-        });
+            })
+          });
+          
+          console.log("Premium Review Generator - Attempt 2 response status:", response.status);
+          
+          if (!response.ok) {
+            const errorText = await response.text();
+            console.error("Premium Review Generator - Attempt 2 error:", errorText);
+            errorMessages.push(`Server API Error: ${response.status} - ${errorText}`);
+            response = null; // Reset for next attempt
+          }
+        } catch (error: any) {
+          console.error("Premium Review Generator - Attempt 2 exception:", error);
+          errorMessages.push(`Server API Exception: ${error?.message || 'Unknown error'}`);
+          response = null; // Reset for next attempt
+        }
+      }
+      
+      // If both attempts failed, try one more with absolute URL
+      if (!response) {
+        try {
+          const baseUrl = window.location.origin;
+          console.log("Premium Review Generator - Attempt 3: Using absolute URL:", `${baseUrl}/api/openai/generate-review`);
+          
+          response = await fetch(`${baseUrl}/api/openai/generate-review`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+              prompt,
+              // Pass through customer feedback to help with review customization
+              customerFeedback: {
+                staffMember,
+                wasServiceTimely,
+                serviceHighlight,
+                wouldRecommend,
+                wouldVisitAgain,
+                additionalComments
+              }
+            })
+          });
+          
+          console.log("Premium Review Generator - Attempt 3 response status:", response.status);
+          
+          if (!response.ok) {
+            const errorText = await response.text();
+            console.error("Premium Review Generator - Attempt 3 error:", errorText);
+            errorMessages.push(`Absolute URL API Error: ${response.status} - ${errorText}`);
+            response = null; // Final attempt failed
+          }
+        } catch (error: any) {
+          console.error("Premium Review Generator - Attempt 3 exception:", error);
+          errorMessages.push(`Absolute URL API Exception: ${error?.message || 'Unknown error'}`);
+          response = null; // Final attempt failed
+        }
+      }
+      
+      // If all attempts failed, throw a detailed error
+      if (!response) {
+        const errorDetails = errorMessages.join('\n');
+        console.error("Premium Review Generator - All API attempts failed:", errorDetails);
+        throw new Error(`Could not generate review. All API attempts failed:\n${errorDetails}`);
       }
       
       if (!response.ok) {
@@ -245,22 +322,22 @@ const ReviewGenerator: React.FC = () => {
       // Handle different response formats based on API source
       let reviewText = '';
       
-      if (isProduction && apiKey) {
-        // For direct OpenAI API calls
-        if (data.choices && data.choices[0] && data.choices[0].message) {
-          reviewText = data.choices[0].message.content.trim();
-        } else {
-          console.error("Premium Review Generator - Unexpected OpenAI API response format:", data);
-          throw new Error("The API returned an unexpected response format");
-        }
+      // Extract review from response based on format (could be from either API source)
+      if (data.choices && data.choices[0] && data.choices[0].message) {
+        // Direct OpenAI API format
+        reviewText = data.choices[0].message.content.trim();
+      } else if (data.review) {
+        // Server endpoint format
+        reviewText = data.review.trim();
       } else {
-        // For server API endpoint
-        if (data.review) {
-          reviewText = data.review.trim();
-        } else {
-          console.error("Premium Review Generator - Unexpected server API response format:", data);
-          throw new Error("The server returned an unexpected response format");
-        }
+        console.error("Premium Review Generator - Unexpected response format:", data);
+        
+        // Use fallback if response cannot be parsed
+        reviewText = generateFallbackReview(
+          businessData.businessName, 
+          businessData.businessType, 
+          "your area"
+        );
       }
       
       console.log("Premium Review Generator - Generated review text:", reviewText);
