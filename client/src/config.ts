@@ -12,6 +12,6 @@ export const DEFAULT_ASAP_GOOGLE_MAPS_URL = "https://g.co/kgs/fdvVJCy";
 
 // Rate limiting configuration for review generators
 export const RATE_LIMITING = {
-  MAX_REQUESTS_PER_HOUR: 20,
-  COOLDOWN_SECONDS: 5
+  MAX_HOURLY_USAGE: 20,     // Maximum number of reviews that can be generated per hour
+  USAGE_COOLDOWN: 5000      // Cooldown time in milliseconds between review generation attempts
 };

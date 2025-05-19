@@ -33,10 +33,8 @@ const DEFAULT_BUSINESS_DETAILS: BusinessDetails = {
 };
 
 // Rate limiting constants from config
-const { 
-  MAX_HOURLY_USAGE,
-  USAGE_COOLDOWN 
-} = RATE_LIMITING;
+const MAX_HOURLY_USAGE = RATE_LIMITING.MAX_REQUESTS_PER_HOUR;
+const USAGE_COOLDOWN = RATE_LIMITING.COOLDOWN_SECONDS * 1000; // Convert to milliseconds
 
 export default function ClientIframeReviewGenerator() {
   // State for the generated review
@@ -210,7 +208,9 @@ export default function ClientIframeReviewGenerator() {
       
       if (!useDirectApi) {
         // For ASAP website, use the server endpoint that has API key in environment
-        response = await fetch('/api/openai/generate-review', {
+        // Use the full URL to ensure it works in all environments including production
+        const baseUrl = window.location.origin;
+        response = await fetch(`${baseUrl}/api/openai/generate-review`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
