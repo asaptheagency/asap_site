@@ -33,8 +33,8 @@ const DEFAULT_BUSINESS_DETAILS: BusinessDetails = {
 };
 
 // Rate limiting constants from config
-const MAX_HOURLY_USAGE = RATE_LIMITING.MAX_REQUESTS_PER_HOUR;
-const USAGE_COOLDOWN = RATE_LIMITING.COOLDOWN_SECONDS * 1000; // Convert to milliseconds
+const MAX_HOURLY_USAGE = RATE_LIMITING.MAX_HOURLY_USAGE;
+const USAGE_COOLDOWN = RATE_LIMITING.USAGE_COOLDOWN; // Already in milliseconds
 
 export default function ClientIframeReviewGenerator() {
   // State for the generated review
@@ -207,18 +207,37 @@ export default function ClientIframeReviewGenerator() {
       let response;
       
       if (!useDirectApi) {
-        // For ASAP website, use the server endpoint that has API key in environment
-        // Use the full URL to ensure it works in all environments including production
-        const baseUrl = window.location.origin;
-        response = await fetch(`${baseUrl}/api/openai/generate-review`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            prompt
-          })
-        });
+        try {
+          // For ASAP website, use the server endpoint that has API key in environment
+          // Use the full URL to ensure it works in all environments including production
+          const baseUrl = window.location.origin;
+          const apiUrl = `${baseUrl}/api/openai/generate-review`;
+          
+          console.log(`Making API request to: ${apiUrl}`);
+          console.log(`Request body:`, JSON.stringify({ prompt }));
+          
+          response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              prompt
+            })
+          });
+          
+          console.log(`API response status: ${response.status}`);
+          
+          // If there's a problem with the API call, catch it early with detailed info
+          if (!response.ok) {
+            const errorText = await response.text();
+            console.error(`API error (${response.status}): ${errorText}`);
+            throw new Error(`Server API Error (${response.status}): ${errorText || 'Unknown error'}`);
+          }
+        } catch (apiError) {
+          console.error('Server API call failed:', apiError);
+          throw apiError; // Re-throw to be caught by the outer try/catch
+        }
       } else {
         // For client sites, use their API key directly
         response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -245,7 +264,8 @@ export default function ClientIframeReviewGenerator() {
         });
       }
       
-      if (!response.ok) {
+      // This check is only needed for the client API since the server API has its own check
+      if (useDirectApi && !response.ok) {
         let errorMessage = 'Error generating review';
         try {
           const errorData = await response.json();
@@ -258,14 +278,36 @@ export default function ClientIframeReviewGenerator() {
       
       const data = await response.json();
       
-      // Handle different response formats
+      // Handle different response formats with better error handling
       let reviewText = '';
-      if (!useDirectApi) {
-        // Format from server API endpoint
-        reviewText = data.review.trim();
-      } else {
-        // Format from direct OpenAI API call
-        reviewText = data.choices[0].message.content.trim();
+      try {
+        if (!useDirectApi) {
+          // Format from server API endpoint
+          console.log("Server API response data:", data);
+          if (data && data.review) {
+            reviewText = data.review.trim();
+          } else {
+            console.error("Unexpected server API response format:", data);
+            throw new Error("The server returned an unexpected response format");
+          }
+        } else {
+          // Format from direct OpenAI API call
+          console.log("OpenAI API response data:", data);
+          if (data && data.choices && data.choices[0] && data.choices[0].message) {
+            reviewText = data.choices[0].message.content.trim();
+          } else {
+            console.error("Unexpected OpenAI API response format:", data);
+            throw new Error("The OpenAI API returned an unexpected response format");
+          }
+        }
+        
+        if (!reviewText) {
+          throw new Error("No review text was generated");
+        }
+      } catch (err) {
+        const formatError = err as Error;
+        console.error("Error processing API response:", formatError);
+        throw new Error(`Failed to process the response: ${formatError?.message || 'Unknown error'}`);
       }
       
       // Track this usage

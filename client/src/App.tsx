@@ -26,6 +26,7 @@ const ReviewGenerator = lazy(() => import("./pages/ReviewGenerator"));
 const EmbeddableReviewGenerator = lazy(() => import("./pages/EmbeddableReviewGenerator"));
 const ClientKeyReviewGenerator = lazy(() => import("./pages/ClientKeyReviewGenerator"));
 const ClientIframeReviewGenerator = lazy(() => import("./pages/ClientIframeReviewGenerator"));
+const ProductionReviewGenerator = lazy(() => import("./pages/ProductionReviewGenerator"));
 
 // Preload the ReviewGeneratorsSimple component to avoid 404 flash
 import("./pages/services/ReviewGeneratorsSimple");
@@ -91,6 +92,7 @@ function Router() {
             <Route path="/embed/review-generator" component={EmbeddableReviewGenerator} />
             <Route path="/client-key-review-generator" component={ClientKeyReviewGenerator} />
             <Route path="/client-iframe-review-generator" component={ClientIframeReviewGenerator} />
+            <Route path="/client/review-generator" component={ClientIframeReviewGenerator} />
             <Route path="/services/review-generators" component={ReviewGeneratorsSimple} />
           </Switch>
         ) : (
