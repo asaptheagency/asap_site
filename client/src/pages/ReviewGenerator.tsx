@@ -34,7 +34,7 @@ interface BusinessData {
 const defaultBusinessData: BusinessData = {
   businessName: "ASAP",
   businessType: "Digital Marketing Agency",
-  serviceUsed: "website redesign",
+  serviceUsed: "",
   positivePoints: "Their team was highly professional and delivered outstanding results. The project was completed ahead of schedule and exceeded our expectations."
 };
 
@@ -257,7 +257,9 @@ const ReviewGenerator: React.FC = () => {
               <h3 className="text-lg font-medium mb-2">Business Information</h3>
               <div className="grid grid-cols-1 gap-2 text-sm">
                 <p><span className="text-gray-400">Business:</span> {businessData.businessName}</p>
-                <p><span className="text-gray-400">Service:</span> {businessData.serviceUsed}</p>
+                {businessData.serviceUsed && (
+                  <p><span className="text-gray-400">Service:</span> {businessData.serviceUsed}</p>
+                )}
               </div>
             </div>
             
