@@ -170,33 +170,100 @@ const ReviewGenerator: React.FC = () => {
       The review should be 3-5 sentences long and focus on how the customer felt about their experience with the business.
       Avoid mentioning specific service details or processes.`;
       
-      // Call the API
-      const response = await fetch('/api/openai/generate-review', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          prompt,
-          // Pass through customer feedback to help with review customization
-          customerFeedback: {
-            staffMember,
-            wasServiceTimely,
-            serviceHighlight,
-            wouldRecommend,
-            wouldVisitAgain,
-            additionalComments
-          }
-        })
-      });
+      // Detect if we're in production
+      const isProduction = 
+        window.location.hostname === 'asaptheagency.com' || 
+        window.location.hostname.includes('.netlify.app') ||
+        (!window.location.hostname.includes('localhost') && !window.location.hostname.includes('.replit.app'));
+      
+      console.log("Premium Review Generator - Environment detection:", isProduction ? "Production" : "Development");
+      console.log("Premium Review Generator - Current hostname:", window.location.hostname);
+      
+      // Get the URL parameters to check for API key
+      const currentUrlParams = new URLSearchParams(window.location.search);
+      const apiKey = currentUrlParams.get('apiKey');
+      
+      // For production, use the OpenAI API directly if we have an API key parameter
+      let response;
+      
+      if (isProduction && apiKey) {
+        console.log("Premium Review Generator - Using direct OpenAI API with API key parameter");
+        
+        // Use the OpenAI API directly with the provided API key
+        response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
+          },
+          body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [
+              {
+                role: "system",
+                content: "You are a helpful assistant that generates authentic-sounding customer reviews."
+              },
+              {
+                role: "user",
+                content: prompt
+              }
+            ],
+            temperature: 0.7,
+            max_tokens: 250
+          })
+        });
+      } else {
+        // For development, use the local API endpoint
+        console.log("Premium Review Generator - Using server API endpoint");
+        response = await fetch('/api/openai/generate-review', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+            prompt,
+            // Pass through customer feedback to help with review customization
+            customerFeedback: {
+              staffMember,
+              wasServiceTimely,
+              serviceHighlight,
+              wouldRecommend,
+              wouldVisitAgain,
+              additionalComments
+            }
+          })
+        });
+      }
       
       if (!response.ok) {
         throw new Error('Error generating review. Please try again later.');
       }
       
       const data = await response.json();
-      const reviewText = data.review.trim();
+      console.log("Premium Review Generator - API Response Data:", data);
       
+      // Handle different response formats based on API source
+      let reviewText = '';
+      
+      if (isProduction && apiKey) {
+        // For direct OpenAI API calls
+        if (data.choices && data.choices[0] && data.choices[0].message) {
+          reviewText = data.choices[0].message.content.trim();
+        } else {
+          console.error("Premium Review Generator - Unexpected OpenAI API response format:", data);
+          throw new Error("The API returned an unexpected response format");
+        }
+      } else {
+        // For server API endpoint
+        if (data.review) {
+          reviewText = data.review.trim();
+        } else {
+          console.error("Premium Review Generator - Unexpected server API response format:", data);
+          throw new Error("The server returned an unexpected response format");
+        }
+      }
+      
+      console.log("Premium Review Generator - Generated review text:", reviewText);
       setGeneratedReview(reviewText);
       
       // Copy to clipboard
