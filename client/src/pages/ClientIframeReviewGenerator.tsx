@@ -191,21 +191,29 @@ const ClientIframeReviewGenerator: React.FC = () => {
     startCooldownTimer(USAGE_COOLDOWN / 1000);
   };
 
+  // Helper function to check if we're on the ASAP website
+  const isOnAsapWebsite = () => {
+    return window.location.hostname.includes('asaptheagency.com') || 
+      window.location.hostname.includes('localhost') ||
+      window.location.hostname.includes('.replit.app') ||
+      window.location.hostname.includes('netlify.app') ||
+      window.location.hostname.includes('github.io') ||
+      window.location.hostname === 'asap.agency' ||
+      window.location.hostname === 'www.asap.agency';
+  };
+  
   // Generate a review using the API key from the URL
   const generateReview = async () => {
     // For the ASAP website itself, we don't require an API key in the URL
     // We'll use the server-side API endpoint in this case
-    const isAsapWebsite = 
-      window.location.hostname.includes('asaptheagency.com') || 
-      window.location.hostname.includes('localhost') ||
-      window.location.hostname.includes('.replit.app');
+    const onAsapWebsite = isOnAsapWebsite();
     
-    if (!isAsapWebsite && !businessDetails.apiKey) {
+    if (!onAsapWebsite && !businessDetails.apiKey) {
       setError("No API key provided. Please contact the site administrator.");
       return;
     }
     
-    if (!isAsapWebsite && !businessDetails.googleMapsUrl) {
+    if (!onAsapWebsite && !businessDetails.googleMapsUrl) {
       setError("No Google Maps URL provided. The client implementation requires a specific Google Maps URL.");
       return;
     }
@@ -233,15 +241,12 @@ const ClientIframeReviewGenerator: React.FC = () => {
       The tone should be ${tone}.
       The review should be 3-5 sentences long, focus on how the customer felt about their experience, and avoid mentioning specific service details.`;
       
-      // Check again if we're on the ASAP website
-      const isAsapWebsite = 
-        window.location.hostname.includes('asaptheagency.com') || 
-        window.location.hostname.includes('localhost') ||
-        window.location.hostname.includes('.replit.app');
+      // Check if we're on the ASAP website
+      const onAsapWebsite = isOnAsapWebsite();
       
       let response;
       
-      if (isAsapWebsite) {
+      if (onAsapWebsite) {
         // For ASAP website, use the server endpoint that has API key in environment
         response = await fetch('/api/openai/generate-review', {
           method: 'POST',
@@ -285,7 +290,7 @@ const ClientIframeReviewGenerator: React.FC = () => {
       
       // Handle different response formats between server API and direct OpenAI call
       let reviewText = '';
-      if (isAsapWebsite) {
+      if (onAsapWebsite) {
         // Format from server API endpoint
         reviewText = data.review.trim();
       } else {
@@ -303,12 +308,10 @@ const ClientIframeReviewGenerator: React.FC = () => {
       navigator.clipboard.writeText(reviewText);
       
       // Check if this is the ASAP website or a client implementation
-      const isAsapWebsite = 
-        window.location.hostname.includes('asaptheagency.com') || 
-        window.location.hostname.includes('localhost') ||
-        window.location.hostname.includes('.replit.app');
+      // Re-use our helper function
+      const onAsapWebsite = isOnAsapWebsite();
       
-      if (isAsapWebsite) {
+      if (onAsapWebsite) {
         // For ASAP website, use the default URL from config
         window.open(DEFAULT_ASAP_GOOGLE_MAPS_URL, "_blank");
       } else if (businessDetails.googleMapsUrl) {
