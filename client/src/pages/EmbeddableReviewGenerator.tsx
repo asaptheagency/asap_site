@@ -97,6 +97,15 @@ const EmbeddableReviewGenerator: React.FC = () => {
 
   // Generate a review using OpenAI API, copy to clipboard, and navigate to Google Maps
   const generateReview = async () => {
+    console.log("🔍 REVIEW GENERATOR - Starting generation process...");
+    console.log("🔍 REVIEW GENERATOR - Environment:", {
+      hostname: window.location.hostname,
+      pathname: window.location.pathname,
+      search: window.location.search,
+      href: window.location.href
+    });
+    console.log("🔍 REVIEW GENERATOR - Business Details:", JSON.stringify(businessDetails, null, 2));
+    
     setIsGenerating(true);
     
     try {
@@ -104,21 +113,43 @@ const EmbeddableReviewGenerator: React.FC = () => {
       const location = businessDetails.locations[Math.floor(Math.random() * businessDetails.locations.length)];
       const tone = businessDetails.tones[Math.floor(Math.random() * businessDetails.tones.length)];
       
+      console.log("🔍 REVIEW GENERATOR - Selected location:", location);
+      console.log("🔍 REVIEW GENERATOR - Selected tone:", tone);
+      
       const prompt = `Generate a positive customer review for ${businessDetails.name}, a ${businessDetails.type}.
       Focus on overall customer satisfaction and experience rather than specific service details.
       Make the review sound authentic, as if written by a happy customer from ${location}.
       The tone should be ${tone}.
       The review should be 3-5 sentences long, focus on how the customer felt about their experience, and avoid mentioning specific service details.`;
       
-      console.log("Review Generator - Starting review generation process");
+      console.log("🔍 REVIEW GENERATOR - Generated prompt:", prompt);
       
       let reviewText = '';
       let success = false;
       
-      // APPROACH 1: Try direct OpenAI API call with client API key if available
+      // ========== APPROACH 1: Try direct OpenAI API call with client API key if available ==========
       if (businessDetails.apiKey && !success) {
+        console.log("🔍 REVIEW GENERATOR - ATTEMPT 1: Using direct OpenAI API");
+        console.log("🔍 REVIEW GENERATOR - API Key available (masked):", businessDetails.apiKey ? "✓ YES (starts with: " + businessDetails.apiKey.substring(0, 3) + "...)" : "✗ NO");
+        
         try {
-          console.log("Review Generator - Trying direct OpenAI API with client key");
+          const directApiRequestBody = {
+            model: "gpt-3.5-turbo",
+            messages: [
+              {
+                role: "system",
+                content: "You are a helpful assistant that generates authentic-sounding customer reviews."
+              },
+              {
+                role: "user",
+                content: prompt
+              }
+            ],
+            temperature: 0.7,
+            max_tokens: 250
+          };
+          
+          console.log("🔍 REVIEW GENERATOR - ATTEMPT 1: Request body:", JSON.stringify(directApiRequestBody, null, 2));
           
           const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
@@ -126,86 +157,229 @@ const EmbeddableReviewGenerator: React.FC = () => {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${businessDetails.apiKey}`
             },
-            body: JSON.stringify({
-              model: "gpt-3.5-turbo",
-              messages: [
-                {
-                  role: "system",
-                  content: "You are a helpful assistant that generates authentic-sounding customer reviews."
-                },
-                {
-                  role: "user",
-                  content: prompt
-                }
-              ],
-              temperature: 0.7,
-              max_tokens: 250
-            })
+            body: JSON.stringify(directApiRequestBody)
           });
           
+          console.log("🔍 REVIEW GENERATOR - ATTEMPT 1: Response status:", response.status);
+          console.log("🔍 REVIEW GENERATOR - ATTEMPT 1: Response OK:", response.ok);
+          
           if (response.ok) {
-            const data = await response.json();
-            if (data.choices && data.choices[0] && data.choices[0].message) {
-              reviewText = data.choices[0].message.content.trim();
-              success = true;
-              console.log("Review Generator - Successfully generated with client API key");
+            const responseText = await response.text();
+            console.log("🔍 REVIEW GENERATOR - ATTEMPT 1: Raw response:", responseText);
+            
+            try {
+              const data = JSON.parse(responseText);
+              console.log("🔍 REVIEW GENERATOR - ATTEMPT 1: Parsed data:", JSON.stringify(data, null, 2));
+              
+              if (data.choices && data.choices[0] && data.choices[0].message) {
+                reviewText = data.choices[0].message.content.trim();
+                success = true;
+                console.log("🔍 REVIEW GENERATOR - ATTEMPT 1: SUCCESS! Generated review:", reviewText);
+              } else {
+                console.error("🔍 REVIEW GENERATOR - ATTEMPT 1: Response format issue. Missing choices/message.", data);
+              }
+            } catch (parseError) {
+              console.error("🔍 REVIEW GENERATOR - ATTEMPT 1: JSON parse error:", parseError);
+              console.error("🔍 REVIEW GENERATOR - ATTEMPT 1: Raw response that failed parsing:", responseText);
+            }
+          } else {
+            const errorText = await response.text();
+            console.error("🔍 REVIEW GENERATOR - ATTEMPT 1: Error response:", errorText);
+            try {
+              const errorJson = JSON.parse(errorText);
+              console.error("🔍 REVIEW GENERATOR - ATTEMPT 1: Parsed error:", JSON.stringify(errorJson, null, 2));
+            } catch (e) {
+              console.error("🔍 REVIEW GENERATOR - ATTEMPT 1: Could not parse error as JSON");
             }
           }
-        } catch (error) {
-          console.error("Review Generator - Client API key attempt failed:", error);
+        } catch (error: any) {
+          console.error("🔍 REVIEW GENERATOR - ATTEMPT 1: Exception:", error);
+          console.error("🔍 REVIEW GENERATOR - ATTEMPT 1: Error details:", {
+            name: error?.name || 'unknown',
+            message: error?.message || 'No message available',
+            stack: error?.stack || 'No stack trace available'
+          });
         }
+      } else {
+        console.log("🔍 REVIEW GENERATOR - ATTEMPT 1: Skipped (no API key)");
       }
       
-      // APPROACH 2: Try server endpoint if client key failed or wasn't provided
+      // ========== APPROACH 2: Try server endpoint if client key failed or wasn't provided ==========
       if (!success) {
+        console.log("🔍 REVIEW GENERATOR - ATTEMPT 2: Using server API endpoint");
+        
         try {
-          console.log("Review Generator - Trying server API endpoint");
+          const serverRequestBody = { prompt };
+          console.log("🔍 REVIEW GENERATOR - ATTEMPT 2: Request body:", JSON.stringify(serverRequestBody, null, 2));
           
           const response = await fetch('/api/openai/generate-review', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ prompt })
+            body: JSON.stringify(serverRequestBody)
           });
           
+          console.log("🔍 REVIEW GENERATOR - ATTEMPT 2: Response status:", response.status);
+          console.log("🔍 REVIEW GENERATOR - ATTEMPT 2: Response OK:", response.ok);
+          
           if (response.ok) {
-            const data = await response.json();
-            if (data.review) {
-              reviewText = data.review.trim();
-              success = true;
-              console.log("Review Generator - Successfully generated with server endpoint");
+            const responseText = await response.text();
+            console.log("🔍 REVIEW GENERATOR - ATTEMPT 2: Raw response:", responseText);
+            
+            try {
+              const data = JSON.parse(responseText);
+              console.log("🔍 REVIEW GENERATOR - ATTEMPT 2: Parsed data:", JSON.stringify(data, null, 2));
+              
+              if (data.review) {
+                reviewText = data.review.trim();
+                success = true;
+                console.log("🔍 REVIEW GENERATOR - ATTEMPT 2: SUCCESS! Generated review:", reviewText);
+              } else {
+                console.error("🔍 REVIEW GENERATOR - ATTEMPT 2: Response format issue. Missing 'review' field.", data);
+              }
+            } catch (parseError) {
+              console.error("🔍 REVIEW GENERATOR - ATTEMPT 2: JSON parse error:", parseError);
+              console.error("🔍 REVIEW GENERATOR - ATTEMPT 2: Raw response that failed parsing:", responseText);
+            }
+          } else {
+            const errorText = await response.text();
+            console.error("🔍 REVIEW GENERATOR - ATTEMPT 2: Error response:", errorText);
+            try {
+              const errorJson = JSON.parse(errorText);
+              console.error("🔍 REVIEW GENERATOR - ATTEMPT 2: Parsed error:", JSON.stringify(errorJson, null, 2));
+            } catch (e) {
+              console.error("🔍 REVIEW GENERATOR - ATTEMPT 2: Could not parse error as JSON");
             }
           }
-        } catch (error) {
-          console.error("Review Generator - Server endpoint attempt failed:", error);
+        } catch (error: any) {
+          console.error("🔍 REVIEW GENERATOR - ATTEMPT 2: Exception:", error);
+          console.error("🔍 REVIEW GENERATOR - ATTEMPT 2: Error details:", {
+            name: error?.name || 'unknown',
+            message: error?.message || 'No message available',
+            stack: error?.stack || 'No stack trace available'
+          });
         }
+      } else {
+        console.log("🔍 REVIEW GENERATOR - ATTEMPT 2: Skipped (already succeeded)");
       }
       
-      // APPROACH 3: Use fallback if both API attempts failed
+      // ========== APPROACH 3: Try absolute URL if previous attempts failed ==========
       if (!success) {
-        console.log("Review Generator - Using fallback generator");
-        reviewText = generateFallbackReview(businessDetails.name, businessDetails.type, location);
-        success = true;
+        console.log("🔍 REVIEW GENERATOR - ATTEMPT 3: Using absolute URL to server endpoint");
+        
+        try {
+          const baseUrl = window.location.origin;
+          const absoluteUrl = `${baseUrl}/api/openai/generate-review`;
+          console.log("🔍 REVIEW GENERATOR - ATTEMPT 3: Absolute URL:", absoluteUrl);
+          
+          const serverRequestBody = { prompt };
+          console.log("🔍 REVIEW GENERATOR - ATTEMPT 3: Request body:", JSON.stringify(serverRequestBody, null, 2));
+          
+          const response = await fetch(absoluteUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(serverRequestBody)
+          });
+          
+          console.log("🔍 REVIEW GENERATOR - ATTEMPT 3: Response status:", response.status);
+          console.log("🔍 REVIEW GENERATOR - ATTEMPT 3: Response OK:", response.ok);
+          
+          if (response.ok) {
+            const responseText = await response.text();
+            console.log("🔍 REVIEW GENERATOR - ATTEMPT 3: Raw response:", responseText);
+            
+            try {
+              const data = JSON.parse(responseText);
+              console.log("🔍 REVIEW GENERATOR - ATTEMPT 3: Parsed data:", JSON.stringify(data, null, 2));
+              
+              if (data.review) {
+                reviewText = data.review.trim();
+                success = true;
+                console.log("🔍 REVIEW GENERATOR - ATTEMPT 3: SUCCESS! Generated review:", reviewText);
+              } else {
+                console.error("🔍 REVIEW GENERATOR - ATTEMPT 3: Response format issue. Missing 'review' field.", data);
+              }
+            } catch (parseError) {
+              console.error("🔍 REVIEW GENERATOR - ATTEMPT 3: JSON parse error:", parseError);
+              console.error("🔍 REVIEW GENERATOR - ATTEMPT 3: Raw response that failed parsing:", responseText);
+            }
+          } else {
+            const errorText = await response.text();
+            console.error("🔍 REVIEW GENERATOR - ATTEMPT 3: Error response:", errorText);
+            try {
+              const errorJson = JSON.parse(errorText);
+              console.error("🔍 REVIEW GENERATOR - ATTEMPT 3: Parsed error:", JSON.stringify(errorJson, null, 2));
+            } catch (e) {
+              console.error("🔍 REVIEW GENERATOR - ATTEMPT 3: Could not parse error as JSON");
+            }
+          }
+        } catch (error: any) {
+          console.error("🔍 REVIEW GENERATOR - ATTEMPT 3: Exception:", error);
+          console.error("🔍 REVIEW GENERATOR - ATTEMPT 3: Error details:", {
+            name: error?.name || 'unknown',
+            message: error?.message || 'No message available',
+            stack: error?.stack || 'No stack trace available'
+          });
+        }
+      } else {
+        console.log("🔍 REVIEW GENERATOR - ATTEMPT 3: Skipped (already succeeded)");
       }
       
-      console.log("Review Generator - Generated review text:", reviewText);
+      // ========== APPROACH 4: Use fallback if all API attempts failed ==========
+      if (!success) {
+        console.log("🔍 REVIEW GENERATOR - ATTEMPT 4: Using fallback generator");
+        reviewText = generateFallbackReview(businessDetails.name, businessDetails.type, location);
+        console.log("🔍 REVIEW GENERATOR - ATTEMPT 4: Generated fallback review:", reviewText);
+        success = true;
+      } else {
+        console.log("🔍 REVIEW GENERATOR - ATTEMPT 4: Skipped (already succeeded)");
+      }
+      
+      console.log("🔍 REVIEW GENERATOR - FINAL RESULT - Success:", success);
+      console.log("🔍 REVIEW GENERATOR - FINAL RESULT - Generated review:", reviewText);
       
       // Save the generated review
+      console.log("🔍 REVIEW GENERATOR - Updating state with generated review");
       setGeneratedReview(reviewText);
       
       // Copy to clipboard
-      navigator.clipboard.writeText(reviewText);
+      try {
+        console.log("🔍 REVIEW GENERATOR - Copying to clipboard");
+        await navigator.clipboard.writeText(reviewText);
+        console.log("🔍 REVIEW GENERATOR - Copied to clipboard successfully");
+      } catch (clipboardError) {
+        console.error("🔍 REVIEW GENERATOR - Clipboard error:", clipboardError);
+      }
       
       // Open Google Maps in a new tab - client specific if provided or ASAP default if not
       // This version is the embedded version that can be either used for ASAP or clients
       const mapsUrl = businessDetails.googleMapsUrl || DEFAULT_ASAP_GOOGLE_MAPS_URL;
-      window.open(mapsUrl, "_blank");
-    } catch (error) {
-      console.error('Error generating review:', error);
+      console.log("🔍 REVIEW GENERATOR - Opening Google Maps URL:", mapsUrl);
+      
+      try {
+        const newWindow = window.open(mapsUrl, "_blank");
+        if (newWindow) {
+          console.log("🔍 REVIEW GENERATOR - Google Maps opened successfully");
+        } else {
+          console.error("🔍 REVIEW GENERATOR - Failed to open Google Maps - popup might be blocked");
+        }
+      } catch (navigationError) {
+        console.error("🔍 REVIEW GENERATOR - Navigation error:", navigationError);
+      }
+    } catch (error: any) {
+      console.error('🔍 REVIEW GENERATOR - CRITICAL ERROR:', error);
+      console.error('🔍 REVIEW GENERATOR - Error details:', {
+        name: error?.name || 'unknown',
+        message: error?.message || 'No message available',
+        stack: error?.stack || 'No stack trace available'
+      });
       // Show an error message or handle as needed
       alert('There was an error generating the review. Please try again later.');
     } finally {
+      console.log('🔍 REVIEW GENERATOR - Process complete, setting isGenerating to false');
       setIsGenerating(false);
     }
   };

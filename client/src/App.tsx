@@ -27,6 +27,7 @@ const EmbeddableReviewGenerator = lazy(() => import("./pages/EmbeddableReviewGen
 const ClientKeyReviewGenerator = lazy(() => import("./pages/ClientKeyReviewGenerator"));
 const ClientIframeReviewGenerator = lazy(() => import("./pages/ClientIframeReviewGenerator"));
 const ProductionReviewGenerator = lazy(() => import("./pages/ProductionReviewGenerator"));
+const SimpleReviewGenerator = lazy(() => import("./pages/SimpleReviewGenerator"));
 
 // Preload the ReviewGeneratorsSimple component to avoid 404 flash
 import("./pages/services/ReviewGeneratorsSimple");
@@ -88,11 +89,18 @@ function Router() {
         {/* Apply the main layout conditionally */}
         {isSpecialPage ? (
           <Switch>
-            <Route path="/review-generator" component={ReviewGenerator} />
-            <Route path="/embed/review-generator" component={EmbeddableReviewGenerator} />
-            <Route path="/client-key-review-generator" component={ClientKeyReviewGenerator} />
-            <Route path="/client-iframe-review-generator" component={ClientIframeReviewGenerator} />
-            <Route path="/client/review-generator" component={ClientIframeReviewGenerator} />
+            <Route path="/review-generator" component={SimpleReviewGenerator} />
+            <Route path="/embed/review-generator" component={SimpleReviewGenerator} />
+            <Route path="/client-key-review-generator" component={SimpleReviewGenerator} />
+            <Route path="/client-iframe-review-generator" component={SimpleReviewGenerator} />
+            <Route path="/client/review-generator" component={SimpleReviewGenerator} />
+            
+            {/* Original routes kept as alternates - commented out */}
+            {/* <Route path="/review-generator" component={ReviewGenerator} /> */}
+            {/* <Route path="/embed/review-generator" component={EmbeddableReviewGenerator} /> */}
+            {/* <Route path="/client-key-review-generator" component={ClientKeyReviewGenerator} /> */}
+            {/* <Route path="/client-iframe-review-generator" component={ClientIframeReviewGenerator} /> */}
+            {/* <Route path="/client/review-generator" component={ClientIframeReviewGenerator} /> */}
             <Route path="/services/review-generators" component={ReviewGeneratorsSimple} />
           </Switch>
         ) : (
