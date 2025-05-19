@@ -21,166 +21,141 @@ interface BusinessDetails {
   apiKey?: string; // API key passed as URL parameter
 }
 
-// Default business details
+// Default business details (these get overridden by URL parameters)
 const DEFAULT_BUSINESS_DETAILS: BusinessDetails = {
   name: "ASAP",
   type: "Digital Marketing Agency",
-  services: [
-    "website design", 
-    "digital marketing", 
-    "automation solutions", 
-    "chatbot development",
-    "app development"
-  ],
-  highlights: [
-    "Their team was incredibly responsive and professional",
-    "The results exceeded my expectations",
-    "They were efficient and delivered on time",
-    "Their attention to detail was impressive",
-    "Their expertise in automation saved me so much time",
-    "The quality of their work is outstanding"
-  ],
-  locations: [
-    "Los Angeles", 
-    "New York", 
-    "Chicago", 
-    "Miami", 
-    "San Francisco",
-    "Denver"
-  ],
-  tones: ["enthusiastic", "professional", "casual"],
-  googleMapsUrl: undefined,
-  apiKey: undefined
+  services: ["Marketing", "Web Development", "Automation", "ChatBots"],
+  highlights: ["Excellent customer service", "Fast turnaround", "Quality work", "Innovative solutions"],
+  locations: ["Boston", "New York", "San Francisco", "Chicago", "Miami", "Los Angeles"],
+  tones: ["friendly", "professional", "enthusiastic", "appreciative", "impressed"],
+  googleMapsUrl: DEFAULT_ASAP_GOOGLE_MAPS_URL
 };
 
-// Get business details from URL parameters, including API key
-const getBusinessDetailsFromUrl = () => {
-  if (typeof window === 'undefined') return DEFAULT_BUSINESS_DETAILS;
-  
-  const urlParams = new URLSearchParams(window.location.search);
-  
-  // Parse services from comma-separated list if provided
-  let services = DEFAULT_BUSINESS_DETAILS.services;
-  const servicesParam = urlParams.get('services');
-  if (servicesParam) {
-    services = servicesParam.split(',').map(s => s.trim());
-  }
-  
-  // Parse highlights from comma-separated list if provided
-  let highlights = DEFAULT_BUSINESS_DETAILS.highlights;
-  const highlightsParam = urlParams.get('highlights');
-  if (highlightsParam) {
-    highlights = highlightsParam.split(',').map(h => h.trim());
-  }
-  
-  return {
-    name: urlParams.get('businessName') || DEFAULT_BUSINESS_DETAILS.name,
-    type: urlParams.get('businessType') || DEFAULT_BUSINESS_DETAILS.type,
-    services: services,
-    highlights: highlights,
-    locations: DEFAULT_BUSINESS_DETAILS.locations,
-    tones: DEFAULT_BUSINESS_DETAILS.tones,
-    googleMapsUrl: urlParams.get('googleMapsUrl') || undefined,
-    apiKey: urlParams.get('apiKey') || undefined // Get API key from URL parameters
-  };
-};
+// Rate limiting constants from config
+const { 
+  MAX_HOURLY_USAGE,
+  USAGE_COOLDOWN 
+} = RATE_LIMITING;
 
-// Client Iframe Review Generator component
-const ClientIframeReviewGenerator: React.FC = () => {
+export default function ClientIframeReviewGenerator() {
+  // State for the generated review
+  const [generatedReview, setGeneratedReview] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [error, setError] = useState("");
+  const [remainingUses, setRemainingUses] = useState(MAX_HOURLY_USAGE);
+  const [lastUsageTime, setLastUsageTime] = useState(0);
+  const [cooldownRemaining, setCooldownRemaining] = useState(0);
+  const [copyButtonText, setCopyButtonText] = useState("Copy to Clipboard");
   const [businessDetails, setBusinessDetails] = useState<BusinessDetails>(DEFAULT_BUSINESS_DETAILS);
-  const [generatedReview, setGeneratedReview] = useState<string>('');
-  const [isGenerating, setIsGenerating] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [usageCount, setUsageCount] = useState<number>(0);
-  const [lastUsageTime, setLastUsageTime] = useState<number | null>(null);
-  const [cooldownRemaining, setCooldownRemaining] = useState<number>(0);
-  const MAX_USAGE_PER_HOUR = 20; // Higher limit since this is managed by the business
-  const USAGE_COOLDOWN = 5000; // 5 seconds cooldown between requests
+  
+  // Ref for the timer
   const cooldownTimerRef = useRef<number | null>(null);
-  const hourlyUsageKey = `hourly_usage_${businessDetails.name.replace(/[^a-zA-Z0-9]/g, '_')}`;
-
-  // Load business details from URL on component mount
+  
+  // Today's date for the hourly usage key
+  const today = new Date().toISOString().split('T')[0];
+  const hourlyUsageKey = `review_generator_usage_${today}`;
+  
   useEffect(() => {
-    const details = getBusinessDetailsFromUrl();
+    // Parse URL parameters to extract business details and API key
+    const params = new URLSearchParams(window.location.search);
+    
+    // Initialize business details with defaults
+    const details = { ...DEFAULT_BUSINESS_DETAILS };
+    
+    // Update business details from URL parameters
+    if (params.get('name')) details.name = params.get('name')!;
+    if (params.get('type')) details.type = params.get('type')!;
+    if (params.get('services')) details.services = params.get('services')!.split(',');
+    if (params.get('highlights')) details.highlights = params.get('highlights')!.split(',');
+    if (params.get('locations')) details.locations = params.get('locations')!.split(',');
+    if (params.get('tones')) details.tones = params.get('tones')!.split(',');
+    if (params.get('googleMapsUrl')) details.googleMapsUrl = params.get('googleMapsUrl')!;
+    if (params.get('apiKey')) details.apiKey = params.get('apiKey')!;
+    
+    // Set the business details
     setBusinessDetails(details);
     
-    // Load usage statistics
-    const currentHour = new Date().getHours();
-    const lastHour = parseInt(localStorage.getItem(`${hourlyUsageKey}_hour`) || '-1', 10);
+    // Check rate limits from localStorage
+    const storedUsage = localStorage.getItem(hourlyUsageKey);
+    const storedTime = localStorage.getItem(`${hourlyUsageKey}_time`);
     
-    if (lastHour !== currentHour) {
-      // Reset counter if it's a new hour
-      localStorage.setItem(`${hourlyUsageKey}_hour`, currentHour.toString());
-      localStorage.setItem(hourlyUsageKey, '0');
-      setUsageCount(0);
-    } else {
-      // Load existing count
-      const count = parseInt(localStorage.getItem(hourlyUsageKey) || '0', 10);
-      setUsageCount(count);
+    if (storedUsage) {
+      const parsedUsage = parseInt(storedUsage, 10);
+      setRemainingUses(MAX_HOURLY_USAGE - parsedUsage);
     }
-
-    // Load last usage timestamp
-    const lastUsage = localStorage.getItem(`${hourlyUsageKey}_time`);
-    if (lastUsage) {
-      setLastUsageTime(parseInt(lastUsage, 10));
+    
+    if (storedTime) {
+      const lastTime = parseInt(storedTime, 10);
+      const timeSinceLastUse = Date.now() - lastTime;
       
-      // Check if still in cooldown period
-      const now = Date.now();
-      const elapsed = now - parseInt(lastUsage, 10);
-      if (elapsed < USAGE_COOLDOWN) {
-        const remaining = Math.ceil((USAGE_COOLDOWN - elapsed) / 1000);
-        setCooldownRemaining(remaining);
-        
-        // Start cooldown timer
-        startCooldownTimer(remaining);
+      if (timeSinceLastUse < USAGE_COOLDOWN) {
+        const remainingCooldown = Math.ceil((USAGE_COOLDOWN - timeSinceLastUse) / 1000);
+        startCooldownTimer(remainingCooldown);
       }
+      
+      setLastUsageTime(lastTime);
     }
     
     return () => {
       if (cooldownTimerRef.current) {
-        clearInterval(cooldownTimerRef.current);
+        window.clearInterval(cooldownTimerRef.current);
       }
     };
   }, []);
-
-  // Start cooldown timer
-  const startCooldownTimer = (seconds: number) => {
+  
+  // Function to start the cooldown timer
+  const startCooldownTimer = (duration: number) => {
+    setCooldownRemaining(duration);
+    
+    // Clear existing timer if it exists
     if (cooldownTimerRef.current) {
-      clearInterval(cooldownTimerRef.current);
+      window.clearInterval(cooldownTimerRef.current);
     }
     
-    setCooldownRemaining(seconds);
-    
-    // @ts-ignore - setTimeout returns number in browser but NodeJS.Timeout in Node
-    cooldownTimerRef.current = setInterval(() => {
+    // Set up the timer
+    const timer = window.setInterval(() => {
       setCooldownRemaining(prev => {
         if (prev <= 1) {
-          clearInterval(cooldownTimerRef.current as number);
+          window.clearInterval(timer);
           return 0;
         }
         return prev - 1;
       });
     }, 1000);
+    
+    cooldownTimerRef.current = timer;
   };
-
-  // Check if we can generate a review (not in cooldown and under usage limit)
+  
+  // Check if the user can generate a review
   const canGenerateReview = () => {
-    // Check if we're in cooldown period
-    if (cooldownRemaining > 0) {
+    if (remainingUses <= 0) {
+      setError(`You've reached the hourly limit of ${MAX_HOURLY_USAGE} reviews`);
       return false;
     }
     
-    // Check hourly usage limit
-    return usageCount < MAX_USAGE_PER_HOUR;
-  };
-
-  // Track usage
-  const trackUsage = () => {
-    const newCount = usageCount + 1;
-    setUsageCount(newCount);
+    const timeSinceLastUse = Date.now() - lastUsageTime;
+    if (timeSinceLastUse < USAGE_COOLDOWN) {
+      const remainingSec = Math.ceil((USAGE_COOLDOWN - timeSinceLastUse) / 1000);
+      startCooldownTimer(remainingSec);
+      setError(`Please wait ${remainingSec} seconds before generating another review`);
+      return false;
+    }
     
-    // Save to localStorage
-    localStorage.setItem(hourlyUsageKey, newCount.toString());
+    return true;
+  };
+  
+  // Track usage for rate limiting
+  const trackUsage = () => {
+    // Get current usage
+    const storedUsage = localStorage.getItem(hourlyUsageKey) || "0";
+    const newUsage = parseInt(storedUsage, 10) + 1;
+    
+    // Update remaining uses
+    setRemainingUses(MAX_HOURLY_USAGE - newUsage);
+    
+    // Save new usage
+    localStorage.setItem(hourlyUsageKey, newUsage.toString());
     
     // Record timestamp of usage
     const now = Date.now();
@@ -190,73 +165,62 @@ const ClientIframeReviewGenerator: React.FC = () => {
     // Start cooldown timer
     startCooldownTimer(USAGE_COOLDOWN / 1000);
   };
-
-  // Helper function to check if we're on the ASAP website
-  const isOnAsapWebsite = () => {
-    return window.location.hostname.includes('asaptheagency.com') || 
-      window.location.hostname.includes('localhost') ||
-      window.location.hostname.includes('.replit.app') ||
-      window.location.hostname.includes('netlify.app') ||
-      window.location.hostname.includes('github.io') ||
-      window.location.hostname === 'asap.agency' ||
-      window.location.hostname === 'www.asap.agency';
-  };
   
-  // Generate a review using the API key from the URL
+  // Generate a review using the appropriate API endpoint
   const generateReview = async () => {
-    // For the ASAP website itself, we don't require an API key in the URL
-    // We'll use the server-side API endpoint in this case
-    const onAsapWebsite = isOnAsapWebsite();
+    // Clear any previous errors
+    setError("");
     
-    if (!onAsapWebsite && !businessDetails.apiKey) {
+    // Check if we need to use client API key (embedded mode) or server API (ASAP website)
+    const useDirectApi = !!businessDetails.apiKey && !!businessDetails.googleMapsUrl;
+    
+    // For embedded client sites, we need API key and Google Maps URL
+    if (useDirectApi && !businessDetails.apiKey) {
       setError("No API key provided. Please contact the site administrator.");
       return;
     }
     
-    if (!onAsapWebsite && !businessDetails.googleMapsUrl) {
-      setError("No Google Maps URL provided. The client implementation requires a specific Google Maps URL.");
+    if (useDirectApi && !businessDetails.googleMapsUrl) {
+      setError("No Google Maps URL provided. This implementation requires a client-specific URL.");
       return;
     }
     
+    // Check rate limits
     if (!canGenerateReview()) {
-      if (cooldownRemaining > 0) {
-        setError(`Please wait ${cooldownRemaining} seconds before generating another review`);
-      } else {
-        setError(`Hourly limit of ${MAX_USAGE_PER_HOUR} reviews reached. Try again later.`);
-      }
       return;
     }
     
+    // Start generating
     setIsGenerating(true);
-    setError(null);
     
     try {
-      // Location and tone selection - focus on customer satisfaction
+      // Get random items from arrays
       const location = businessDetails.locations[Math.floor(Math.random() * businessDetails.locations.length)];
       const tone = businessDetails.tones[Math.floor(Math.random() * businessDetails.tones.length)];
+      const service = businessDetails.services[Math.floor(Math.random() * businessDetails.services.length)];
+      const highlight = businessDetails.highlights[Math.floor(Math.random() * businessDetails.highlights.length)];
       
-      const prompt = `Generate a positive customer review for ${businessDetails.name}, a ${businessDetails.type}.
-      Focus solely on overall customer satisfaction and experience rather than specific service details.
+      // Create prompt for review generation
+      const prompt = `Generate a positive 5-star review for ${businessDetails.name}, a ${businessDetails.type}.
       Make the review sound authentic, as if written by a happy customer from ${location}.
       The tone should be ${tone}.
       The review should be 3-5 sentences long, focus on how the customer felt about their experience, and avoid mentioning specific service details.`;
       
-      // Check if we're on the ASAP website
-      const onAsapWebsite = isOnAsapWebsite();
-      
       let response;
       
-      if (onAsapWebsite) {
+      if (!useDirectApi) {
         // For ASAP website, use the server endpoint that has API key in environment
         response = await fetch('/api/openai/generate-review', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ prompt })
+          body: JSON.stringify({
+            prompt
+          })
         });
       } else {
-        // For client websites, use their API key directly
+        // For client sites, use their API key directly
         response = await fetch('https://api.openai.com/v1/chat/completions', {
           method: 'POST',
           headers: {
@@ -264,11 +228,11 @@ const ClientIframeReviewGenerator: React.FC = () => {
             'Authorization': `Bearer ${businessDetails.apiKey}`
           },
           body: JSON.stringify({
-            model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
+            model: "gpt-3.5-turbo", // Use a more affordable model for client implementations
             messages: [
               {
                 role: "system",
-                content: "You are a helpful assistant that generates realistic customer reviews based on the provided information."
+                content: "You are a helpful assistant that generates authentic-sounding customer reviews."
               },
               {
                 role: "user",
@@ -282,15 +246,21 @@ const ClientIframeReviewGenerator: React.FC = () => {
       }
       
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error?.message || 'Error contacting OpenAI API');
+        let errorMessage = 'Error generating review';
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.error?.message || errorMessage;
+        } catch (e) {
+          console.error('Could not parse error response', e);
+        }
+        throw new Error(errorMessage);
       }
       
       const data = await response.json();
       
-      // Handle different response formats between server API and direct OpenAI call
+      // Handle different response formats
       let reviewText = '';
-      if (onAsapWebsite) {
+      if (!useDirectApi) {
         // Format from server API endpoint
         reviewText = data.review.trim();
       } else {
@@ -306,64 +276,70 @@ const ClientIframeReviewGenerator: React.FC = () => {
       
       // Copy to clipboard
       navigator.clipboard.writeText(reviewText);
+      setCopyButtonText("Copied!");
+      setTimeout(() => setCopyButtonText("Copy to Clipboard"), 2000);
       
-      // Check if this is the ASAP website or a client implementation
-      // Re-use our helper function
-      const onAsapWebsite = isOnAsapWebsite();
-      
-      if (onAsapWebsite) {
+      // Open appropriate Google Maps URL
+      if (!useDirectApi) {
         // For ASAP website, use the default URL from config
         window.open(DEFAULT_ASAP_GOOGLE_MAPS_URL, "_blank");
       } else if (businessDetails.googleMapsUrl) {
         // For client implementations, use their specific URL
         window.open(businessDetails.googleMapsUrl, "_blank");
-      } else {
-        console.warn("No Google Maps URL provided for client. This implementation requires a client-specific URL.");
       }
       
     } catch (err: any) {
-      console.error("Error generating review:", err);
+      console.error('Error generating review:', err);
       setError(err.message || 'Error generating review. Please try again later.');
     } finally {
       setIsGenerating(false);
     }
   };
-
-  // Generate a new review
-  const generateNew = () => {
-    setGeneratedReview('');
-    generateReview();
+  
+  // Copy the generated review to clipboard
+  const copyReview = () => {
+    if (!generatedReview) return;
+    
+    navigator.clipboard.writeText(generatedReview);
+    setCopyButtonText("Copied!");
+    setTimeout(() => setCopyButtonText("Copy to Clipboard"), 2000);
   };
-
+  
+  // Open Google Maps for review
+  const openGoogleMaps = () => {
+    // Use client-specific URL if available, otherwise use default
+    const mapsUrl = businessDetails.googleMapsUrl || DEFAULT_ASAP_GOOGLE_MAPS_URL;
+    window.open(mapsUrl, "_blank");
+  };
+  
   return (
-    <motion.div
-      initial="initial"
-      animate="in"
-      variants={fadeIn}
-      className="min-h-screen bg-black text-white py-4 px-4"
-    >
-      <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-6">
-          <div className="flex justify-center mb-4">
-            <ImageWithFallback
-              src={logoImage}
-              fallbackSrc="/logo_placeholder.png"
-              alt="ASAP Logo"
-              className="h-12 w-auto"
-            />
-          </div>
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-teal-400 to-orange-500 bg-clip-text text-transparent">
-            {businessDetails.name} Review Generator
-          </h1>
-          <p className="mt-2 text-gray-300 text-sm">
-            Generate authentic reviews for {businessDetails.name} with a single click
-          </p>
+    <div className="min-h-screen bg-black text-white p-4 flex flex-col items-center">
+      <motion.div 
+        className="w-full max-w-md mx-auto" 
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+      >
+        <div className="flex justify-center mb-6">
+          <ImageWithFallback
+            src={logoImage}
+            fallbackSrc="/logo_transp.png"
+            alt="ASAP Logo"
+            className="h-20 w-auto"
+          />
         </div>
-
-        <Card className="bg-gray-900 border-gray-800">
-          <CardContent className="pt-6">
+        
+        <Card className="bg-gray-900 border-gray-800 mb-6">
+          <CardContent className="p-6">
+            <h2 className="text-xl font-bold mb-2 text-center">
+              Review Generator for {businessDetails.name}
+            </h2>
+            <p className="text-gray-400 mb-4 text-center text-sm">
+              Generate a positive review and post it to Google
+            </p>
+            
             {error && (
-              <Alert variant="destructive" className="mb-4 bg-red-900/30 border-red-800 text-white">
+              <Alert variant="destructive" className="mb-4 bg-red-900 border-red-800">
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>
                   {error}
@@ -371,65 +347,42 @@ const ClientIframeReviewGenerator: React.FC = () => {
               </Alert>
             )}
             
-            <div className="text-center mb-6">
-              <p className="text-gray-300 text-sm">
-                When you click the button below the review generator will:
-              </p>
-              <ul className="list-disc text-left ml-8 mt-2 space-y-1 text-sm text-gray-300">
-                <li>Generate a positive review for {businessDetails.name}</li>
-                <li>Copy the generated review to your clipboard</li>
-                <li>Open the Google Maps page for {businessDetails.name}</li>
-              </ul>
-            </div>
-
-            {generatedReview && (
-              <div className="bg-gray-800 rounded-lg p-4 mb-6">
-                <h3 className="font-medium mb-2">Generated Review</h3>
-                <p className="text-gray-300 text-sm leading-relaxed whitespace-pre-line">
-                  {generatedReview}
+            <div className="space-y-4">
+              <Button 
+                onClick={generateReview} 
+                disabled={isGenerating || cooldownRemaining > 0} 
+                className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700"
+              >
+                {isGenerating ? 'Generating...' : `Generate Review (${remainingUses}/${MAX_HOURLY_USAGE} left)`}
+              </Button>
+              
+              {cooldownRemaining > 0 && (
+                <p className="text-sm text-gray-400 text-center">
+                  Cooldown: {cooldownRemaining}s
                 </p>
-                <p className="text-green-500 mt-3 text-xs">
-                  ✓ Review copied to clipboard
-                  <br />
-                  ✓ Google Maps opened in new tab
-                </p>
-              </div>
-            )}
-
-            <div className="flex justify-center">
-              {generatedReview ? (
-                <Button 
-                  onClick={generateNew}
-                  className="bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700"
-                  disabled={isGenerating || !canGenerateReview()}
-                >
-                  {isGenerating ? 'Processing...' : 'Generate New'}
-                </Button>
-              ) : (
-                <Button 
-                  onClick={generateReview}
-                  className="bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700"
-                  disabled={isGenerating || !canGenerateReview()}
-                >
-                  {isGenerating ? 'Processing...' : 'Generate Review'}
-                </Button>
+              )}
+              
+              {generatedReview && (
+                <div className="mt-4 p-4 bg-gray-800 rounded-md relative">
+                  <p className="text-gray-200 whitespace-pre-wrap">{generatedReview}</p>
+                  <div className="mt-4 flex space-x-2">
+                    <Button variant="outline" className="flex-1" onClick={copyReview}>
+                      {copyButtonText}
+                    </Button>
+                    <Button variant="outline" className="flex-1" onClick={openGoogleMaps}>
+                      Open Google Maps
+                    </Button>
+                  </div>
+                </div>
               )}
             </div>
-            
-            {cooldownRemaining > 0 && (
-              <p className="text-center text-orange-400 text-xs mt-2">
-                Please wait {cooldownRemaining} seconds before generating another review
-              </p>
-            )}
           </CardContent>
         </Card>
-
-        <div className="mt-4 text-center text-gray-500 text-xs">
-          <p>© {new Date().getFullYear()} ASAP All rights reserved <a href="https://www.asaptheagency.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">www.asaptheagency.com</a></p>
-        </div>
-      </div>
-    </motion.div>
+        
+        <p className="text-sm text-gray-500 text-center">
+          Powered by ASAP | All generated reviews should be based on genuine experiences
+        </p>
+      </motion.div>
+    </div>
   );
-};
-
-export default ClientIframeReviewGenerator;
+}
