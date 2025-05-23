@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import { slideFromBottom } from "../../lib/animations";
 import ContactButton from "../../components/ContactButton";
 import SEOHead from "../../components/SEOHead";
@@ -132,7 +133,7 @@ const PdrShops: React.FC = () => {
                     <p className="text-muted-foreground mb-4">Get a site that works while you're working.</p>
                     <ul className="space-y-2 text-muted-foreground mb-6">
                       <li className="flex items-start"><span className="text-accent mr-2">•</span>Modern PDR website</li>
-                      <li className="flex items-start"><span className="text-accent mr-2">•</span>ASAP's proprietary&nbsp;<a href="services/review-generators" className="text-accent underline hover:text-accent/80">"Review Generator"</a></li>
+                      <li className="flex items-start"><span className="text-accent mr-2">•</span>ASAP's proprietary&nbsp;<Link href="/services/review-generators" className="text-accent underline hover:text-accent/80">"Review Generator"</Link></li>
                       <li className="flex items-start"><span className="text-accent mr-2">•</span>AI customer service text chatbot on website to answer customer inquiries</li>
                       <li className="flex items-start"><span className="text-accent mr-2">•</span>Booking or estimate form (syncs to email or Google Sheet)</li>
                       <li className="flex items-start"><span className="text-accent mr-2">•</span>Google calendar integration</li>
