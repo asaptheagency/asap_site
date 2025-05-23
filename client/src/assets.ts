@@ -21,6 +21,11 @@ import newAppsnapImage from './assets/new_images/_app_development.jpg';
 import newHyperiseImage from './assets/new_images/_marketing.jpg';
 import newReviewGeneratorsImage from './assets/new_images/_review_generators.jpg';
 
+// Industry images
+import robotLawImage from './assets/robot_law.webp';
+import robotPdrImage from './assets/robot_pdr.webp';
+import robotRooferImage from './assets/robot_roofer.webp';
+
 export {
   // Basic assets
   image1,
@@ -43,5 +48,10 @@ export {
   newBotspotImage,
   newAppsnapImage,
   newHyperiseImage,
-  newReviewGeneratorsImage
+  newReviewGeneratorsImage,
+  
+  // Industry images
+  robotLawImage,
+  robotPdrImage,
+  robotRooferImage
 };

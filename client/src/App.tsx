@@ -30,6 +30,11 @@ const ProductionReviewGenerator = lazy(() => import("./pages/ProductionReviewGen
 const SimpleReviewGenerator = lazy(() => import("./pages/SimpleReviewGenerator"));
 const AdvancedReviewGenerator = lazy(() => import("./pages/AdvancedReviewGenerator"));
 
+// Industry pages
+const LawFirms = lazy(() => import("./pages/industries/LawFirms"));
+const PdrShops = lazy(() => import("./pages/industries/PdrShops"));
+const Contractors = lazy(() => import("./pages/industries/Contractors"));
+
 // Preload the ReviewGeneratorsSimple component to avoid 404 flash
 import("./pages/services/ReviewGeneratorsSimple");
 
@@ -99,6 +104,11 @@ function Router() {
             <Route path="/review-generator" component={AdvancedReviewGenerator} />
             <Route path="/client-key-review-generator" component={AdvancedReviewGenerator} />
             <Route path="/services/review-generators" component={ReviewGeneratorsSimple} />
+            
+            {/* Industry pages */}
+            <Route path="/industries/law-firms" component={LawFirms} />
+            <Route path="/industries/pdr-shops" component={PdrShops} />
+            <Route path="/industries/contractors" component={Contractors} />
           </Switch>
         ) : (
           <MainLayout>
@@ -110,6 +120,12 @@ function Router() {
               <Route path="/services/appsnap" component={AppSnap} />
               <Route path="/services/hyperise" component={HypeRise} />
               <Route path="/services/test" component={TestPage} />
+              
+              {/* Industry pages also available in main layout */}
+              <Route path="/industries/law-firms" component={LawFirms} />
+              <Route path="/industries/pdr-shops" component={PdrShops} />
+              <Route path="/industries/contractors" component={Contractors} />
+              
               <Route component={NotFound} />
             </Switch>
           </MainLayout>

@@ -62,14 +62,14 @@ const Header = () => {
               Home
             </a>
             
-            {/* Solutions Dropdown */}
+            {/* Industries Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button 
                 className="flex items-center space-x-1 text-sm uppercase tracking-wider"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 onMouseEnter={() => setDropdownOpen(true)}
               >
-                <span>Solutions</span>
+                <span>Industries</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
@@ -79,76 +79,40 @@ const Header = () => {
                 onMouseLeave={() => setDropdownOpen(false)}
               >
                 <a 
-                  href="/services/web-design" 
+                  href="/industries/law-firms" 
                   className="block px-4 py-2 text-sm hover:text-accent"
                   onClick={(e) => {
                     e.preventDefault();
-                    setLocation("/services/web-design");
+                    setLocation("/industries/law-firms");
                     setDropdownOpen(false);
                     window.scrollTo(0, 0);
                   }}
                 >
-                  Web Design & Development
+                  Law Firms
                 </a>
                 <a 
-                  href="/services/automate" 
+                  href="/industries/contractors" 
                   className="block px-4 py-2 text-sm hover:text-accent"
                   onClick={(e) => {
                     e.preventDefault();
-                    setLocation("/services/automate");
+                    setLocation("/industries/contractors");
                     setDropdownOpen(false);
                     window.scrollTo(0, 0);
                   }}
                 >
-                  AutoMate
+                  Roofers
                 </a>
                 <a 
-                  href="/services/botspot" 
+                  href="/industries/pdr-shops" 
                   className="block px-4 py-2 text-sm hover:text-accent"
                   onClick={(e) => {
                     e.preventDefault();
-                    setLocation("/services/botspot");
+                    setLocation("/industries/pdr-shops");
                     setDropdownOpen(false);
                     window.scrollTo(0, 0);
                   }}
                 >
-                  BotSpot & LeadSeed
-                </a>
-                <a 
-                  href="/services/appsnap" 
-                  className="block px-4 py-2 text-sm hover:text-accent"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLocation("/services/appsnap");
-                    setDropdownOpen(false);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  AppSnap
-                </a>
-                <a 
-                  href="/services/hyperise" 
-                  className="block px-4 py-2 text-sm hover:text-accent"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLocation("/services/hyperise");
-                    setDropdownOpen(false);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  HypeRise
-                </a>
-                <a 
-                  href="/services/review-generators" 
-                  className="block px-4 py-2 text-sm hover:text-accent"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLocation("/services/review-generators");
-                    setDropdownOpen(false);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  Review Generators
+                  PDR Shops
                 </a>
               </div>
             </div>
@@ -199,81 +163,45 @@ const Header = () => {
               Home
             </a>
             
-            {/* Mobile Services Menu */}
+            {/* Mobile Industries Menu */}
             <div className="py-2">
-              <p className="text-sm uppercase tracking-wider mb-2">Solutions</p>
+              <p className="text-sm uppercase tracking-wider mb-2">Industries</p>
               <div className="flex flex-col space-y-2 pl-4">
                 <a 
-                  href="/services/web-design" 
+                  href="/industries/law-firms" 
                   className="py-1 text-sm hover:text-accent"
                   onClick={(e) => {
                     e.preventDefault();
-                    setLocation("/services/web-design");
+                    setLocation("/industries/law-firms");
                     setMobileMenuOpen(false);
                     window.scrollTo(0, 0);
                   }}
                 >
-                  Web Design & Development
+                  Law Firms
                 </a>
                 <a 
-                  href="/services/automate" 
+                  href="/industries/contractors" 
                   className="py-1 text-sm hover:text-accent"
                   onClick={(e) => {
                     e.preventDefault();
-                    setLocation("/services/automate");
+                    setLocation("/industries/contractors");
                     setMobileMenuOpen(false);
                     window.scrollTo(0, 0);
                   }}
                 >
-                  AutoMate
+                  Roofers
                 </a>
                 <a 
-                  href="/services/botspot" 
+                  href="/industries/pdr-shops" 
                   className="py-1 text-sm hover:text-accent"
                   onClick={(e) => {
                     e.preventDefault();
-                    setLocation("/services/botspot");
+                    setLocation("/industries/pdr-shops");
                     setMobileMenuOpen(false);
                     window.scrollTo(0, 0);
                   }}
                 >
-                  BotSpot & LeadSeed
-                </a>
-                <a 
-                  href="/services/appsnap" 
-                  className="py-1 text-sm hover:text-accent"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLocation("/services/appsnap");
-                    setMobileMenuOpen(false);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  AppSnap
-                </a>
-                <a 
-                  href="/services/hyperise" 
-                  className="py-1 text-sm hover:text-accent"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLocation("/services/hyperise");
-                    setMobileMenuOpen(false);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  HypeRise
-                </a>
-                <a 
-                  href="/services/review-generators" 
-                  className="py-1 text-sm hover:text-accent"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLocation("/services/review-generators");
-                    setMobileMenuOpen(false);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  Review Generators
+                  PDR Shops
                 </a>
               </div>
             </div>

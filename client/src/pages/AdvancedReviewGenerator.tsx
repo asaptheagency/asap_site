@@ -148,7 +148,13 @@ const AdvancedReviewGenerator: React.FC = () => {
               
               `${businessName} exceeded all my expectations! Their communication was exceptional - clear, timely, and professional. ${staffMember ? `${staffMember} was always reachable and took the time to really understand what I was looking for.` : `Their team was always reachable and took the time to understand my vision.`} They explained everything in detail without overwhelming me with industry jargon. ${wouldRecommend ? `Anyone looking for a ${businessType} with excellent communication should definitely give them a call!` : ``} ${wouldVisitAgain ? `I'll certainly be using their services again!` : ``}`,
               
-              `I'm extremely impressed with ${businessName}! The way they communicated throughout our project was remarkable. ${staffMember ? `${staffMember} was proactive in reaching out and keeping me informed.` : `Their staff was proactive in reaching out and keeping me informed.`} They were attentive listeners and asked insightful questions to ensure they delivered exactly what I needed. ${wouldRecommend ? `I highly recommend them to anyone needing ${businessType} services!` : ``} ${wouldVisitAgain ? `They've earned a customer for life!` : ``}`
+              `I'm extremely impressed with ${businessName}! The way they communicated throughout our project was remarkable. ${staffMember ? `${staffMember} was proactive in reaching out and keeping me informed.` : `Their staff was proactive in reaching out and keeping me informed.`} They were attentive listeners and asked insightful questions to ensure they delivered exactly what I needed. ${wouldRecommend ? `I highly recommend them to anyone needing ${businessType} services!` : ``} ${wouldVisitAgain ? `They've earned a customer for life!` : ``}`,
+              
+              `${businessName} truly excels in communication! The clarity and consistency of their information flow was refreshing. ${staffMember ? `${staffMember} made sure I was always informed about progress and next steps.` : `Their team made sure I was always informed about progress and next steps.`} Nothing was ever left unclear or unexplained. ${wouldRecommend ? `I wouldn't hesitate to recommend them to anyone in need of ${businessType} services!` : ``} ${wouldVisitAgain ? `I look forward to working with them on future projects!` : ``}`,
+              
+              `I had a remarkable experience with ${businessName}! Their communication style was perfect – informative without being overwhelming. ${staffMember ? `${staffMember} had an exceptional knack for explaining things clearly and concisely.` : `Everyone I interacted with had an exceptional knack for explaining things clearly and concisely.`} They made complex processes easy to understand. ${wouldRecommend ? `I strongly recommend them for anyone seeking ${businessType} services with great communication!` : ``} ${wouldVisitAgain ? `They'll definitely be my first choice next time!` : ``}`,
+              
+              `The communication from ${businessName} was absolutely fantastic! They kept me informed at every stage of the process. ${staffMember ? `${staffMember} was thorough in explaining options and answering all my questions.` : `Their entire staff was thorough in explaining options and answering all my questions.`} I always felt like I understood exactly what was happening. ${wouldRecommend ? `For anyone who values clear communication in ${businessType} services, I highly recommend them!` : ``} ${wouldVisitAgain ? `I'm already planning to use their services again!` : ``}`
             ],
             extras: [
               `They always responded promptly to my messages and calls.`,
@@ -158,7 +164,15 @@ const AdvancedReviewGenerator: React.FC = () => {
               `Their follow-up communication was consistent and helpful.`,
               `I never felt left in the dark about the status of my project.`,
               `They took the time to understand my specific needs before moving forward.`,
-              `The communication channels they used were convenient and efficient.`
+              `The communication channels they used were convenient and efficient.`,
+              `Their explanations were always clear and easy to understand.`,
+              `They were exceptional at both listening and articulating information.`,
+              `They provided regular updates without me having to ask.`,
+              `Their communication style was perfectly matched to my preferences.`,
+              `They were great at explaining technical details in accessible language.`,
+              `Their transparency in communication built genuine trust.`,
+              `They maintained open communication channels at all times.`,
+              `They were incredibly articulate about complex aspects of the project.`
             ]
           },
           
@@ -173,7 +187,13 @@ const AdvancedReviewGenerator: React.FC = () => {
               
               `My experience with ${businessName} was stellar! Their communication was by far the best I've experienced with any ${businessType}. ${staffMember ? `${staffMember} was incredibly responsive and detailed in every interaction.` : `Their team was remarkably responsive and detailed in every interaction.`} I appreciated how they took the time to really listen to my needs. ${wouldRecommend ? `I've already referred several friends who were equally impressed!` : ``} ${wouldVisitAgain ? `I won't go anywhere else for future projects!` : ``}`,
               
-              `I can't recommend ${businessName} highly enough! Their communication was exemplary from our very first interaction. ${staffMember ? `${staffMember} was proactive, reaching out with updates before I even had to ask.` : `Their staff was proactive, reaching out with updates before I even had to ask.`} They explained options clearly and always made me feel like a priority. ${wouldRecommend ? `Anyone needing ${businessType} services should definitely check them out!` : ``} ${wouldVisitAgain ? `I'm already looking forward to working with them again!` : ``}`
+              `I can't recommend ${businessName} highly enough! Their communication was exemplary from our very first interaction. ${staffMember ? `${staffMember} was proactive, reaching out with updates before I even had to ask.` : `Their staff was proactive, reaching out with updates before I even had to ask.`} They explained options clearly and always made me feel like a priority. ${wouldRecommend ? `Anyone needing ${businessType} services should definitely check them out!` : ``} ${wouldVisitAgain ? `I'm already looking forward to working with them again!` : ``}`,
+              
+              `The responsive communication from ${businessName} was exceptional! I never waited long for answers to my questions. ${staffMember ? `${staffMember} was always quick to reply and provided thorough information.` : `Their team was always quick to reply and provided thorough information.`} Their prompt responses made the whole process seamless. ${wouldRecommend ? `I definitely recommend them to anyone who values responsive service in the ${businessType} industry!` : ``} ${wouldVisitAgain ? `I'll be using their services again without question!` : ``}`,
+              
+              `${businessName} sets the standard for responsiveness in communications! They never left me waiting for answers or updates. ${staffMember ? `${staffMember} was remarkably quick to respond to every query I had.` : `Everyone I dealt with was remarkably quick to respond to every query I had.`} Their efficiency in communication was truly impressive. ${wouldRecommend ? `For responsive ${businessType} services, I couldn't recommend them more highly!` : ``} ${wouldVisitAgain ? `They've earned my business for all future projects!` : ``}`,
+              
+              `I was amazed by the responsiveness of ${businessName}! No matter when I reached out, I received prompt and helpful replies. ${staffMember ? `${staffMember} seemed available whenever I needed assistance or had questions.` : `Their staff seemed available whenever I needed assistance or had questions.`} Their quick responses made me feel valued as a customer. ${wouldRecommend ? `Anyone looking for responsive ${businessType} service should definitely work with them!` : ``} ${wouldVisitAgain ? `I'll certainly return for their fantastic service!` : ``}`
             ],
             extras: [
               `They never left me waiting for a response.`,
@@ -183,7 +203,54 @@ const AdvancedReviewGenerator: React.FC = () => {
               `Their proactive updates meant I never had to wonder about progress.`,
               `The level of detail in their communications showed how much they cared.`,
               `They were excellent listeners and really heard what I was asking for.`,
-              `Their follow-through on promises about communication was impeccable.`
+              `Their follow-through on promises about communication was impeccable.`,
+              `Their response times consistently exceeded my expectations.`,
+              `They were accessible through multiple communication channels.`,
+              `Their replies were always thorough and addressed all my questions.`,
+              `Even during busy periods, they maintained quick response times.`,
+              `They were great at prioritizing urgent communications.`,
+              `I never had to follow up to get a response from them.`,
+              `Their after-hours communication options were very helpful.`,
+              `The speed of their responses never compromised the quality of information.`
+            ]
+          },
+          
+          // Set 3 - Educational communication focus
+          {
+            templates: [
+              `My experience with ${businessName} was incredibly informative! They excel at educational communication throughout their service. ${staffMember ? `${staffMember} took the time to explain every step of the process in a way that was easy to understand.` : `Their team took the time to explain every step of the process in a way that was easy to understand.`} I learned so much while working with them. ${wouldRecommend ? `I highly recommend them to anyone who wants to understand the ${businessType} process better!` : ``} ${wouldVisitAgain ? `I'll definitely be returning for their informative approach!` : ``}`,
+              
+              `${businessName} provided an exceptional educational experience! Their ability to explain complex concepts sets them apart. ${staffMember ? `${staffMember} never rushed explanations and made sure I fully understood before moving forward.` : `Everyone I worked with never rushed explanations and made sure I fully understood before moving forward.`} They empowered me with knowledge throughout our engagement. ${wouldRecommend ? `For anyone looking to work with a ${businessType} that educates as they serve, I highly recommend them!` : ``} ${wouldVisitAgain ? `I'm looking forward to learning more from them in the future!` : ``}`,
+              
+              `I'm impressed by how ${businessName} prioritizes educational communication! They took complex ${businessType} concepts and made them accessible. ${staffMember ? `${staffMember} has a real gift for explaining complicated ideas in simple terms.` : `Their staff has a real gift for explaining complicated ideas in simple terms.`} I gained valuable insights throughout our interactions. ${wouldRecommend ? `Anyone who appreciates learning during the process should definitely work with them!` : ``} ${wouldVisitAgain ? `I'll definitely return for more of their educational approach!` : ``}`,
+              
+              `Working with ${businessName} was both productive and educational! I appreciate how they took time to explain the why behind their recommendations. ${staffMember ? `${staffMember} shared valuable knowledge that helped me make informed decisions.` : `Their team shared valuable knowledge that helped me make informed decisions.`} They never made me feel rushed when I had questions. ${wouldRecommend ? `For a ${businessType} experience that leaves you more knowledgeable, I recommend them highly!` : ``} ${wouldVisitAgain ? `I'll be back not just for their service but for their expertise!` : ``}`,
+              
+              `${businessName} offers a refreshingly educational approach to communication! They explain processes clearly without being condescending. ${staffMember ? `${staffMember} took time to ensure I understood all aspects of the project.` : `Their entire team took time to ensure I understood all aspects of the project.`} I felt informed and empowered throughout. ${wouldRecommend ? `I recommend them to anyone who wants to understand the ${businessType} process while getting great results!` : ``} ${wouldVisitAgain ? `Their educational approach guarantees my return!` : ``}`,
+              
+              `The educational communication style at ${businessName} is truly exceptional! They turned complicated concepts into clear, understandable information. ${staffMember ? `${staffMember} has a talent for breaking down complex topics into digestible explanations.` : `Their team has a talent for breaking down complex topics into digestible explanations.`} I appreciated their patience with all my questions. ${wouldRecommend ? `For a ${businessType} that helps you understand what they're doing and why, look no further!` : ``} ${wouldVisitAgain ? `I'll definitely return for their informative service!` : ``}`,
+              
+              `I learned so much while working with ${businessName}! Their communication style is perfectly balanced between informative and accessible. ${staffMember ? `${staffMember} explained technical aspects in ways that made perfect sense to me.` : `Everyone I worked with explained technical aspects in ways that made perfect sense to me.`} They truly educated me throughout the process. ${wouldRecommend ? `Anyone who values learning while receiving quality ${businessType} service should give them a call!` : ``} ${wouldVisitAgain ? `I'm already planning my next project with them!` : ``}`,
+              
+              `${businessName} stands out for their educational approach to client communication! They don't just tell you what they're doing – they help you understand why it matters. ${staffMember ? `${staffMember} took time to explain concepts I never fully understood before.` : `Their staff took time to explain concepts I never fully understood before.`} I feel much more knowledgeable now. ${wouldRecommend ? `For a ${businessType} experience that leaves you wiser, I highly recommend them!` : ``} ${wouldVisitAgain ? `I'll definitely return to benefit from their expertise again!` : ``}`
+            ],
+            extras: [
+              `They took time to explain industry terminology in accessible ways.`,
+              `Their educational approach helped me make better decisions.`,
+              `They provided helpful resources to supplement their explanations.`,
+              `I never felt embarrassed asking questions, no matter how basic.`,
+              `They explained the reasoning behind each recommendation.`,
+              `Their patience with my learning curve was truly appreciated.`,
+              `They clarified complex concepts without talking down to me.`,
+              `I gained valuable knowledge I can apply to future projects.`,
+              `They used helpful analogies to explain technical concepts.`,
+              `Their explanations were tailored to my level of understanding.`,
+              `They offered insights that went beyond the immediate project.`,
+              `They encouraged questions and never made me feel rushed.`,
+              `Their educational approach added significant value to their service.`,
+              `They shared industry knowledge that will be useful long-term.`,
+              `They balanced technical information with practical applications.`,
+              `Their commitment to client education sets them apart in their field.`
             ]
           }
         ],
@@ -201,7 +268,13 @@ const AdvancedReviewGenerator: React.FC = () => {
               
               `${businessName} sets the gold standard for quality in their industry! ${staffMember ? `${staffMember} delivered perfection at every stage of the process.` : `Their commitment to quality was evident at every stage of the process.`} Nothing was overlooked, and the attention to detail was impeccable. ${wouldRecommend ? `If you want the best quality ${businessType} services, this is where to go!` : ``} ${wouldVisitAgain ? `They'll be my first choice for all future needs!` : ``}`,
               
-              `I couldn't be more impressed with the quality provided by ${businessName}! ${staffMember ? `${staffMember} demonstrated extraordinary skill and precision in their work.` : `Their team demonstrated extraordinary skill and precision in their work.`} The final result was absolutely perfect in every way. ${wouldRecommend ? `I highly recommend them to anyone who won't settle for less than the best!` : ``} ${wouldVisitAgain ? `I'll definitely be using their services again!` : ``}`
+              `I couldn't be more impressed with the quality provided by ${businessName}! ${staffMember ? `${staffMember} demonstrated extraordinary skill and precision in their work.` : `Their team demonstrated extraordinary skill and precision in their work.`} The final result was absolutely perfect in every way. ${wouldRecommend ? `I highly recommend them to anyone who won't settle for less than the best!` : ``} ${wouldVisitAgain ? `I'll definitely be using their services again!` : ``}`,
+              
+              `The level of quality I received from ${businessName} was truly remarkable! ${staffMember ? `${staffMember} consistently delivered excellence at every turn.` : `Their entire organization consistently delivered excellence at every turn.`} The end result was even better than I had imagined. ${wouldRecommend ? `For anyone seeking superior quality ${businessType} services, I couldn't recommend them more highly!` : ``} ${wouldVisitAgain ? `I'm already planning my next project with them!` : ``}`,
+              
+              `${businessName} provides exceptional quality that truly stands out in their field! ${staffMember ? `${staffMember} had a masterful approach to ensuring every detail was perfect.` : `Their team had a masterful approach to ensuring every detail was perfect.`} The result showed remarkable craftsmanship throughout. ${wouldRecommend ? `I enthusiastically recommend them for high-quality ${businessType} services!` : ``} ${wouldVisitAgain ? `They've earned my business for all future projects!` : ``}`,
+              
+              `I'm thoroughly impressed by the quality delivered by ${businessName}! ${staffMember ? `${staffMember} demonstrated an unwavering commitment to excellence.` : `Their staff demonstrated an unwavering commitment to excellence.`} From start to finish, the quality of their work was impeccable. ${wouldRecommend ? `Anyone looking for quality-focused ${businessType} services should definitely give them a call!` : ``} ${wouldVisitAgain ? `I'll certainly be returning for future needs!` : ``}`
             ],
             extras: [
               `Their commitment to quality was evident in every detail.`,
@@ -211,7 +284,15 @@ const AdvancedReviewGenerator: React.FC = () => {
               `The quality of their work speaks volumes about their standards.`,
               `They seem to genuinely care about delivering superior results.`,
               `Everything was executed with precision and expertise.`,
-              `The quality far exceeded the industry standard.`
+              `The quality far exceeded the industry standard.`,
+              `Their dedication to perfection was visible throughout the process.`,
+              `The excellence of their work reflects their high standards.`,
+              `They handled every aspect with remarkable care and quality.`,
+              `The craftsmanship displayed in their work was exceptional.`,
+              `Their quality control processes must be incredibly thorough.`,
+              `The superior quality of their work makes them stand out.`,
+              `Their commitment to excellence was evident in every interaction.`,
+              `The outcome was flawless in both appearance and function.`
             ]
           },
           
@@ -226,7 +307,13 @@ const AdvancedReviewGenerator: React.FC = () => {
               
               `${businessName} provides remarkable quality that exceeds industry standards! ${staffMember ? `${staffMember} implemented solutions that were both beautiful and built to last.` : `Every solution they implemented was both beautiful and built to last.`} Their attention to detail results in work that remains perfect long after completion. ${wouldRecommend ? `If you value quality that endures, I highly recommend their ${businessType} services!` : ``} ${wouldVisitAgain ? `I'll absolutely return for future projects!` : ``}`,
               
-              `The quality delivered by ${businessName} is truly second to none! ${staffMember ? `${staffMember} demonstrated a level of craftsmanship that's increasingly rare these days.` : `Their level of craftsmanship is increasingly rare these days.`} No corners were cut and no details overlooked. ${wouldRecommend ? `Anyone serious about quality ${businessType} services should look no further!` : ``} ${wouldVisitAgain ? `I won't trust anyone else with my future projects!` : ``}`
+              `The quality delivered by ${businessName} is truly second to none! ${staffMember ? `${staffMember} demonstrated a level of craftsmanship that's increasingly rare these days.` : `Their level of craftsmanship is increasingly rare these days.`} No corners were cut and no details overlooked. ${wouldRecommend ? `Anyone serious about quality ${businessType} services should look no further!` : ``} ${wouldVisitAgain ? `I won't trust anyone else with my future projects!` : ``}`,
+              
+              `${businessName} creates quality work that continues to impress long after completion! ${staffMember ? `${staffMember} selected materials and methods specifically for their longevity and durability.` : `They selected materials and methods specifically for their longevity and durability.`} Months later, I'm still impressed by how well everything has held up. ${wouldRecommend ? `For lasting quality in ${businessType} services, I highly recommend them!` : ``} ${wouldVisitAgain ? `They'll definitely be my first choice for future projects!` : ``}`,
+              
+              `I'm continually impressed by the enduring quality of ${businessName}'s work! ${staffMember ? `${staffMember} clearly prioritized long-term performance in every decision.` : `Their team clearly prioritized long-term performance in every decision.`} Their quality hasn't diminished at all with time and use. ${wouldRecommend ? `Anyone looking for ${businessType} services that truly last should give them a call!` : ``} ${wouldVisitAgain ? `I'll definitely return for more of their lasting quality!` : ``}`,
+              
+              `The lasting quality from ${businessName} separates them from their competitors! ${staffMember ? `${staffMember} focused on creating solutions that would remain impressive long after completion.` : `Everyone focused on creating solutions that would remain impressive long after completion.`} Their work has stood up beautifully to daily use. ${wouldRecommend ? `For durable, high-quality ${businessType} services, I couldn't recommend them more!` : ``} ${wouldVisitAgain ? `I'll certainly use their services again!` : ``}`
             ],
             extras: [
               `Their commitment to quality shows in how well everything has held up.`,
@@ -236,7 +323,54 @@ const AdvancedReviewGenerator: React.FC = () => {
               `They seem to approach each project with the intention of it lasting forever.`,
               `The quality of their work continues to impress me months later.`,
               `They clearly take pride in creating solutions built to last.`,
-              `The durability of their work demonstrates their commitment to excellence.`
+              `The durability of their work demonstrates their commitment to excellence.`,
+              `Their focus on longevity sets them apart from others in their field.`,
+              `The quality hasn't diminished at all with regular use.`,
+              `Their work is as impressive today as it was when first completed.`,
+              `They clearly select materials based on durability, not just appearance.`,
+              `The lasting quality of their work provides excellent value.`,
+              `Their attention to durability details makes a noticeable difference.`,
+              `They seem to consider how their work will hold up years from now.`,
+              `Their commitment to quality means their work doesn't degrade over time.`
+            ]
+          },
+          
+          // Set 3 - Consistency & reliability quality focus
+          {
+            templates: [
+              `${businessName} delivers remarkably consistent quality across every aspect of their service! ${staffMember ? `${staffMember} maintained the same high standards from the beginning to the end of our project.` : `Their team maintained the same high standards from the beginning to the end of our project.`} There were no weak points or areas that received less attention. ${wouldRecommend ? `I highly recommend them to anyone who values reliability in ${businessType} services!` : ``} ${wouldVisitAgain ? `I'll definitely return for their consistently excellent quality!` : ``}`,
+              
+              `I'm impressed by the uniformly excellent quality provided by ${businessName}! ${staffMember ? `${staffMember} delivered consistent excellence across every touchpoint and deliverable.` : `Their entire organization delivered consistent excellence across every touchpoint and deliverable.`} The reliability of their quality is truly impressive. ${wouldRecommend ? `For consistently high-quality ${businessType} services, I enthusiastically recommend them!` : ``} ${wouldVisitAgain ? `They've earned my trust and future business!` : ``}`,
+              
+              `The consistent quality from ${businessName} sets them apart in their industry! ${staffMember ? `${staffMember} never varied in their commitment to excellence throughout our project.` : `Everyone I worked with never varied in their commitment to excellence throughout our project.`} Their reliable standards meant I never had to worry about quality issues. ${wouldRecommend ? `Anyone looking for dependable quality in ${businessType} services should definitely check them out!` : ``} ${wouldVisitAgain ? `I'll be returning for their reliable excellence!` : ``}`,
+              
+              `${businessName} maintains impressive quality consistency across all aspects of their service! ${staffMember ? `${staffMember} applied the same meticulous standards to both major elements and small details.` : `They applied the same meticulous standards to both major elements and small details.`} Nothing received less than their full attention and expertise. ${wouldRecommend ? `For reliably excellent ${businessType} services, I highly recommend them!` : ``} ${wouldVisitAgain ? `Their consistent quality guarantees my return!` : ``}`,
+              
+              `I value the reliable quality that ${businessName} delivers every time! ${staffMember ? `${staffMember} demonstrated a steadfast commitment to excellence that never wavered.` : `Their team demonstrated a steadfast commitment to excellence that never wavered.`} Their consistency allowed me to trust the process completely. ${wouldRecommend ? `Anyone who appreciates dependable quality in ${businessType} services should give them a call!` : ``} ${wouldVisitAgain ? `I'll definitely return for their reliable quality!` : ``}`,
+              
+              `The dependable quality from ${businessName} provided complete peace of mind! ${staffMember ? `${staffMember} maintained exceptional standards throughout every phase of our project.` : `They maintained exceptional standards throughout every phase of our project.`} Their consistency is truly refreshing in an age of variable service quality. ${wouldRecommend ? `For reliable, high-quality ${businessType} services, I couldn't recommend them more strongly!` : ``} ${wouldVisitAgain ? `I look forward to working with them again!` : ``}`,
+              
+              `${businessName} delivers impressively consistent quality from start to finish! ${staffMember ? `${staffMember} never let standards slip at any point in the process.` : `Their entire team never let standards slip at any point in the process.`} Each element received the same careful attention and expertise. ${wouldRecommend ? `Anyone seeking reliable quality in ${businessType} services should definitely work with them!` : ``} ${wouldVisitAgain ? `I'll absolutely use their services again!` : ``}`,
+              
+              `I'm thoroughly impressed by the consistent quality standards at ${businessName}! ${staffMember ? `${staffMember} maintained excellence across all aspects of our project without exception.` : `They maintained excellence across all aspects of our project without exception.`} Their reliability is truly exceptional in their field. ${wouldRecommend ? `For dependably excellent ${businessType} services, I highly recommend them!` : ``} ${wouldVisitAgain ? `They'll definitely be my first choice for future needs!` : ``}`
+            ],
+            extras: [
+              `Their quality never fluctuated throughout the entire process.`,
+              `They maintain the same high standards across all aspects of their service.`,
+              `Their reliability meant I never had to worry about the quality.`,
+              `The consistency of their work is truly remarkable.`,
+              `They seem to have solid quality control processes in place.`,
+              `Every touchpoint showed the same level of excellence.`,
+              `Their dependable quality provided complete peace of mind.`,
+              `They delivered the same high standards from start to finish.`,
+              `Their consistent quality seems to be deeply embedded in their culture.`,
+              `There were no weak points or areas that received less attention.`,
+              `Their quality standards never wavered throughout our engagement.`,
+              `Every team member seemed equally committed to quality excellence.`,
+              `The reliability of their quality added significant value.`,
+              `I appreciated knowing I could count on their consistent standards.`,
+              `Their quality was uniformly excellent across all deliverables.`,
+              `Their consistent excellence is clearly not accidental but systematic.`
             ]
           }
         ],
@@ -413,7 +547,13 @@ const AdvancedReviewGenerator: React.FC = () => {
               
               `${businessName} demonstrates outstanding flexibility that sets them apart! ${staffMember ? `${staffMember} worked around my challenging schedule and specific requirements with ease.` : `They worked around my challenging schedule and specific requirements with ease.`} Their adaptable service model was exactly what I needed. ${wouldRecommend ? `If you need flexible ${businessType} services, look no further!` : ``} ${wouldVisitAgain ? `I'll be calling on their flexible service again!` : ``}`,
               
-              `I can't say enough about the flexibility offered by ${businessName}! ${staffMember ? `${staffMember} accommodated last-minute changes and special requests without hesitation.` : `Their team accommodated last-minute changes and special requests without hesitation.`} They tailored everything to my specific situation. ${wouldRecommend ? `I highly recommend them to anyone who needs adaptable ${businessType} services!` : ``} ${wouldVisitAgain ? `Their flexibility has made me a customer for life!` : ``}`
+              `I can't say enough about the flexibility offered by ${businessName}! ${staffMember ? `${staffMember} accommodated last-minute changes and special requests without hesitation.` : `Their team accommodated last-minute changes and special requests without hesitation.`} They tailored everything to my specific situation. ${wouldRecommend ? `I highly recommend them to anyone who needs adaptable ${businessType} services!` : ``} ${wouldVisitAgain ? `Their flexibility has made me a customer for life!` : ``}`,
+              
+              `${businessName} provides exceptional flexibility that made my life so much easier! ${staffMember ? `${staffMember} adapted their services to fit perfectly with my unique circumstances.` : `Their team adapted their services to fit perfectly with my unique circumstances.`} They were willing to adjust their standard approach to better serve my needs. ${wouldRecommend ? `For accommodating ${businessType} services, I couldn't recommend them more highly!` : ``} ${wouldVisitAgain ? `I'll absolutely return for their flexible approach!` : ``}`,
+              
+              `I'm thoroughly impressed by the accommodating nature of ${businessName}! ${staffMember ? `${staffMember} went out of their way to work within my specific constraints and preferences.` : `Everyone went out of their way to work within my specific constraints and preferences.`} Their willingness to adapt made all the difference. ${wouldRecommend ? `Anyone seeking flexible ${businessType} services should definitely check them out!` : ``} ${wouldVisitAgain ? `They've earned my loyalty with their accommodating service!` : ``}`,
+              
+              `The level of accommodation provided by ${businessName} was truly remarkable! ${staffMember ? `${staffMember} listened carefully to my needs and tailored their approach accordingly.` : `Their staff listened carefully to my needs and tailored their approach accordingly.`} No request seemed too challenging for them to handle. ${wouldRecommend ? `For flexible, customer-focused ${businessType} services, I highly recommend them!` : ``} ${wouldVisitAgain ? `I'll definitely be using their adaptable services again!` : ``}`
             ],
             extras: [
               `They were willing to adjust their process to fit my unique needs.`,
@@ -423,7 +563,15 @@ const AdvancedReviewGenerator: React.FC = () => {
               `Their flexible scheduling options were incredibly helpful.`,
               `They adapted their approach when circumstances changed.`,
               `They were open to suggestions and alternative methods.`,
-              `Their willingness to customize their service was impressive.`
+              `Their willingness to customize their service was impressive.`,
+              `They modified their standard procedures to better serve my needs.`,
+              `Their accommodating nature created a stress-free experience.`,
+              `They were receptive to my input throughout the process.`,
+              `They tailored their service to my specific situation.`,
+              `Their adaptability made working with them a pleasure.`,
+              `They seemed genuinely happy to accommodate special requests.`,
+              `They never used rigid processes as an excuse not to adapt.`,
+              `Their flexible mindset was evident in every interaction.`
             ]
           },
           
@@ -438,7 +586,13 @@ const AdvancedReviewGenerator: React.FC = () => {
               
               `${businessName} offers unmatched flexibility that made my complex project successful! ${staffMember ? `${staffMember} adjusted strategies and timelines as needed while maintaining quality standards.` : `They adjusted strategies and timelines as needed while maintaining quality standards.`} Their ability to adapt was crucial to our success. ${wouldRecommend ? `If you need ${businessType} services that can adapt to changing needs, this is the place!` : ``} ${wouldVisitAgain ? `I'll definitely return for their flexible service!` : ``}`,
               
-              `The level of flexibility at ${businessName} is truly exceptional! ${staffMember ? `${staffMember} was able to pivot quickly when circumstances changed and still deliver outstanding results.` : `Their team was able to pivot quickly when circumstances changed and still deliver outstanding results.`} They turned potential obstacles into opportunities. ${wouldRecommend ? `I highly recommend their adaptable ${businessType} services to anyone with changing needs!` : ``} ${wouldVisitAgain ? `They'll be my first choice for future projects!` : ``}`
+              `The level of flexibility at ${businessName} is truly exceptional! ${staffMember ? `${staffMember} was able to pivot quickly when circumstances changed and still deliver outstanding results.` : `Their team was able to pivot quickly when circumstances changed and still deliver outstanding results.`} They turned potential obstacles into opportunities. ${wouldRecommend ? `I highly recommend their adaptable ${businessType} services to anyone with changing needs!` : ``} ${wouldVisitAgain ? `They'll be my first choice for future projects!` : ``}`,
+              
+              `${businessName} demonstrates remarkable flexibility when facing challenges! ${staffMember ? `${staffMember} showed exceptional adaptability in finding creative solutions to unexpected issues.` : `Their staff showed exceptional adaptability in finding creative solutions to unexpected issues.`} Their problem-solving skills made all the difference. ${wouldRecommend ? `For adaptive ${businessType} services that can handle any challenge, I highly recommend them!` : ``} ${wouldVisitAgain ? `I'll definitely rely on their flexible approach again!` : ``}`,
+              
+              `The problem-solving flexibility at ${businessName} is truly impressive! ${staffMember ? `${staffMember} quickly adapted to changing circumstances without losing momentum or quality.` : `Their entire team quickly adapted to changing circumstances without losing momentum or quality.`} They approached each challenge with confidence and creativity. ${wouldRecommend ? `Anyone who values flexible ${businessType} services should give them a call!` : ``} ${wouldVisitAgain ? `They've earned my trust for future projects!` : ``}`,
+              
+              `I'm amazed by how ${businessName} handled unexpected challenges with such flexibility! ${staffMember ? `${staffMember} was resourceful and adaptable when our project took unexpected turns.` : `They were resourceful and adaptable when our project took unexpected turns.`} Their ability to adjust while maintaining quality was impressive. ${wouldRecommend ? `For ${businessType} services that can handle whatever comes up, I strongly recommend them!` : ``} ${wouldVisitAgain ? `I'll definitely be returning for their flexible approach!` : ``}`
             ],
             extras: [
               `They adapted quickly when unexpected challenges arose.`,
@@ -448,7 +602,54 @@ const AdvancedReviewGenerator: React.FC = () => {
               `Their adaptability never compromised the quality of service.`,
               `They remained calm and flexible when plans needed to change.`,
               `Their ability to pivot while maintaining progress was remarkable.`,
-              `They handled changes in scope without making it a big issue.`
+              `They handled changes in scope without making it a big issue.`,
+              `Their flexible thinking led to better solutions than originally planned.`,
+              `They approached each challenge with resourcefulness and creativity.`,
+              `They seemed energized rather than frustrated by unexpected changes.`,
+              `Their adaptability turned potential problems into opportunities.`,
+              `They anticipated potential issues and had flexible backup plans.`,
+              `They adjusted their approach based on new information or circumstances.`,
+              `Their problem-solving flexibility consistently impressed me.`,
+              `They navigated complex challenges with remarkable adaptability.`
+            ]
+          },
+          
+          // Set 3 - Customization flexibility focus
+          {
+            templates: [
+              `${businessName} offers exceptional flexibility in creating customized solutions! ${staffMember ? `${staffMember} took the time to understand my specific needs and tailored their approach accordingly.` : `Their team took the time to understand my specific needs and tailored their approach accordingly.`} Nothing felt like a generic, one-size-fits-all service. ${wouldRecommend ? `I highly recommend them for personalized ${businessType} services!` : ``} ${wouldVisitAgain ? `I'll definitely return for more of their customized approach!` : ``}`,
+              
+              `The customization flexibility at ${businessName} truly sets them apart! ${staffMember ? `${staffMember} created a completely personalized solution that addressed my unique situation perfectly.` : `They created a completely personalized solution that addressed my unique situation perfectly.`} They don't force clients into standardized packages. ${wouldRecommend ? `For tailored ${businessType} services that fit your exact needs, I enthusiastically recommend them!` : ``} ${wouldVisitAgain ? `Their customized approach guarantees my return!` : ``}`,
+              
+              `I'm thoroughly impressed by how ${businessName} tailors their services to each client! ${staffMember ? `${staffMember} took my specific requirements and preferences into account at every stage.` : `Everyone took my specific requirements and preferences into account at every stage.`} Nothing about their service felt generic or pre-packaged. ${wouldRecommend ? `Anyone seeking personalized ${businessType} services should definitely check them out!` : ``} ${wouldVisitAgain ? `I look forward to more of their customized service!` : ``}`,
+              
+              `${businessName} excels at flexible customization that perfectly fits client needs! ${staffMember ? `${staffMember} created a tailored approach for my unique situation instead of using a standard template.` : `Their team created a tailored approach for my unique situation instead of using a standard template.`} The personalized service made a huge difference. ${wouldRecommend ? `If you want ${businessType} services designed specifically for your needs, this is the place!` : ``} ${wouldVisitAgain ? `I'll definitely return for their tailored approach!` : ``}`,
+              
+              `The personalization flexibility offered by ${businessName} is remarkable! ${staffMember ? `${staffMember} customized every aspect of their service to align perfectly with my specific goals.` : `They customized every aspect of their service to align perfectly with my specific goals.`} Their willingness to tailor solutions sets them above competitors. ${wouldRecommend ? `I highly recommend their personalized ${businessType} services to anyone seeking a custom fit!` : ``} ${wouldVisitAgain ? `Their tailored approach has earned my future business!` : ``}`,
+              
+              `${businessName} demonstrates incredible flexibility in crafting personalized solutions! ${staffMember ? `${staffMember} didn't try to fit my needs into a pre-existing package but built something specifically for me.` : `They didn't try to fit my needs into a pre-existing package but built something specifically for me.`} The customized approach produced perfect results. ${wouldRecommend ? `For tailored ${businessType} solutions that truly fit your needs, I couldn't recommend them more!` : ``} ${wouldVisitAgain ? `I'll absolutely return for more of their personalized service!` : ``}`,
+              
+              `I'm impressed by the customization flexibility at ${businessName}! ${staffMember ? `${staffMember} designed a completely bespoke solution that addressed all my specific requirements.` : `Their team designed a completely bespoke solution that addressed all my specific requirements.`} They excel at creating personalized approaches. ${wouldRecommend ? `Anyone who wants ${businessType} services tailored to their unique situation should give them a call!` : ``} ${wouldVisitAgain ? `Their customized approach guarantees my return!` : ``}`,
+              
+              `The tailoring flexibility of ${businessName} made all the difference in my project! ${staffMember ? `${staffMember} listened carefully to my unique needs and created a custom solution rather than a standard package.` : `They listened carefully to my unique needs and created a custom solution rather than a standard package.`} Everything was personalized to my specific situation. ${wouldRecommend ? `For customized ${businessType} services that perfectly fit your needs, I highly recommend them!` : ``} ${wouldVisitAgain ? `I'll definitely use their tailored services again!` : ``}`
+            ],
+            extras: [
+              `They created a solution that felt specifically designed for my unique situation.`,
+              `Their service never felt like a one-size-fits-all approach.`,
+              `They took time to understand my specific needs before suggesting solutions.`,
+              `Their personalized approach addressed my unique requirements perfectly.`,
+              `They were willing to customize every aspect of their service.`,
+              `Their flexibility in tailoring solutions was impressive.`,
+              `They didn't force my needs into pre-existing service packages.`,
+              `The customized approach delivered better results than a standard service would have.`,
+              `They viewed my unique requirements as opportunities, not challenges.`,
+              `Their personalization made me feel like their only client.`,
+              `They asked thoughtful questions to better tailor their approach.`,
+              `The bespoke solution perfectly addressed my specific situation.`,
+              `Their customization flexibility separated them from competitors.`,
+              `They seemed genuinely interested in creating a personalized solution.`,
+              `They built their service around my needs rather than the other way around.`,
+              `Their adaptable approach allowed for the perfect customized solution.`
             ]
           }
         ],
@@ -466,7 +667,13 @@ const AdvancedReviewGenerator: React.FC = () => {
               
               `${businessName} achieves incredible results that truly set them apart! ${staffMember ? `${staffMember} delivered outcomes that were measurably better than any I've experienced before.` : `Their team delivered outcomes that were measurably better than any I've experienced before.`} The results speak for themselves - absolutely perfect! ${wouldRecommend ? `If you want amazing ${businessType} results, look no further!` : ``} ${wouldVisitAgain ? `I'll definitely be back for more outstanding results!` : ``}`,
               
-              `I can't praise the results from ${businessName} highly enough! ${staffMember ? `${staffMember} achieved outcomes that have completely exceeded my highest expectations.` : `They achieved outcomes that have completely exceeded my highest expectations.`} The results have made a substantial difference for me. ${wouldRecommend ? `I highly recommend them to anyone who wants superior ${businessType} results!` : ``} ${wouldVisitAgain ? `They'll be my first choice for future projects!` : ``}`
+              `I can't praise the results from ${businessName} highly enough! ${staffMember ? `${staffMember} achieved outcomes that have completely exceeded my highest expectations.` : `They achieved outcomes that have completely exceeded my highest expectations.`} The results have made a substantial difference for me. ${wouldRecommend ? `I highly recommend them to anyone who wants superior ${businessType} results!` : ``} ${wouldVisitAgain ? `They'll be my first choice for future projects!` : ``}`,
+              
+              `The excellent results delivered by ${businessName} were truly impressive! ${staffMember ? `${staffMember} created outcomes that perfectly matched my vision while adding unexpected value.` : `Their team created outcomes that perfectly matched my vision while adding unexpected value.`} The quality of the results was exceptional. ${wouldRecommend ? `For outstanding ${businessType} results, I couldn't recommend them more highly!` : ``} ${wouldVisitAgain ? `I'll definitely be returning for more of their excellent work!` : ``}`,
+              
+              `${businessName} produces results of remarkable quality and impact! ${staffMember ? `${staffMember} achieved outcomes that were perfectly aligned with my goals and needs.` : `They achieved outcomes that were perfectly aligned with my goals and needs.`} The excellence of their work was evident in every aspect. ${wouldRecommend ? `Anyone seeking top-quality ${businessType} results should definitely give them a call!` : ``} ${wouldVisitAgain ? `They've earned my business for all future projects!` : ``}`,
+              
+              `I'm thoroughly impressed by the outstanding results from ${businessName}! ${staffMember ? `${staffMember} delivered outcomes that exceeded my expectations in every way.` : `Their entire organization delivered outcomes that exceeded my expectations in every way.`} The quality of their work truly stands out. ${wouldRecommend ? `For exceptional ${businessType} results, I enthusiastically recommend them!` : ``} ${wouldVisitAgain ? `I'll definitely be using their services again!` : ``}`
             ],
             extras: [
               `The results they delivered continue to exceed expectations.`,
@@ -476,7 +683,15 @@ const AdvancedReviewGenerator: React.FC = () => {
               `Their work produced measurable improvements.`,
               `The end results perfectly matched what I was hoping for.`,
               `The quality of the outcomes speaks for itself.`,
-              `They delivered results that will benefit me for years to come.`
+              `They delivered results that will benefit me for years to come.`,
+              `The excellence of their work is evident in the results.`,
+              `Their outcomes were perfectly aligned with my goals.`,
+              `The results show remarkable attention to detail and quality.`,
+              `The impact of their work has exceeded what I anticipated.`,
+              `Their results demonstrate a commitment to excellence.`,
+              `The outcomes reflect their expertise and dedication.`,
+              `They delivered results that perfectly captured my vision.`,
+              `The quality of their outcomes sets a new standard.`
             ]
           },
           
@@ -491,7 +706,13 @@ const AdvancedReviewGenerator: React.FC = () => {
               
               `${businessName} delivers results that truly separate them from the competition! ${staffMember ? `${staffMember} produced outcomes of such high quality that I'm still impressed weeks later.` : `They produced outcomes of such high quality that I'm still impressed weeks later.`} The results have been game-changing for me. ${wouldRecommend ? `If you want ${businessType} results that will exceed expectations, this is the place!` : ``} ${wouldVisitAgain ? `I'll definitely return for more exceptional results!` : ``}`,
               
-              `The results I received from ${businessName} are truly mind-blowing! ${staffMember ? `${staffMember} achieved outcomes that I didn't even think were possible before.` : `They achieved outcomes that I didn't even think were possible before.`} The results have made an incredible difference. ${wouldRecommend ? `I highly recommend them to anyone seeking outstanding ${businessType} results!` : ``} ${wouldVisitAgain ? `They'll be my only choice for future projects!` : ``}`
+              `The results I received from ${businessName} are truly mind-blowing! ${staffMember ? `${staffMember} achieved outcomes that I didn't even think were possible before.` : `They achieved outcomes that I didn't even think were possible before.`} The results have made an incredible difference. ${wouldRecommend ? `I highly recommend them to anyone seeking outstanding ${businessType} results!` : ``} ${wouldVisitAgain ? `They'll be my only choice for future projects!` : ``}`,
+              
+              `${businessName} surpassed all my expectations with their incredible results! ${staffMember ? `${staffMember} delivered outcomes that went far beyond my initial goals.` : `Their team delivered outcomes that went far beyond my initial goals.`} I'm still amazed by what they were able to accomplish. ${wouldRecommend ? `For results that exceed expectations, I enthusiastically recommend their ${businessType} services!` : ``} ${wouldVisitAgain ? `I'll absolutely be returning for more of their exceptional results!` : ``}`,
+              
+              `I was absolutely blown away by the results from ${businessName}! ${staffMember ? `${staffMember} achieved outcomes that I hadn't even dared to hope for.` : `They achieved outcomes that I hadn't even dared to hope for.`} The results far exceeded anything I imagined possible. ${wouldRecommend ? `Anyone seeking ${businessType} results that go beyond expectations should definitely work with them!` : ``} ${wouldVisitAgain ? `Their extraordinary results guarantee my return!` : ``}`,
+              
+              `The results delivered by ${businessName} were beyond extraordinary! ${staffMember ? `${staffMember} produced outcomes that surpassed what I thought was even possible in this industry.` : `Their entire team produced outcomes that surpassed what I thought was even possible in this industry.`} I'm still in awe of what they accomplished. ${wouldRecommend ? `For truly remarkable ${businessType} results, I couldn't recommend them more highly!` : ``} ${wouldVisitAgain ? `I'll definitely be using their services again!` : ``}`
             ],
             extras: [
               `The results exceeded my expectations in every way.`,
@@ -501,7 +722,54 @@ const AdvancedReviewGenerator: React.FC = () => {
               `The results continue to provide benefits long after completion.`,
               `I'm amazed by the quality of the outcomes they delivered.`,
               `Their results outperformed everything I've seen before.`,
-              `The impact of their results has been truly transformative.`
+              `The impact of their results has been truly transformative.`,
+              `They achieved outcomes I wouldn't have thought possible.`,
+              `Their results went far beyond the initial project goals.`,
+              `The outcomes they delivered continue to amaze me.`,
+              `They set a new standard for what results can be achieved.`,
+              `Their work produced outcomes that seemed impossible before.`,
+              `The results weren't just good—they were extraordinary.`,
+              `I'm still discovering benefits from the exceptional results they delivered.`,
+              `They achieved outcomes that redefined what I thought was possible.`
+            ]
+          },
+          
+          // Set 3 - Tangible impact focus
+          {
+            templates: [
+              `${businessName} delivered results that have made a real, measurable impact! ${staffMember ? `${staffMember} produced outcomes that have created tangible benefits for me.` : `Their team produced outcomes that have created tangible benefits for me.`} I can clearly see the positive difference their work has made. ${wouldRecommend ? `I highly recommend them to anyone seeking ${businessType} results with genuine impact!` : ``} ${wouldVisitAgain ? `I'll definitely return for more of their impactful work!` : ``}`,
+              
+              `The tangible impact of ${businessName}'s results is remarkable! ${staffMember ? `${staffMember} created outcomes that have led to concrete improvements and benefits.` : `They created outcomes that have led to concrete improvements and benefits.`} Their work has produced measurable positive changes. ${wouldRecommend ? `For ${businessType} services that deliver real, meaningful results, I enthusiastically recommend them!` : ``} ${wouldVisitAgain ? `Their impactful results have earned my future business!` : ``}`,
+              
+              `I'm thoroughly impressed by the measurable results from ${businessName}! ${staffMember ? `${staffMember} achieved outcomes with clear, quantifiable benefits.` : `Their team achieved outcomes with clear, quantifiable benefits.`} The positive impact of their work is undeniable. ${wouldRecommend ? `Anyone seeking ${businessType} services with substantial, measurable results should definitely check them out!` : ``} ${wouldVisitAgain ? `I'll be returning for more of their impactful work!` : ``}`,
+              
+              `${businessName} produces results with truly meaningful impact! ${staffMember ? `${staffMember} delivered outcomes that have created substantial, tangible benefits.` : `They delivered outcomes that have created substantial, tangible benefits.`} I can objectively see the positive difference their work has made. ${wouldRecommend ? `For ${businessType} results that create real impact, look no further!` : ``} ${wouldVisitAgain ? `I'll definitely be using their services again!` : ``}`,
+              
+              `The concrete results delivered by ${businessName} speak for themselves! ${staffMember ? `${staffMember} achieved outcomes with clear, demonstrable value.` : `Their team achieved outcomes with clear, demonstrable value.`} The tangible impact of their work is impressive. ${wouldRecommend ? `I highly recommend them to anyone seeking ${businessType} services with measurable results!` : ``} ${wouldVisitAgain ? `Their impactful work guarantees my return!` : ``}`,
+              
+              `I'm amazed by the quantifiable results ${businessName} delivered! ${staffMember ? `${staffMember} produced outcomes with unmistakable, measurable benefits.` : `Everyone involved produced outcomes with unmistakable, measurable benefits.`} The impact of their work can be clearly demonstrated. ${wouldRecommend ? `For ${businessType} services that deliver tangible results, I couldn't recommend them more highly!` : ``} ${wouldVisitAgain ? `I'll absolutely return for more of their impactful work!` : ``}`,
+              
+              `${businessName} delivers results with substantial, demonstrable impact! ${staffMember ? `${staffMember} achieved outcomes that have created visible, measurable improvements.` : `Their team achieved outcomes that have created visible, measurable improvements.`} The concrete benefits of their work are impressive. ${wouldRecommend ? `Anyone wanting ${businessType} results with real impact should definitely give them a call!` : ``} ${wouldVisitAgain ? `I'll certainly be using their services again!` : ``}`,
+              
+              `The measurable impact of ${businessName}'s results is truly impressive! ${staffMember ? `${staffMember} produced outcomes with clear, quantifiable benefits that continue to grow.` : `They produced outcomes with clear, quantifiable benefits that continue to grow.`} I can see the tangible difference their work has made. ${wouldRecommend ? `For ${businessType} services that deliver concrete results, I enthusiastically recommend them!` : ``} ${wouldVisitAgain ? `Their impactful results have earned my loyalty!` : ``}`
+            ],
+            extras: [
+              `Their results have led to measurable improvements.`,
+              `I can see tangible benefits from their work.`,
+              `The outcomes they delivered have created concrete value.`,
+              `Their results have had a demonstrable positive impact.`,
+              `The measurable effects of their work continue to impress me.`,
+              `Their outcomes have produced quantifiable improvements.`,
+              `I can point to specific benefits resulting from their work.`,
+              `The impact of their results can be objectively verified.`,
+              `Their work produced outcomes with real-world impact.`,
+              `The tangible benefits from their results continue to grow.`,
+              `Their outcomes have made a measurable difference to my situation.`,
+              `I can track the positive impact their results have created.`,
+              `The concrete improvements from their work are impressive.`,
+              `Their results delivered quantifiable value.`,
+              `The real-world impact of their outcomes is substantial.`,
+              `I continue to see measurable benefits from the results they delivered.`
             ]
           }
         ],

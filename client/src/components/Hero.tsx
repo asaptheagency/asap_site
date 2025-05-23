@@ -180,13 +180,17 @@ const Hero = () => {
                   <span><br /></span>
                   <span className="text-primary">Software Automation & Promotion</span>
                 </h1>
+                
+                <h2 className="text-2xl md:text-3xl font-medium text-white/80 mt-4 mb-6">
+                  Not just a website. Not just marketing. A smarter, simpler way to grow.
+                </h2>
               </div>
             </SimpleParallax>
             
             <SimpleParallax speed={0.1} direction="diagonal-down-left" opacityEffect={true}>
               <div style={getParallaxStyle(0.05)}>
                 <p className="text-lg text-muted-foreground mb-8">
-                  Welcome to ASAP! We believe in giving you the choice to focus on what matters most. You can start by streamlining your operations with AI and custom software solutions, or if you're ready, dive straight into effective marketing. Whether you prefer to automate first or start promoting your business, we're here to support your unique growth journey.
+                  Most businesses hit a wall because their systems can't keep up. At ASAP, we build the kind of digital setup that brings in better clients, follows up automatically, and frees you to grow. No fluff. No clutter. Just smart tools that do the work — so you can focus on running your business on your time.
                 </p>
               </div>
             </SimpleParallax>

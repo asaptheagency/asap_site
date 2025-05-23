@@ -28,78 +28,42 @@ const Footer = () => {
             </div>
             
             <div>
-              <h4 className="text-lg font-bold mb-6">Services</h4>
+              <h4 className="text-lg font-bold mb-6">Industries</h4>
               <ul className="space-y-3">
                 <li>
                   <a 
-                    href="/services/web-design" 
+                    href="/industries/law-firms" 
                     className="text-muted-foreground hover:text-accent"
                     onClick={(e) => {
                       e.preventDefault();
-                      setLocation("/services/web-design");
+                      setLocation("/industries/law-firms");
                     }}
                   >
-                    Web Design & Development
+                    Law Firms
                   </a>
                 </li>
                 <li>
                   <a 
-                    href="/services/automate" 
+                    href="/industries/contractors" 
                     className="text-muted-foreground hover:text-accent"
                     onClick={(e) => {
                       e.preventDefault();
-                      setLocation("/services/automate");
+                      setLocation("/industries/contractors");
                     }}
                   >
-                    AutoMate
+                    Roofers
                   </a>
                 </li>
                 <li>
                   <a 
-                    href="/services/botspot" 
+                    href="/industries/pdr-shops" 
                     className="text-muted-foreground hover:text-accent"
                     onClick={(e) => {
                       e.preventDefault();
-                      setLocation("/services/botspot");
+                      setLocation("/industries/pdr-shops");
                     }}
                   >
-                    BotSpot & LeadSeed
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="/services/appsnap" 
-                    className="text-muted-foreground hover:text-accent"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setLocation("/services/appsnap");
-                    }}
-                  >
-                    AppSnap
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="/services/hyperise" 
-                    className="text-muted-foreground hover:text-accent"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setLocation("/services/hyperise");
-                    }}
-                  >
-                    HypeRise
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="/services/review-generators" 
-                    className="text-muted-foreground hover:text-accent"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setLocation("/services/review-generators");
-                    }}
-                  >
-                    Review Generators
+                    PDR Shops
                   </a>
                 </li>
               </ul>
@@ -121,7 +85,10 @@ const Footer = () => {
           <div className="pt-8 border-t border-muted">
             <div className="flex flex-col md:flex-row items-center justify-center mb-4">
               <p className="text-sm text-muted-foreground">
-                &copy; {currentYear} ASAP All rights reserved <a href="https://www.asaptheagency.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">www.asaptheagency.com</a>
+                &copy; {currentYear} ASAP All rights reserved <a href="/" className="text-accent hover:underline" onClick={(e) => {
+                  e.preventDefault();
+                  setLocation("/");
+                }}>www.asaptheagency.com</a>
               </p>
             </div>
             
@@ -131,11 +98,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      
-      {/* Attribution section */}
-      <div className="py-3 bg-[#272727] text-center text-sm text-white">
-        Developed & Designed by…<a href="https://www.asaptheagency.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">ASAP</a> 😉
-      </div>
+
     </>
   );
 };

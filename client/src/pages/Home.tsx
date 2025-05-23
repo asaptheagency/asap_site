@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import AcceleratingMaterial from "../components/AcceleratingMaterial";
 import FrictionlessScaling from "../components/FrictionlessScaling";
-import Services from "../components/Services";
+import Industries from "../components/Industries";
 import SEOHead from "../components/SEOHead";
 
 const Home = () => {
@@ -75,7 +75,7 @@ const Home = () => {
         
         {/* Services section wrapped with both IDs for different targeting options */}
         <div id="services-section" className="scroll-mt-[120px]">
-          <Services />
+          <Industries />
         </div>
       </main>
     </div>
