@@ -67,7 +67,7 @@ const ReviewGeneratorsSimple: React.FC = () => {
                   >
                     <h2 className="text-3xl md:text-4xl font-bold">Boost Your Business Reputation</h2>
                     <p className="text-lg text-gray-300">
-                      Our AI-powered Review Generator tools streamline the customer feedback process. With just a click, these tools create authentic-sounding reviews, copy them to the user's clipboard, and direct them to your Google Maps business profile to leave a review.
+                      Our AI-powered Review Generator tools streamline the customer feedback process. With just a click, these tools create an authentic-sounding review, copies it to the user's clipboard, and directs them to your Google Maps business profile to leave a review.
                     </p>
                     <div className="space-y-4">
                       <div className="flex items-start gap-3">
@@ -169,7 +169,7 @@ const ReviewGeneratorsSimple: React.FC = () => {
                         <div>
                           <h4 className="text-xl font-medium mb-2">Integration</h4>
                           <p className="text-gray-300">
-                            The review generator can be integrated into your website in multiple ways - as a dedicated page, embedded in existing pages, or as a popup. We handle all the technical implementation.
+                            The review generator can be integrated into your website in two different ways - embedded in existing pages or as a popup. We handle all the technical implementation.
                           </p>
 
                         </div>

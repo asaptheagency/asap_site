@@ -20,6 +20,7 @@ const HypeRise = lazy(() => import("./pages/services/HypeRise"));
 const ReviewGenerators = lazy(() => import("./pages/services/ReviewGenerators"));
 const ReviewGeneratorsSimple = lazy(() => import("./pages/services/ReviewGeneratorsSimple"));
 const TestPage = lazy(() => import("./pages/services/TestPage"));
+const ReviewLaunch = lazy(() => import("./pages/ReviewLaunch"));
 
 // Hidden review generator pages
 const ReviewGenerator = lazy(() => import("./pages/ReviewGenerator"));
@@ -86,7 +87,8 @@ function Router() {
                         location.includes("/embed/review-generator") ||
                         location.includes("/client-key-review-generator") ||
                         location.includes("/client-iframe-review-generator") ||
-                        location.includes("/services/review-generators");
+                        location.includes("/services/review-generators") ||
+                        location.includes("/review-launch");
   
   return (
     <Suspense fallback={<LoadingHandler />}>
@@ -104,6 +106,7 @@ function Router() {
             <Route path="/review-generator" component={AdvancedReviewGenerator} />
             <Route path="/client-key-review-generator" component={AdvancedReviewGenerator} />
             <Route path="/services/review-generators" component={ReviewGeneratorsSimple} />
+            <Route path="/review-launch" component={ReviewLaunch} />
             
             {/* Industry pages */}
             <Route path="/industries/law-firms" component={LawFirms} />
@@ -120,6 +123,7 @@ function Router() {
               <Route path="/services/appsnap" component={AppSnap} />
               <Route path="/services/hyperise" component={HypeRise} />
               <Route path="/services/test" component={TestPage} />
+
               
               {/* Industry pages also available in main layout */}
               <Route path="/industries/law-firms" component={LawFirms} />
@@ -144,6 +148,9 @@ function App() {
     let trailTimeout: number | null = null;
     
     const handleMouseMove = (e: MouseEvent) => {
+      // Only enable cursor effect on desktop (lg and above)
+      if (window.innerWidth < 1024) return;
+      
       const now = Date.now();
       // Throttle updates to every 5ms for more responsive glow
       if (now - lastMove < 5) return;
