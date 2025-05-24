@@ -88,11 +88,49 @@ const AdvancedReviewGenerator: React.FC = () => {
   const [reviewOptions, setReviewOptions] = useState<ReviewOptions>(defaultReviewOptions);
   const [generatedReview, setGeneratedReview] = useState<string>('');
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
+  
+  // CSS customization parameters
+  const [customStyles, setCustomStyles] = useState({
+    backgroundColor: '#000000',
+    primaryColor: '#00d4aa',
+    textColor: '#ffffff',
+    buttonColor: '#00d4aa',
+    buttonTextColor: '#000000',
+    borderRadius: '8px',
+    fontFamily: 'Inter, system-ui, sans-serif'
+  });
 
-  // Load business data from URL parameters on initial render
+  // Load business data and CSS customization from URL parameters on initial render
   useEffect(() => {
     const urlData = getParamsFromUrl();
     setBusinessData(urlData);
+    
+    // Load CSS customization parameters
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      
+      const bgColor = urlParams.get('bgColor');
+      const primaryColor = urlParams.get('primaryColor');
+      const textColor = urlParams.get('textColor');
+      const buttonColor = urlParams.get('buttonColor');
+      const buttonTextColor = urlParams.get('buttonTextColor');
+      const borderRadius = urlParams.get('borderRadius');
+      const fontFamily = urlParams.get('fontFamily');
+      
+      // Apply custom styles if provided
+      if (bgColor || primaryColor || textColor || buttonColor || buttonTextColor || borderRadius || fontFamily) {
+        setCustomStyles(prev => ({
+          ...prev,
+          ...(bgColor && { backgroundColor: bgColor }),
+          ...(primaryColor && { primaryColor: primaryColor }),
+          ...(textColor && { textColor: textColor }),
+          ...(buttonColor && { buttonColor: buttonColor }),
+          ...(buttonTextColor && { buttonTextColor: buttonTextColor }),
+          ...(borderRadius && { borderRadius: borderRadius }),
+          ...(fontFamily && { fontFamily: fontFamily })
+        }));
+      }
+    }
   }, []);
 
   // Handle select changes
@@ -1039,7 +1077,12 @@ const AdvancedReviewGenerator: React.FC = () => {
       initial="initial"
       animate="in"
       variants={fadeIn}
-      className="min-h-screen bg-black text-white py-8 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"
+      style={{
+        backgroundColor: customStyles.backgroundColor,
+        color: customStyles.textColor,
+        fontFamily: customStyles.fontFamily
+      }}
     >
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-8">
@@ -1051,21 +1094,37 @@ const AdvancedReviewGenerator: React.FC = () => {
               className="h-16 w-auto"
             />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-teal-400 to-orange-500 bg-clip-text text-transparent">
-            {businessData.businessName} Review Generator
-          </h1>
-          <p className="mt-3 text-gray-300 max-w-2xl mx-auto">
-            When you click the button below the review generator will do the following:
-            <ul className="list-disc text-left ml-8 mt-3 space-y-1 max-w-md mx-auto">
-              <li>Generate a positive review for {businessData.businessName} through the use of AI integration</li>
-              <li>Copy the AI generated review to your clipboard</li>
-              <li>Open the Google Maps page for {businessData.businessName}</li>
-            </ul>
-          </p>
         </div>
 
-        <Card className="bg-gray-900 border-gray-800">
+        <Card 
+          className="border"
+          style={{
+            backgroundColor: customStyles.backgroundColor === '#000000' ? '#1f2937' : 'rgba(255,255,255,0.1)',
+            borderColor: customStyles.primaryColor,
+            borderRadius: customStyles.borderRadius
+          }}
+        >
           <CardContent className="pt-6">
+            {/* Title and Description */}
+            <div className="text-center mb-6">
+              <h1 
+                className="text-2xl font-bold bg-gradient-to-r bg-clip-text text-transparent mb-3"
+                style={{
+                  backgroundImage: `linear-gradient(to right, ${customStyles.primaryColor}, ${customStyles.buttonColor})`
+                }}
+              >
+                {businessData.businessName} Review Generator
+              </h1>
+              <p className="text-gray-300 max-w-2xl mx-auto text-sm">
+                When you click the button below the review generator will do the following:
+                <ul className="list-disc text-left ml-8 mt-3 space-y-1 max-w-md mx-auto">
+                  <li>Generate a positive review for {businessData.businessName} through the use of AI integration</li>
+                  <li>Copy the AI generated review to your clipboard</li>
+                  <li>Open the Google Maps page for {businessData.businessName}</li>
+                </ul>
+              </p>
+            </div>
+            
             {/* Business info summary */}
             <div className="bg-gray-800 p-4 rounded-lg mb-6">
               <h3 className="text-lg font-medium mb-2">Business Information</h3>
@@ -1090,10 +1149,30 @@ const AdvancedReviewGenerator: React.FC = () => {
                   <Button
                     onClick={resetOptions}
                     variant="outline"
-                    className="border-gray-600"
+                    className="px-6"
+                    style={{
+                      borderColor: customStyles.primaryColor,
+                      color: customStyles.primaryColor
+                    }}
                   >
                     Generate Another Review
                   </Button>
+                </div>
+                
+                {/* ASAP Branding Footer */}
+                <div className="mt-6 pt-4 border-t border-gray-600 text-center">
+                  <p className="text-xs text-gray-400">
+                    © 2025 ASAP All rights reserved{' '}
+                    <a 
+                      href="https://www.asaptheagency.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:text-teal-400 transition-colors"
+                      style={{ color: customStyles.primaryColor }}
+                    >
+                      www.asaptheagency.com
+                    </a>
+                  </p>
                 </div>
               </div>
             )}
@@ -1190,8 +1269,13 @@ const AdvancedReviewGenerator: React.FC = () => {
                   <Button 
                     onClick={generateReview}
                     disabled={isGenerating || !isFormValid()}
-                    className="bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 px-8 py-4 text-lg"
+                    className="px-8 py-4 text-lg"
                     size="lg"
+                    style={{
+                      backgroundColor: customStyles.buttonColor,
+                      color: customStyles.buttonTextColor,
+                      borderRadius: customStyles.borderRadius
+                    }}
                   >
                     {isGenerating ? 'Generating...' : 'Generate Review'}
                   </Button>
@@ -1202,14 +1286,26 @@ const AdvancedReviewGenerator: React.FC = () => {
                     Please tell us what stood out about the service to generate a review.
                   </p>
                 )}
+                
+                {/* ASAP Branding Footer */}
+                <div className="mt-8 pt-4 border-t border-gray-600 text-center">
+                  <p className="text-xs text-gray-400">
+                    © 2025 ASAP All rights reserved{' '}
+                    <a 
+                      href="https://www.asaptheagency.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:text-teal-400 transition-colors"
+                      style={{ color: customStyles.primaryColor }}
+                    >
+                      www.asaptheagency.com
+                    </a>
+                  </p>
+                </div>
               </>
             )}
           </CardContent>
         </Card>
-
-        <div className="mt-6 text-center text-gray-500 text-sm">
-          <p>© {new Date().getFullYear()} ASAP All rights reserved <a href="https://www.asaptheagency.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">www.asaptheagency.com</a></p>
-        </div>
       </div>
     </motion.div>
   );
