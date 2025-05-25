@@ -38,8 +38,8 @@ const defaultBusinessData: BusinessData = {
 const defaultReviewOptions: ReviewOptions = {
   staffMember: "",
   serviceHighlight: "professionalism",
-  wouldRecommend: true,
-  wouldVisitAgain: true,
+  wouldRecommend: false,
+  wouldVisitAgain: false,
   additionalComments: ""
 };
 
@@ -1218,16 +1218,6 @@ const AdvancedReviewGenerator: React.FC = () => {
                       </Select>
                     </div>
                     
-                    <div className="mb-4">
-                      <label className="block text-sm font-medium text-gray-400 mb-1">Additional Comments (optional)</label>
-                      <textarea
-                        value={reviewOptions.additionalComments}
-                        onChange={(e) => setReviewOptions(prev => ({ ...prev, additionalComments: e.target.value }))}
-                        className="w-full p-2 bg-gray-800 border border-gray-700 rounded-md focus:ring-teal-500 focus:border-teal-500"
-                        rows={3}
-                        placeholder="Any other thoughts you'd like to add?"
-                      />
-                    </div>
                   </div>
                   
                   <div>
