@@ -84,7 +84,7 @@ const SimpleReviewGenerator: React.FC = () => {
     try {
       // Predefined set of professional-sounding reviews that can be customized
       const reviewTemplates = [
-        `I recently visited {{business}} and had an amazing experience! The team was professional, friendly, and made me feel valued as a customer. I highly recommend their {{service}} services to anyone in {{location}} looking for a quality {{type}} provider.`,
+        `I recently visited {{business}} and had an amazing experience! The team was professional, friendly, and made me feel valued as a customer. I highly recommend their {{service}} services to anyone looking for a quality {{type}} provider.`,
         
         `{{business}} exceeded all my expectations! Their attention to detail and commitment to customer satisfaction really sets them apart from other {{type}} providers. I've been telling all my friends about my great experience with their {{service}}.`,
         
@@ -92,13 +92,20 @@ const SimpleReviewGenerator: React.FC = () => {
         
         `If you're looking for top-notch {{type}} services, look no further than {{business}}. Their team is professional, efficient, and truly cares about delivering quality results. I'm so glad I found them!`,
         
-        `What a fantastic experience with {{business}}! The level of professionalism and service quality was outstanding. I'll definitely be using their {{service}} services again and recommending them to everyone in {{location}}.`
+        `What a fantastic experience with {{business}}! The level of professionalism and service quality was outstanding. I'll definitely be using their {{service}} services again and recommending them to everyone I know.`,
+        
+        `Outstanding service from {{business}}! The quality of their {{service}} work was exceptional and the team was incredibly helpful throughout the process. I couldn't be happier with the results.`,
+        
+        `I was thoroughly impressed with {{business}} and their {{service}} services. From the initial consultation to the final delivery, everything was handled with professionalism and care. Highly recommended!`,
+        
+        `{{business}} provided exactly what I was looking for in a {{type}} provider. Their expertise in {{service}} really shows, and they made the entire experience seamless. Will definitely be back!`,
+        
+        `Exceptional experience with {{business}}! Their {{service}} services are top-tier and the customer service was outstanding. They went above and beyond my expectations.`,
+        
+        `I'm so glad I chose {{business}} for my {{service}} needs. The team was knowledgeable, responsive, and delivered excellent results. Would absolutely recommend to others!`
       ];
       
       // Generate a static review with custom information
-      const locations = ["Los Angeles", "New York", "Miami", "Chicago", "Denver"];
-      const location = locations[Math.floor(Math.random() * locations.length)];
-      
       const services = ["digital marketing", "web design", "automation", "chatbot", "development"];
       const service = services[Math.floor(Math.random() * services.length)];
       
@@ -109,7 +116,6 @@ const SimpleReviewGenerator: React.FC = () => {
       const review = template
         .replace(/{{business}}/g, businessName)
         .replace(/{{type}}/g, businessType)
-        .replace(/{{location}}/g, location)
         .replace(/{{service}}/g, service);
       
       console.log("SimpleReviewGenerator: Generated review:", review);

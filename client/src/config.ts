@@ -6,7 +6,7 @@
 // This URL is ONLY used for review generators on the ASAP website itself
 // When the review generator is embedded for clients via iframe, this URL is ignored
 // and only the client-specific URL from the URL parameters is used
-export const DEFAULT_ASAP_GOOGLE_MAPS_URL = "https://g.co/kgs/fdvVJCy";
+export const DEFAULT_ASAP_GOOGLE_MAPS_URL = "https://maps.app.goo.gl/wf8PjgLoGc2ZrFeL9";
 // ⚠️ TODO: Replace the above URL with your actual ASAP Google Maps review URL
 // Example: https://www.google.com/maps/place/ASAP+Agency/...
 

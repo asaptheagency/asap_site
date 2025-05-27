@@ -14,6 +14,13 @@ const ReviewLaunch: React.FC = () => {
     }
   };
 
+  const scrollToWhatYoureGetting = () => {
+    const whatYoureGettingSection = document.getElementById('what-youre-getting');
+    if (whatYoureGettingSection) {
+      whatYoureGettingSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black text-white">
       <SEOHead
@@ -44,7 +51,7 @@ const ReviewLaunch: React.FC = () => {
               
               <Button 
                 size="lg"
-                onClick={scrollToForm}
+                onClick={scrollToWhatYoureGetting}
                 className="bg-accent hover:bg-accent/90 text-black font-semibold px-8 py-4 text-lg rounded-lg"
               >
                 Claim Your Launch Discount
@@ -118,7 +125,7 @@ const ReviewLaunch: React.FC = () => {
         </section>
 
         {/* Offer Section */}
-        <section className="py-20 px-4">
+        <section id="what-youre-getting" className="py-20 px-4">
           <div className="container mx-auto max-w-6xl">
             <motion.div
               variants={fadeIn}
@@ -131,8 +138,23 @@ const ReviewLaunch: React.FC = () => {
                 What You're Getting
               </h2>
               
-              <div className="space-y-6 text-lg text-gray-300 max-w-4xl mx-auto">
-
+              <div className="space-y-8 text-lg text-gray-300 max-w-4xl mx-auto">
+                {/* Video Demo */}
+                <div className="flex justify-center mb-8">
+                  <div className="relative w-full max-w-3xl">
+                    <iframe 
+                      width="100%" 
+                      height="400" 
+                      src="https://www.youtube.com/embed/LX01ZCh3u_M?si=Fed_U7AE18bAK_qx&controls=0" 
+                      title="Review Generator Demo" 
+                      frameBorder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      referrerPolicy="strict-origin-when-cross-origin" 
+                      allowFullScreen
+                      className="rounded-lg shadow-2xl"
+                    />
+                  </div>
+                </div>
                 
                 <p>
                   Both Review Generators automatically create authentic-sounding reviews, copy them to your customer's clipboard, and redirect the customer to your Google Maps profile making them just clicks away from leaving you that 5-star review on the spot. The Standard version uses a simple one-click button that instantly generates a review. The Premium version includes a smart form that customizes the review based on customer input, creating more personalized and varied feedback. Both are designed to get results fast — with no subscriptions, no fluff, and no hassle.
@@ -172,6 +194,16 @@ const ReviewLaunch: React.FC = () => {
                     <span>Strategy call to ensure you receive desired outcome</span>
                   </li>
                 </ul>
+                
+                <div className="text-center">
+                  <Button 
+                    size="lg"
+                    onClick={() => window.open('https://buy.stripe.com/8x27sK3IAdAn8M9ey00VO00', '_blank')}
+                    className="bg-accent hover:bg-accent/90 text-black font-semibold px-8 py-3 rounded-lg w-1/2"
+                  >
+                    Get Standard Setup
+                  </Button>
+                </div>
               </motion.div>
 
               <motion.div
@@ -214,6 +246,16 @@ const ReviewLaunch: React.FC = () => {
                     <span>Strategy call to ensure you receive desired outcome</span>
                   </li>
                 </ul>
+                
+                <div className="text-center">
+                  <Button 
+                    size="lg"
+                    onClick={() => window.open('https://buy.stripe.com/dRm9AS4MEfIv8M90Ha0VO01', '_blank')}
+                    className="bg-accent hover:bg-accent/90 text-black font-semibold px-8 py-3 rounded-lg w-1/2"
+                  >
+                    Get Premium Setup
+                  </Button>
+                </div>
               </motion.div>
             </div>
             
@@ -314,10 +356,10 @@ const ReviewLaunch: React.FC = () => {
               className="text-center mb-8"
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Ready to Get Started?
+                Have More Questions?
               </h2>
               <p className="text-lg text-gray-300">
-                Fill out the form below to claim your launch discount
+                Fill out the form below and we'll get back to you
               </p>
             </motion.div>
             
