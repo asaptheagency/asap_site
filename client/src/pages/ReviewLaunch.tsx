@@ -104,22 +104,34 @@ const ReviewLaunch: React.FC = () => {
         </section>
 
         {/* Founder's Note */}
-        <section className="py-16 px-4 bg-accent/5 backdrop-blur-sm">
-          <div className="container mx-auto max-w-4xl">
+        <section className="py-16 px-4 bg-gradient-to-br from-accent/40 via-accent/30 to-accent/35 backdrop-blur-sm relative overflow-hidden">
+          {/* Background decoration */}
+          <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-transparent to-accent/15"></div>
+          <div className="absolute top-0 right-1/3 w-28 h-28 bg-accent/20 rounded-full blur-2xl"></div>
+          <div className="absolute bottom-0 left-1/3 w-20 h-20 bg-accent/25 rounded-full blur-xl"></div>
+          
+          <div className="container mx-auto max-w-4xl relative z-10">
             <motion.div
               variants={slideFromLeft}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center space-y-6"
+              className="relative bg-gradient-to-br from-accent/40 via-accent/25 to-accent/35 backdrop-blur-sm border border-accent/50 rounded-2xl p-8 text-center space-y-6 overflow-hidden"
             >
-              <h2 className="text-3xl md:text-4xl font-bold">
-                Why We're Offering This as a Standalone Product
-              </h2>
+              {/* Inner card decoration with contrasting accent theme */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-accent/25 rounded-2xl"></div>
+              <div className="absolute top-0 left-0 w-16 h-16 bg-accent/30 rounded-full blur-lg"></div>
+              <div className="absolute bottom-0 right-0 w-12 h-12 bg-accent/35 rounded-full blur-md"></div>
               
-              <p className="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
-                The Review Generator was originally developed as one part of our larger growth systems but we received consistent requests from business owners asking to access this tool by itself. For a limited time, you can get direct access to this tool exclusively without signing up for an ASAP automation or marketing package.
-              </p>
+              <div className="relative z-10">
+                <h2 className="text-3xl md:text-4xl font-bold text-white">
+                  Why We're Offering This as a Standalone Product
+                </h2>
+                
+                <p className="text-lg text-gray-200 leading-relaxed max-w-3xl mx-auto">
+                  The Review Generator was originally developed as one part of our larger growth systems but we received consistent requests from business owners asking to access this tool by itself. For a limited time, you can get direct access to this tool exclusively without signing up for an ASAP automation or marketing package.
+                </p>
+              </div>
             </motion.div>
           </div>
         </section>
@@ -168,11 +180,18 @@ const ReviewLaunch: React.FC = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="text-center bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-2xl p-8 mb-12"
+              className="relative text-center bg-gradient-to-r from-accent/50 via-accent/40 to-accent/50 border border-accent/60 rounded-2xl p-8 mb-12 overflow-hidden"
             >
-              <p className="text-lg text-gray-300 leading-relaxed">
-                We don't usually sell this tool by itself. This offer exists because business owners have been asking for it — and because we believe in getting fast results. If you're seeing this page, it means the offer is still active. But once we hit our onboarding limit, this page comes down.
-              </p>
+              {/* Background decoration */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-accent/30 rounded-2xl"></div>
+              <div className="absolute top-0 left-0 w-20 h-20 bg-accent/40 rounded-full blur-xl"></div>
+              <div className="absolute bottom-0 right-0 w-32 h-32 bg-accent/35 rounded-full blur-2xl"></div>
+              
+              <div className="relative z-10">
+                <p className="text-lg text-white leading-relaxed font-medium">
+                  We don't usually sell this tool by itself. This offer exists because business owners have been asking for it — and because we believe in getting fast results. If you're seeing this page, it means the offer is still active. But once we hit our onboarding limit, this page comes down.
+                </p>
+              </div>
             </motion.div>
 
             {/* Pricing Tiers */}
@@ -182,9 +201,14 @@ const ReviewLaunch: React.FC = () => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-accent/30 transition-all duration-300"
+                className="relative bg-gradient-to-br from-white/20 via-white/10 to-white/15 backdrop-blur-sm border border-white/20 rounded-2xl p-8 hover:border-accent/50 transition-all duration-300 overflow-hidden"
               >
-                <div className="text-center mb-6">
+                {/* Background decoration */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/10 rounded-2xl"></div>
+                <div className="absolute top-0 right-0 w-16 h-16 bg-white/10 rounded-full blur-lg"></div>
+                
+                <div className="relative z-10">
+                  <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold mb-2">Standard</h3>
                   <div className="text-4xl font-bold text-accent">$500<span className="text-lg text-gray-400">/one time fee</span></div>
                 </div>
@@ -212,14 +236,15 @@ const ReviewLaunch: React.FC = () => {
                   </li>
                 </ul>
                 
-                <div className="text-center">
-                  <Button 
-                    size="lg"
-                    onClick={() => window.open('https://buy.stripe.com/8x27sK3IAdAn8M9ey00VO00', '_blank')}
-                    className="bg-accent hover:bg-accent/90 text-black font-semibold px-8 py-3 rounded-lg w-1/2"
-                  >
-                    Get Standard Setup
-                  </Button>
+                  <div className="text-center">
+                    <Button 
+                      size="lg"
+                      onClick={() => window.open('https://buy.stripe.com/8x27sK3IAdAn8M9ey00VO00', '_blank')}
+                      className="bg-accent hover:bg-accent/90 text-black font-semibold px-8 py-3 rounded-lg w-1/2"
+                    >
+                      Get Standard Setup
+                    </Button>
+                  </div>
                 </div>
               </motion.div>
 
@@ -291,8 +316,13 @@ const ReviewLaunch: React.FC = () => {
         </section>
 
         {/* Benefits Section */}
-        <section className="py-16 px-4 bg-accent/5 backdrop-blur-sm">
-          <div className="container mx-auto max-w-5xl">
+        <section className="py-16 px-4 bg-gradient-to-br from-accent/40 via-accent/30 to-accent/35 backdrop-blur-sm relative overflow-hidden">
+          {/* Background decoration */}
+          <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-transparent to-accent/15"></div>
+          <div className="absolute top-0 left-1/4 w-32 h-32 bg-accent/20 rounded-full blur-2xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-24 h-24 bg-accent/25 rounded-full blur-xl"></div>
+          
+          <div className="container mx-auto max-w-5xl relative z-10">
             <motion.div
               variants={fadeIn}
               initial="hidden"
@@ -349,21 +379,28 @@ const ReviewLaunch: React.FC = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="text-center space-y-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
+              className="relative text-center space-y-6 bg-gradient-to-br from-accent/40 via-accent/30 to-accent/35 backdrop-blur-sm border border-accent/50 rounded-2xl p-8 overflow-hidden"
             >
-              <h2 className="text-3xl md:text-4xl font-bold">
-                Our Guarantee
-              </h2>
+              {/* Background decoration */}
+              <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/10 rounded-2xl"></div>
+              <div className="absolute top-0 right-0 w-24 h-24 bg-accent/15 rounded-full blur-xl"></div>
+              <div className="absolute bottom-0 left-0 w-16 h-16 bg-accent/20 rounded-full blur-lg"></div>
               
-              <p className="text-lg text-gray-300 leading-relaxed">
-                If you don't see a noticeable increase in reviews within 30 days of using this tool, we'll step in. Our team will work with you directly to fine-tune the system and make sure you're getting results — no extra charge, no runaround.
-              </p>
+              <div className="relative z-10">
+                <h2 className="text-3xl md:text-4xl font-bold text-white">
+                  Our Guarantee
+                </h2>
+                
+                <p className="text-lg text-gray-200 leading-relaxed">
+                  If you don't see a noticeable increase in reviews within 30 days of using this tool, we'll step in. Our team will work with you directly to fine-tune the system and make sure you're getting results — no extra charge, no runaround.
+                </p>
+              </div>
             </motion.div>
           </div>
         </section>
 
-        {/* Google Form Section */}
-        <section id="google-form" className="py-16 px-4 bg-accent/5 backdrop-blur-sm">
+        {/* Google Form Section - COMMENTED OUT */}
+        {/* <section id="google-form" className="py-16 px-4 bg-accent/5 backdrop-blur-sm">
           <div className="container mx-auto max-w-4xl">
             <motion.div
               variants={fadeIn}
@@ -397,7 +434,7 @@ const ReviewLaunch: React.FC = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
 
 
@@ -417,7 +454,7 @@ const ReviewLaunch: React.FC = () => {
               
               <Button 
                 size="lg"
-                onClick={scrollToForm}
+                onClick={scrollToWhatYoureGetting}
                 className="bg-accent hover:bg-accent/90 text-black font-semibold px-8 py-4 text-lg rounded-lg"
               >
                 Start Setup Now
