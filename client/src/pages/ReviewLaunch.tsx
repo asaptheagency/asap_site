@@ -104,11 +104,8 @@ const ReviewLaunch: React.FC = () => {
         </section>
 
         {/* Founder's Note */}
-        <section className="py-16 px-4 bg-gradient-to-br from-accent/40 via-accent/30 to-accent/35 backdrop-blur-sm relative overflow-hidden">
-          {/* Background decoration */}
-          <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-transparent to-accent/15"></div>
-          <div className="absolute top-0 right-1/3 w-28 h-28 bg-accent/20 rounded-full blur-2xl"></div>
-          <div className="absolute bottom-0 left-1/3 w-20 h-20 bg-accent/25 rounded-full blur-xl"></div>
+        <section className="py-16 px-4 relative overflow-hidden">
+          <FloatingElements className="absolute inset-0 pointer-events-none" />
           
           <div className="container mx-auto max-w-4xl relative z-10">
             <motion.div
@@ -316,11 +313,8 @@ const ReviewLaunch: React.FC = () => {
         </section>
 
         {/* Benefits Section */}
-        <section className="py-16 px-4 bg-gradient-to-br from-accent/40 via-accent/30 to-accent/35 backdrop-blur-sm relative overflow-hidden">
-          {/* Background decoration */}
-          <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-transparent to-accent/15"></div>
-          <div className="absolute top-0 left-1/4 w-32 h-32 bg-accent/20 rounded-full blur-2xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-24 h-24 bg-accent/25 rounded-full blur-xl"></div>
+        <section className="py-16 px-4 relative overflow-hidden">
+          <FloatingElements className="absolute inset-0 pointer-events-none" />
           
           <div className="container mx-auto max-w-5xl relative z-10">
             <motion.div
@@ -371,33 +365,7 @@ const ReviewLaunch: React.FC = () => {
           </div>
         </section>
 
-        {/* Guarantee Section */}
-        <section className="py-16 px-4">
-          <div className="container mx-auto max-w-4xl">
-            <motion.div
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="relative text-center space-y-6 bg-gradient-to-br from-accent/40 via-accent/30 to-accent/35 backdrop-blur-sm border border-accent/50 rounded-2xl p-8 overflow-hidden"
-            >
-              {/* Background decoration */}
-              <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/10 rounded-2xl"></div>
-              <div className="absolute top-0 right-0 w-24 h-24 bg-accent/15 rounded-full blur-xl"></div>
-              <div className="absolute bottom-0 left-0 w-16 h-16 bg-accent/20 rounded-full blur-lg"></div>
-              
-              <div className="relative z-10">
-                <h2 className="text-3xl md:text-4xl font-bold text-white">
-                  Our Guarantee
-                </h2>
-                
-                <p className="text-lg text-gray-200 leading-relaxed">
-                  If you don't see a noticeable increase in reviews within 30 days of using this tool, we'll step in. Our team will work with you directly to fine-tune the system and make sure you're getting results — no extra charge, no runaround.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+
 
         {/* Google Form Section - COMMENTED OUT */}
         {/* <section id="google-form" className="py-16 px-4 bg-accent/5 backdrop-blur-sm">
@@ -459,6 +427,29 @@ const ReviewLaunch: React.FC = () => {
               >
                 Start Setup Now
               </Button>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Guarantee Section */}
+        <section className="py-16 px-4 relative overflow-hidden">
+          <FloatingElements className="absolute inset-0 pointer-events-none" />
+          
+          <div className="container mx-auto max-w-4xl relative z-10">
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="text-center space-y-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-white">
+                Our Guarantee
+              </h2>
+              
+              <p className="text-lg text-gray-200 leading-relaxed">
+                If you don't see a noticeable increase in reviews within 30 days of using this tool, we'll step in. Our team will work with you directly to fine-tune the system and make sure you're getting results — no extra charge, no runaround.
+              </p>
             </motion.div>
           </div>
         </section>
