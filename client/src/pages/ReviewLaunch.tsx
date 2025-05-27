@@ -162,6 +162,19 @@ const ReviewLaunch: React.FC = () => {
               </div>
             </motion.div>
 
+            {/* Urgency Block */}
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="text-center bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-2xl p-8 mb-12"
+            >
+              <p className="text-lg text-gray-300 leading-relaxed">
+                We don't usually sell this tool by itself. This offer exists because business owners have been asking for it — and because we believe in getting fast results. If you're seeing this page, it means the offer is still active. But once we hit our onboarding limit, this page comes down.
+              </p>
+            </motion.div>
+
             {/* Pricing Tiers */}
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <motion.div
@@ -179,7 +192,11 @@ const ReviewLaunch: React.FC = () => {
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start gap-3">
                     <Check className="text-accent mt-1 flex-shrink-0" size={20} />
-                    <span>Review Generator button that creates AI-generated review text, copies the review to the user's clipboard and takes them to your Google Maps profile</span>
+                    <span>Review Generator button that creates AI-generated review text</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="text-accent mt-1 flex-shrink-0" size={20} />
+                    <span>Clipboard copy + Google Maps redirect</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="text-accent mt-1 flex-shrink-0" size={20} />
@@ -382,22 +399,7 @@ const ReviewLaunch: React.FC = () => {
           </div>
         </section>
 
-        {/* Urgency Block */}
-        <section className="py-12 px-4">
-          <div className="container mx-auto max-w-4xl">
-            <motion.div
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="text-center bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-2xl p-8"
-            >
-              <p className="text-lg text-gray-300 leading-relaxed">
-                We don't usually sell this tool by itself. This offer exists because business owners have been asking for it — and because we believe in getting fast results. If you're seeing this page, it means the offer is still active. But once we hit our onboarding limit, this page comes down.
-              </p>
-            </motion.div>
-          </div>
-        </section>
+
 
         {/* Final CTA */}
         <section className="py-16 px-4">
