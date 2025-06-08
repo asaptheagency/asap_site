@@ -53,8 +53,8 @@ function main() {
   // Copy image files
   const imageExtensions = ['.webp', '.png', '.jpg', '.jpeg', '.svg', '.gif'];
   
-  // Copy from attached_assets to public/images
-  copyFiles('attached_assets', 'public/images', imageExtensions);
+  // Skip attached_assets folder to avoid build conflicts
+  // copyFiles('attached_assets', 'public/images', imageExtensions);
   
   // Copy from client/src/assets to public/images
   copyFiles('client/src/assets', 'public/images', imageExtensions);
@@ -67,7 +67,6 @@ function main() {
 /*    /index.html   200
 
 # Ensure image paths are properly resolved
-/attached_assets/*  /images/:splat  200
 /images/*           /images/:splat  200`;
     
     fs.writeFileSync(redirectsPath, redirectsContent);

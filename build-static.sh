@@ -6,12 +6,10 @@ echo "Starting static build process..."
 # Build the frontend
 npx vite build --outDir=static-build
 
-# Create attached_assets directory
-mkdir -p static-build/attached_assets
-
-# Copy all assets
-echo "Copying assets..."
-cp -r attached_assets/* static-build/attached_assets/
+# Skip attached_assets directory to avoid build conflicts
+# mkdir -p static-build/attached_assets
+# echo "Copying assets..."
+# cp -r attached_assets/* static-build/attached_assets/
 
 # Create public directory for Netlify
 mkdir -p dist/public

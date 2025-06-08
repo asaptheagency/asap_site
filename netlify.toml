@@ -1,5 +1,5 @@
 [build]
-  command = "node pre-build.js && npm run build"
+  command = "node netlify-build.js && npm run build"
   publish = "dist/public"
 
 [build.environment]
