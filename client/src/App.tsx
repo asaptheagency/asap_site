@@ -11,15 +11,21 @@ import PageTransition from "./components/PageTransition";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-// Lazy load service pages for better performance
-const WebDesign = lazy(() => import("./pages/services/WebDesign"));
-const AutoMate = lazy(() => import("./pages/services/AutoMate"));
-const BotSpot = lazy(() => import("./pages/services/BotSpot"));
-const AppSnap = lazy(() => import("./pages/services/AppSnap"));
-const HypeRise = lazy(() => import("./pages/services/HypeRise"));
-const ReviewGenerators = lazy(() => import("./pages/services/ReviewGenerators"));
-const ReviewGeneratorsSimple = lazy(() => import("./pages/services/ReviewGeneratorsSimple"));
-const TestPage = lazy(() => import("./pages/services/TestPage"));
+// New automation service pages
+const Rise = lazy(() => import("./pages/services/Rise"));
+const SalesDrive = lazy(() => import("./pages/services/SalesDrive"));
+const FollowUp = lazy(() => import("./pages/services/FollowUp"));
+const FrontDesk = lazy(() => import("./pages/services/FrontDesk"));
+
+// COMMENTED OUT - Legacy service pages
+// const WebDesign = lazy(() => import("./pages/services/WebDesign"));
+// const AutoMate = lazy(() => import("./pages/services/AutoMate"));
+// const BotSpot = lazy(() => import("./pages/services/BotSpot"));
+// const AppSnap = lazy(() => import("./pages/services/AppSnap"));
+// const HypeRise = lazy(() => import("./pages/services/HypeRise"));
+// const ReviewGenerators = lazy(() => import("./pages/services/ReviewGenerators"));
+// const ReviewGeneratorsSimple = lazy(() => import("./pages/services/ReviewGeneratorsSimple"));
+// const TestPage = lazy(() => import("./pages/services/TestPage"));
 const ReviewLaunch = lazy(() => import("./pages/ReviewLaunch"));
 
 // Hidden review generator pages
@@ -105,7 +111,7 @@ function Router() {
             {/* Premium version with customization options */}
             <Route path="/review-generator" component={AdvancedReviewGenerator} />
             <Route path="/client-key-review-generator" component={AdvancedReviewGenerator} />
-            <Route path="/services/review-generators" component={ReviewGeneratorsSimple} />
+            {/* <Route path="/services/review-generators" component={ReviewGeneratorsSimple} /> */}
             <Route path="/review-launch" component={ReviewLaunch} />
             
             {/* Industry pages */}
@@ -117,14 +123,21 @@ function Router() {
           <MainLayout>
             <Switch>
               <Route path="/" component={Home} />
-              <Route path="/services/web-design" component={WebDesign} />
-              <Route path="/services/automate" component={AutoMate} />
-              <Route path="/services/botspot" component={BotSpot} />
-              <Route path="/services/appsnap" component={AppSnap} />
-              <Route path="/services/hyperise" component={HypeRise} />
-              <Route path="/services/test" component={TestPage} />
-
               
+              {/* New automation service routes */}
+              <Route path="/services/rise" component={Rise} />
+              <Route path="/services/sales-drive" component={SalesDrive} />
+              <Route path="/services/outreach-pro" component={FollowUp} />
+              <Route path="/services/front-desk" component={FrontDesk} />
+
+              {/* COMMENTED OUT - Legacy service routes */}
+              {/* <Route path="/services/web-design" component={WebDesign} /> */}
+              {/* <Route path="/services/automate" component={AutoMate} /> */}
+              {/* <Route path="/services/botspot" component={BotSpot} /> */}
+              {/* <Route path="/services/appsnap" component={AppSnap} /> */}
+              {/* <Route path="/services/hyperise" component={HypeRise} /> */}
+              {/* <Route path="/services/test" component={TestPage} /> */}
+
               {/* Industry pages also available in main layout */}
               <Route path="/industries/law-firms" component={LawFirms} />
               <Route path="/industries/pdr-shops" component={PdrShops} />

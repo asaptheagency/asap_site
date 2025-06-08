@@ -1,0 +1,91 @@
+Create a standalone, high-converting landing page for ASAP’s Review Generator offer.
+
+**Primary Objective:**
+Convert Meta ad traffic into leads for a fast-cash offer (Standard: $500, Premium: $1,000) by positioning this tool as a rare, limited-time standalone offer that delivers fast, high-leverage results.
+
+**Secondary Objective:**
+Warm up prospects for future upsells by making this tool feel like the first step toward a complete business system.
+
+**Important Instructions:**
+- DO NOT link this page in the navigation or footer of the main website.
+- Match the design style of the "Industries" pages (clean typography, spacious layout, brand color palette, minimal shadows, and rounded buttons).
+- Ensure mobile optimization and fast loading.
+- Use semantic HTML and clean CSS.
+- Leave a placeholder for a Google Form embed: <!-- Google Form Embed Goes Here -->
+
+**URL Slug:** /review-launch
+
+---
+
+**1. Hero Section**
+- **Headline:** "Get More Google Reviews — Without Chasing Anyone."
+- **Subheadline:** "Turn your happy customers into 5-star reviewers with one smart tool. Quick setup. Real results."
+- **CTA Button:** "Claim Your Launch Discount" (scrolls to form)
+
+---
+
+**2. Founder’s Note (Immediately Below Hero)**
+- **Headline:** "Why We're Offering This as a Standalone Product"
+- **Paragraph:**
+"The Review Generator was originally developed as one part of our larger growth systems but as word spread we received consistent requests from business owners asking to access this tool by itself. For a limited time, you can get direct access to this tool exclusively without signing up for an ASAP automation or marketing package."
+
+---
+
+**3. Offer Section**
+- **Headline:** "Launch Special Pricing"
+
+- **Paragraph 1:**
+"Did you know that businesses who ask for reviews at the point of service see up to **3x more responses**? (Source: GatherUp) That’s why this tool exists. Customers are most likely to leave a review when the experience is still fresh — not hours later when they've forgotten. Our system helps you capture that moment and turn it into a public 5-star endorsement."
+
+- **Paragraph 2:**
+"You don’t need to chase people. You need a system that does the asking for you — instantly, and in a way that feels natural. That’s exactly what these two options deliver. One is a simple, powerful button. The other adds smart feedback customization. Both are designed to get results fast — with no subscriptions, no fluff, and no hassle."
+
+- **Two Tiered Boxes (Side by Side):**
+
+  **Standard – $500**
+  - Review Generator button that creates AI-generated review text, copies the review to the user’s clipboard and takes them to your Google Maps profile
+  - Branding for one location
+  - Website integration
+
+  **Premium – $1,000**
+  - Review Generator form that customizes review text based on customer input
+  - Clipboard copy + Google Maps redirect
+  - Multi-location branding (up to 3)
+  - Website integration
+
+- **Note:** These are one-time setup fees — no recurring charges.
+
+---
+
+**4. Benefits Section**
+- **Headline:** “Why This Tool Gets Results”
+- **4 Quick Benefits:**
+  - Increases amount of consistent 5-star reviews
+  - Removes the awkwardness of asking for reviews
+  - Makes leaving feedback quick, easy, and guided
+  - Helps you dominate your local reputation while you focus on doing great work
+
+---
+
+**5. Guarantee Section**
+- **Headline:** "Our Guarantee"
+- **Paragraph:**
+"If you don’t see a noticeable increase in reviews within 30 days of using this tool, we’ll step in. Our team will work with you directly to fine-tune the system and make sure you’re getting results — no extra charge, no runaround."
+
+---
+
+**6. Google Form Placeholder**
+- Leave space for this embed:
+<!-- Google Form Embed Goes Here -->
+
+---
+
+**7. Urgency Block**
+- **Copy:**
+"We don’t usually sell this tool by itself. This offer exists because business owners have been asking for it — and because we believe in getting fast results. If you’re seeing this page, it means the offer is still active. But once we hit our onboarding limit, this page comes down."
+
+---
+
+**8. Final CTA Block**
+- **Headline:** "Let’s Get You More Reviews"
+- **CTA Button:** "Start Setup Now" (scrolls to form)

@@ -1,9 +1,40 @@
 import { useLocation } from "wouter";
+import { useEffect } from "react";
 
 const Footer = () => {
   const [, setLocation] = useLocation();
   
   const currentYear = new Date().getFullYear();
+
+  useEffect(() => {
+    // Load Google Calendar scheduling button script
+    const script = document.createElement('script');
+    script.src = 'https://calendar.google.com/calendar/scheduling-button-script.js';
+    script.async = true;
+    script.onload = () => {
+      // Initialize the calendar button once the script is loaded
+      const calendar = (window as any).calendar;
+      if (calendar && calendar.schedulingButton) {
+        const container = document.getElementById('calendar-button-container');
+        if (container) {
+          calendar.schedulingButton.load({
+            url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1drKUCVOMA5usQoGlPHT9SYyEk777PMSRkNh2OvjkNbHkazJ-UwXZ-tzU3sk-FEgPNTMJXB7H0?gv=true',
+            color: '#14B8A6', // Using teal-500 to match the site theme
+            label: 'Book an appointment',
+            target: container,
+          });
+        }
+      }
+    };
+    document.head.appendChild(script);
+
+    // Cleanup function to remove script on component unmount
+    return () => {
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
   
   return (
     <>
@@ -33,46 +64,68 @@ const Footer = () => {
             </div>
             
             <div>
-              <h4 className="text-lg font-bold mb-6">Industries</h4>
+              <h4 className="text-lg font-bold mb-6">Services</h4>
               <ul className="space-y-3">
                 <li>
                   <a 
-                    href="/industries/law-firms" 
+                    href="/services/rise" 
                     className="text-muted-foreground hover:text-accent"
                     onClick={(e) => {
                       e.preventDefault();
-                      setLocation("/industries/law-firms");
+                      setLocation("/services/rise");
                     }}
                   >
-                    Law Firms
+                    R.I.S.E.
                   </a>
                 </li>
                 <li>
                   <a 
-                    href="/industries/contractors" 
+                    href="/services/sales-drive" 
                     className="text-muted-foreground hover:text-accent"
                     onClick={(e) => {
                       e.preventDefault();
-                      setLocation("/industries/contractors");
+                      setLocation("/services/sales-drive");
                     }}
                   >
-                    Roofers
+                    ASAP Connect - Sales Drive
                   </a>
                 </li>
                 <li>
                   <a 
-                    href="/industries/pdr-shops" 
+                    href="/services/outreach-pro" 
                     className="text-muted-foreground hover:text-accent"
                     onClick={(e) => {
                       e.preventDefault();
-                      setLocation("/industries/pdr-shops");
+                      setLocation("/services/outreach-pro");
                     }}
                   >
-                    PDR Shops
+                    ASAP Connect - OutreachPro
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="/services/front-desk" 
+                    className="text-muted-foreground hover:text-accent"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setLocation("/services/front-desk");
+                    }}
+                  >
+                    ASAP Connect - Front Desk
                   </a>
                 </li>
               </ul>
             </div>
+
+            {/* COMMENTED OUT - Legacy Industries Section */}
+            {/* <div>
+              <h4 className="text-lg font-bold mb-6">Industries</h4>
+              <ul className="space-y-3">
+                <li><a href="/industries/law-firms" className="text-muted-foreground hover:text-accent">Law Firms</a></li>
+                <li><a href="/industries/contractors" className="text-muted-foreground hover:text-accent">Roofers</a></li>
+                <li><a href="/industries/pdr-shops" className="text-muted-foreground hover:text-accent">PDR Shops</a></li>
+              </ul>
+            </div> */}
             
             <div>
               <h4 className="text-lg font-bold mb-6">Contact Us</h4>
@@ -82,6 +135,9 @@ const Footer = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   <span className="text-muted-foreground">info@asaptheagency.com</span>
+                </li>
+                <li className="mt-6">
+                  <div id="calendar-button-container"></div>
                 </li>
               </ul>
             </div>

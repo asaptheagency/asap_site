@@ -1,0 +1,206 @@
+I know that this prompt is a lot to take in so before you begin please organize your thoughts and create a through/robust plan of action in order to ensure that you do not forget anything. I would love to see the plan of action that you come up with in a numbered list. Here's the prompt:
+
+
+Replace the current "Services" section on the homepage with a new "Industries We Serve" section and have three cards in this section that look and function exactly like the cards that currently exist in the "services" section. Don't delete the services section or the cards in the services section or the links to it that exist now…comment it all out so that it's no longer visible from the site. Technically the services pages should be live but no one should be able to find them because the links to those pages will be gone. I want three cards in this new section: "Law Firms", "PDR Shops", and "Roofers"
+
+- Each card should have:
+  • Industry title
+  • Subtitle or tagline (e.g., "Growth systems for firms under $1M/year")
+  • Image (i have attached corresponding images)
+- On click, each card should route to a dedicated page:
+  • /industries/law-firms
+  • /industries/pdr-shops
+  • /industries/contractors
+
+Do not include pricing anywhere on the homepage or subpages.
+The layout should be scalable — easy to add future industries
+
+Style should match the rest of the site (use global styling or Tailwind if applicable).
+
+Whenever you see the phrase "* ASAP's proprietary "Review Generator"" below know that i want you to turn that text into a link that routes to the current "Review Generators" page. 
+
+Whenever you see the phrase "[Contact Us Button]" below know that i want you to turn that into a button that routes to the link that i have for my Google Booking page. I know you have it
+
+Replace the "Solutions" dropdown in the header with an "Industries" dropdown with the three industries referenced above
+
+Replace the "Solutions" section in the footer with an "Industries" section with links to the three industries referenced above
+
+Replace the favicon with the robot logo
+
+Create the copy that goes in each card
+
+"Industries" section
+Industries (formerly Services)
+
+Industries We ServeTailored growth systems for specific business types. Explore how we help businesses like yours automate operations, attract more customers, and scale smarter.
+
+Law Firms
+Growth systems designed for firms under $1M year.
+
+Take Control of Your Practice.
+Your law firm deserves more than a generic website. You need a system that works like a silent partner — helping you bring in leads, qualify them, and book appointments while you focus on your cases.
+
+Most solo and small firm attorneys spend hours managing client intake, answering calls, and chasing leads. We fix that.
+
+With ASAP, you get more than a website — you get a streamlined client-generation system built specifically for legal services.
+
+What You Get:
+
+* Deep Google Integration: From reviews to calendars to lead capture, your system works seamlessly with tools your clients already trust — including Google Search, Maps, Sheets, and Calendar.
+* A clean, professional site that builds trust and drives calls
+* Automation that frees you from repetitive admin tasks
+* Ongoing systems that grow with your practice
+
+Tier 1: Intake Igniter
+
+Your firm’s digital front door, built to convert.
+
+* Website designed for legal trust and conversion
+* ASAP's proprietary "Review Generator"
+* Booking/calendar integration (Google or embedded)
+* Chatbot lead capture (Google Sheet or CRM-ready)
+* Hosting + domain setup
+
+Tier 2: Authority Amplifier
+
+Position your firm as the go-to expert in your area.
+
+* All of Tier 1
+* Google Business optimization
+* SEO blogging
+* Landing page for lead magnets
+* Email/SMS automation sequences
+* Testimonial & case study pages
+
+Tier 3: The Autopilot Engine
+
+Run your law firm like a well-oiled machine.
+
+* All of Tier 2
+* AI voice agent to answer + follow up with leads
+* Smart chatbot lead qualification
+* CRM & dashboard integrations
+* Review + follow-up automation
+
+Why Choose ASAP for Your Law Firm?
+
+* Complete Customization: Every design and system is tailored to your firm’s goals and clientele.
+* Professional Appearance & Functionality: Built with credibility, responsiveness, and mobile optimization in mind.
+* Improved SEO: We use law-firm-specific SEO strategies so clients can actually find you.
+* Scalability: Start small, expand later — our systems grow with your firm.
+
+Next Step?
+Let’s turn your website into your hardest working employee.
+
+[Contact Us Button]
+
+PDR Shops
+Websites and automation built for paintless dent repair businesses
+
+Get More Jobs Without Doing More Work.
+You fix dents. We fix your website, your lead funnel, and your follow-up system.
+
+Too many PDR shops rely on referrals and word-of-mouth. That’s great until things slow down. Your business deserves a system that captures local searches and turns them into booked jobs — without more calls, texts, or missed opportunities.
+
+We design systems that turn your website into your most valuable tool — even more valuable than your PDR light.
+
+What You Get:
+
+* Deep Google Integration: From reviews to calendars to lead capture, your system works seamlessly with tools your clients already trust — including Google Search, Maps, Sheets, and Calendar.
+* A conversion-first site that brings in estimate requests
+* Automated tools to follow up with leads
+* An optional growth engine that builds local visibility and trust
+
+Tier 1: Estimate Engine
+
+Get a site that works while you’re working.
+
+* Modern PDR website
+* ASAP's proprietary "Review Generator"
+* Booking or estimate form (syncs to email or Google Sheet)
+* Hosting + domain setup
+
+Tier 2: Local Dominator
+
+Get found and trusted.
+
+* All of Tier 1
+* Google Business optimization
+* SEO blogging
+* Testimonial and before/after gallery
+* Retargeting-ready contact flows
+
+Tier 3: Shop Streamliner
+
+Your silent salesperson.
+
+* All of Tier 2
+* AI chatbot or voice agent to answer FAQs + qualify leads
+* Email/SMS automation for missed estimates
+* Retargeting-ready PDR-specific landing pages for ads
+
+Why Choose ASAP for Your PDR Shop?
+
+* Made for Mobile: Most PDR customers search on their phones. Your site will shine.
+* Trust Signals:  Get more Google Maps reviews and display the vehicles that you've repaired proudly
+* Automation Built for Local: Capture leads, automate replies, book more jobs.
+
+Next Step?
+You’re the best in your lane. Let your website prove it.
+
+[Contact Us Button]
+
+Roofers
+Growth systems built for roofing companies ready to scale.
+
+Roofing is Competitive. Your System Should Give You the Edge.
+From storm chasing to local replacement jobs, most roofing companies miss out on leads because their website is just a brochure. We build systems that work like an aggressive salesperson — attracting, qualifying, and booking high-value clients automatically.
+
+If you want to compete in today’s roofing market, you need more than a nice logo. You need automation, trust signals, and a digital experience that closes the deal.
+
+What You Get:
+
+* Deep Google Integration: From reviews to calendars to lead capture, your system works seamlessly with tools your clients already trust — including Google Search, Maps, Sheets, and Calendar.
+* A conversion-first site that brings in estimate requests
+* Automated tools to follow up with leads
+* An optional growth engine that builds local visibility and trust
+
+Tier 1: Lead Magnet
+
+Get booked online — even while you’re on a roof.
+
+* Roofing website with lead-focused design complete with calls to action and a funnel-like flow
+* ASAP's proprietary "Review Generator"
+* Estimate/inspection request form (to inbox or Google Sheet)
+* Hosting + domain setup
+
+Tier 2: Local Trust Builder
+
+Be the first roofer they find — and trust.
+
+* All of Tier 1
+* Google Business optimization
+* Testimonial and before/after gallery
+* SEO blogging
+
+Tier 3: Stormproof System
+
+Run your roofing business on autopilot.
+
+* All of Tier 2
+* AI voice or chatbot to answer, qualify, and book leads
+* Email/SMS automations for unclosed jobs
+* CRM integration for full visibility
+* Retargeting-ready storm-specific landing pages for ads
+
+Why Choose ASAP for Your Roofing Company?
+
+* Storm Season-Ready: Add or remove landing pages instantly when storms hit
+* Built to Convert: Every element is optimized to drive inspections and estimates
+* Locally Tuned: SEO and Google Business tuned for your market
+* Lead Follow-Up Done for You: Never forget to chase a job again
+
+Next Step?
+You’re already great at roofs. We’ll handle the rest.
+
+[Contact Us Button]

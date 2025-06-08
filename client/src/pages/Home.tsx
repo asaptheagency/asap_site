@@ -74,7 +74,7 @@ const Home = () => {
         </div>
         
         {/* Services section wrapped with both IDs for different targeting options */}
-        <div id="services-section" className="scroll-mt-[120px]">
+        <div id="services" className="scroll-mt-[120px]">
           <Industries />
         </div>
       </main>

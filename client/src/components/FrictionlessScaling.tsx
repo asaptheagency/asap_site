@@ -111,8 +111,18 @@ const FrictionlessScaling = () => {
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col-reverse md:flex-row">
-          <div className="md:w-3/4 md:pr-12">
+        <div className="flex flex-col-reverse md:flex-row relative">
+          <div className="md:w-3/4 md:pr-12 relative">
+            {/* Vertical text positioned on the side for mobile */}
+            <div 
+              className="absolute -right-4 top-1/2 transform -translate-y-1/2 vertical-text text-4xl md:text-6xl font-bold opacity-20 text-accent uppercase tracking-widest md:hidden z-10"
+              style={{
+                transform: `translateY(-50%) translateY(${mousePosition.y * -5}px)`,
+                transition: 'transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1)',
+              }}
+            >
+              R.I.S.E.
+            </div>
             <motion.div 
               className="mb-6 relative mt-12 md:mt-0"
               variants={fadeInScale}
@@ -136,7 +146,7 @@ const FrictionlessScaling = () => {
                       className="text-2xl font-bold mb-4 drop-shadow-md"
                       style={getParallaxStyle(0.1)}
                     >
-                      Frictionless Scaling
+                      R.I.S.E.
                     </h3>
                   </SimpleParallax>
                   
@@ -145,7 +155,7 @@ const FrictionlessScaling = () => {
                       className="text-muted-foreground mb-6"
                       style={getParallaxStyle(0.05)}
                     >
-                      Once your business systems are streamlined, our marketing experts create high-impact strategies that connect your services to ideal clients, build authority, and transform you into the go-to solution in your market.
+                      Don't let old leads die in your CRM. Our R.I.S.E. system (Revive Inactive Sales Engagements) uses Alina, our intelligent text agent, to automatically reach out to dormant prospects with personalized messages that feel human and convert consistently.
                     </p>
                   </SimpleParallax>
                   
@@ -154,7 +164,7 @@ const FrictionlessScaling = () => {
                       className="text-muted-foreground mb-6"
                       style={getParallaxStyle(0.07)}
                     >
-                      Whether you need targeted ad campaigns, conversion-optimized websites, or comprehensive funnel systems, we design scalable marketing that delivers measurable results and sustainable growth.
+                      Alina analyzes your lead database, crafts compelling follow-up sequences, and schedules appointments automatically. Every message is tailored to the prospect's history and needs, turning cold leads into warm conversations that book appointments on your calendar.
                     </p>
                   </SimpleParallax>
                   
@@ -200,72 +210,19 @@ const FrictionlessScaling = () => {
                       ></div>
                     </div>
                   </motion.div>
-                  
-                  <SimpleParallax speed={0.1} direction="up" opacityEffect={true}>
-                    <div 
-                      className="mt-8 p-6 border border-accent/30 rounded-md bg-background/30 backdrop-blur-sm shadow-lg relative overflow-hidden card-glow-effect primary-glow"
-                      style={getParallaxStyle(0.08)}
-                    >
-                      {/* Decorative glowing elements that move with mouse */}
-                      <div 
-                        className="absolute -top-10 -right-10 w-24 h-24 bg-accent/20 rounded-full blur-xl"
-                        style={{
-                          transform: `translate(${mousePosition.x * 5}px, ${mousePosition.y * 5}px)`,
-                          transition: 'transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1)',
-                        }}
-                      ></div>
-                      
-                      <h4 className="text-xl font-semibold mb-3 relative z-10">Customized Service Paths</h4>
-                      <p className="text-sm text-muted-foreground mb-5 relative z-10">
-                        Every business is unique. We offer tailored service paths based on where you are in your journey:
-                      </p>
-                      
-                      <ul className="space-y-4 text-sm relative z-10">
-                        {["Automation Focus", "Marketing Boost", "Integrated Approach"].map((path, i) => (
-                          <SimpleParallax key={i} speed={0.05 + (i * 0.02)} direction="right" maxOffset={15} delay={i * 100}>
-                            <li 
-                              className="flex items-start p-2 rounded-md hover:bg-accent/10 transition-colors"
-                              style={{
-                                transform: `translateX(${mousePosition.x * (3 + i * 2)}px)`,
-                                transition: 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)',
-                              }}
-                            >
-                              <span className="text-accent mr-3 mt-0.5 text-lg transform transition-transform group-hover:translate-x-1">→</span>
-                              <div>
-                                <span className="font-bold text-primary block mb-1">{path}</span>
-                                <span className="text-muted-foreground">
-                                  {i === 0 && "For businesses needing to streamline operations first"}
-                                  {i === 1 && "For businesses with solid systems ready to scale"}
-                                  {i === 2 && "Our comprehensive solution covering both areas"}
-                                </span>
-                              </div>
-                            </li>
-                          </SimpleParallax>
-                        ))}
-                      </ul>
-                      
-                      {/* Decorative glowing element */}
-                      <div 
-                        className="absolute -bottom-10 -left-10 w-24 h-24 bg-primary/20 rounded-full blur-xl"
-                        style={{
-                          transform: `translate(${mousePosition.x * -5}px, ${mousePosition.y * -5}px)`,
-                          transition: 'transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1)',
-                        }}
-                      ></div>
-                    </div>
-                  </SimpleParallax>
                 </div>
               </div>
             </motion.div>
           </div>
           
-          <div className="md:w-1/4 vertical-text text-6xl font-bold opacity-20 flex items-center justify-center text-accent uppercase tracking-widest"
+          {/* Vertical text for desktop only */}
+          <div className="hidden md:flex md:w-1/4 vertical-text text-6xl font-bold opacity-20 items-center justify-center text-accent uppercase tracking-widest"
             style={{
               transform: `translateY(${mousePosition.y * -15}px)`,
               transition: 'transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1)',
             }}
           >
-            SCALING
+            R.I.S.E.
           </div>
         </div>
       </div>

@@ -182,7 +182,7 @@ const Hero = () => {
                 </h1>
                 
                 <h2 className="text-2xl md:text-3xl font-medium text-white/80 mt-4 mb-6">
-                  Not just a website. Not just marketing. A smarter, simpler way to grow.
+                  AI voice agents that handle calls, texts that revive dead leads, automation that works 24/7.
                 </h2>
               </div>
             </SimpleParallax>
@@ -190,7 +190,7 @@ const Hero = () => {
             <SimpleParallax speed={0.1} direction="diagonal-down-left" opacityEffect={true}>
               <div style={getParallaxStyle(0.05)}>
                 <p className="text-lg text-muted-foreground mb-8">
-                  Most businesses hit a wall because their systems can't keep up. At ASAP, we build the kind of digital setup that brings in better clients, follows up automatically, and frees you to grow. No fluff. No clutter. Just smart tools that do the work — so you can focus on running your business on your time.
+                  Your leads are slipping away while you're busy running your business. Our AI voice agents Veronica and Jessica handle your calls and appointments around the clock, while our text agent Alina revives dead leads automatically. No more missed opportunities. No more manual follow-ups. Just consistent growth while you focus on what matters most.
                 </p>
               </div>
             </SimpleParallax>

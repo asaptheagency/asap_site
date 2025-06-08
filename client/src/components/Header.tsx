@@ -62,8 +62,75 @@ const Header = () => {
               Home
             </a>
             
-            {/* Industries Dropdown */}
+            {/* Services Dropdown */}
             <div className="relative" ref={dropdownRef}>
+              <button 
+                className="flex items-center space-x-1 text-sm uppercase tracking-wider"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                onMouseEnter={() => setDropdownOpen(true)}
+              >
+                <span>Services</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div 
+                className={`absolute left-0 mt-2 bg-secondary/90 backdrop-blur-md min-w-[250px] shadow-lg rounded-md border border-border ${dropdownOpen ? 'block' : 'hidden'}`}
+                onMouseLeave={() => setDropdownOpen(false)}
+              >
+                <a 
+                  href="/services/rise" 
+                  className="block px-4 py-2 text-sm hover:text-accent"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation("/services/rise");
+                    setDropdownOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  R.I.S.E.
+                </a>
+                <a 
+                  href="/services/sales-drive" 
+                  className="block px-4 py-2 text-sm hover:text-accent"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation("/services/sales-drive");
+                    setDropdownOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  ASAP Connect - Sales Drive
+                </a>
+                <a 
+                  href="/services/outreach-pro" 
+                  className="block px-4 py-2 text-sm hover:text-accent"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation("/services/outreach-pro");
+                    setDropdownOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  ASAP Connect - OutreachPro
+                </a>
+                <a 
+                  href="/services/front-desk" 
+                  className="block px-4 py-2 text-sm hover:text-accent"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation("/services/front-desk");
+                    setDropdownOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  ASAP Connect - Front Desk
+                </a>
+              </div>
+            </div>
+
+            {/* COMMENTED OUT - Legacy Industries Dropdown */}
+            {/* <div className="relative" ref={dropdownRef}>
               <button 
                 className="flex items-center space-x-1 text-sm uppercase tracking-wider"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -78,44 +145,11 @@ const Header = () => {
                 className={`absolute left-0 mt-2 bg-secondary/90 backdrop-blur-md min-w-[220px] shadow-lg rounded-md border border-border ${dropdownOpen ? 'block' : 'hidden'}`}
                 onMouseLeave={() => setDropdownOpen(false)}
               >
-                <a 
-                  href="/industries/law-firms" 
-                  className="block px-4 py-2 text-sm hover:text-accent"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLocation("/industries/law-firms");
-                    setDropdownOpen(false);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  Law Firms
-                </a>
-                <a 
-                  href="/industries/contractors" 
-                  className="block px-4 py-2 text-sm hover:text-accent"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLocation("/industries/contractors");
-                    setDropdownOpen(false);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  Roofers
-                </a>
-                <a 
-                  href="/industries/pdr-shops" 
-                  className="block px-4 py-2 text-sm hover:text-accent"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLocation("/industries/pdr-shops");
-                    setDropdownOpen(false);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  PDR Shops
-                </a>
+                <a href="/industries/law-firms" className="block px-4 py-2 text-sm hover:text-accent">Law Firms</a>
+                <a href="/industries/contractors" className="block px-4 py-2 text-sm hover:text-accent">Roofers</a>
+                <a href="/industries/pdr-shops" className="block px-4 py-2 text-sm hover:text-accent">PDR Shops</a>
               </div>
-            </div>
+            </div> */}
             
             <a 
               href="https://calendar.app.google/nuQzaVZ8opKfm8bo8" 
@@ -163,45 +197,57 @@ const Header = () => {
               Home
             </a>
             
-            {/* Mobile Industries Menu */}
+            {/* Mobile Services Menu */}
             <div className="py-2">
-              <p className="text-sm uppercase tracking-wider mb-2">Industries</p>
+              <p className="text-sm uppercase tracking-wider mb-2">Services</p>
               <div className="flex flex-col space-y-2 pl-4">
                 <a 
-                  href="/industries/law-firms" 
+                  href="/services/rise" 
                   className="py-1 text-sm hover:text-accent"
                   onClick={(e) => {
                     e.preventDefault();
-                    setLocation("/industries/law-firms");
+                    setLocation("/services/rise");
                     setMobileMenuOpen(false);
                     window.scrollTo(0, 0);
                   }}
                 >
-                  Law Firms
+                  R.I.S.E.
                 </a>
                 <a 
-                  href="/industries/contractors" 
+                  href="/services/sales-drive" 
                   className="py-1 text-sm hover:text-accent"
                   onClick={(e) => {
                     e.preventDefault();
-                    setLocation("/industries/contractors");
+                    setLocation("/services/sales-drive");
                     setMobileMenuOpen(false);
                     window.scrollTo(0, 0);
                   }}
                 >
-                  Roofers
+                  ASAP Connect - Sales Drive
                 </a>
                 <a 
-                  href="/industries/pdr-shops" 
+                  href="/services/outreach-pro" 
                   className="py-1 text-sm hover:text-accent"
                   onClick={(e) => {
                     e.preventDefault();
-                    setLocation("/industries/pdr-shops");
+                    setLocation("/services/outreach-pro");
                     setMobileMenuOpen(false);
                     window.scrollTo(0, 0);
                   }}
                 >
-                  PDR Shops
+                  ASAP Connect - OutreachPro
+                </a>
+                <a 
+                  href="/services/front-desk" 
+                  className="py-1 text-sm hover:text-accent"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation("/services/front-desk");
+                    setMobileMenuOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  ASAP Connect - Front Desk
                 </a>
               </div>
             </div>

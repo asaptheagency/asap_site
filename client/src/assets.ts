@@ -21,10 +21,16 @@ import newAppsnapImage from './assets/new_images/_app_development.jpg';
 import newHyperiseImage from './assets/new_images/_marketing.jpg';
 import newReviewGeneratorsImage from './assets/new_images/_review_generators.jpg';
 
-// Industry images
-import robotLawImage from './assets/robot_law.webp';
-import robotPdrImage from './assets/robot_pdr.webp';
-import robotRooferImage from './assets/robot_roofer.webp';
+// New automation service images
+import riseImage from './assets/rise.webp';
+import salesDriveImage from './assets/asap_connect_sales.webp';
+import followUpImage from './assets/asap_connect_outbound.webp';
+import frontDeskImage from './assets/asap_connect_front_desk.webp';
+
+// COMMENTED OUT - Legacy industry images
+// import robotLawImage from './assets/robot_law.webp';
+// import robotPdrImage from './assets/robot_pdr.webp';
+// import robotRooferImage from './assets/robot_roofer.webp';
 
 export {
   // Basic assets
@@ -50,8 +56,14 @@ export {
   newHyperiseImage,
   newReviewGeneratorsImage,
   
-  // Industry images
-  robotLawImage,
-  robotPdrImage,
-  robotRooferImage
+  // New automation service images
+  riseImage,
+  salesDriveImage,
+  followUpImage,
+  frontDeskImage
+
+  // COMMENTED OUT - Legacy industry images
+  // robotLawImage,
+  // robotPdrImage,
+  // robotRooferImage
 };

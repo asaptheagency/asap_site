@@ -7,8 +7,19 @@ const CreativeStrategy = () => {
   return (
     <section id="services" className="py-20 relative bg-gradient-to-b from-[rgba(75,184,166,0.3)] to-[#000000]">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col-reverse md:flex-row">
-          <div className="md:w-3/4 md:pr-12">
+        <div className="flex flex-col md:flex-row relative">
+          <div className="md:w-3/4 md:pr-12 relative">
+            {/* Vertical text positioned on the side for mobile */}
+            <motion.div 
+              className="absolute -right-4 top-1/2 transform -translate-y-1/2 vertical-text text-4xl md:text-6xl font-bold opacity-20 text-accent uppercase tracking-widest md:hidden z-10"
+              variants={staggerFadeIn}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              CONNECT
+            </motion.div>
+            
             <motion.div 
               className="mb-24 relative mt-12 md:mt-0"
               variants={fadeInScale}
@@ -23,12 +34,12 @@ const CreativeStrategy = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-4">Automation Solutions</h3>
+                  <h3 className="text-2xl font-bold mb-4">ASAP Connect</h3>
                   <p className="text-muted-foreground mb-6">
-                    Our team creates custom automation solutions that streamline your business operations, reduce manual tasks, and free up your valuable time and resources for strategic growth initiatives.
+                    Meet your new AI team: Veronica handles outbound calls with perfect consistency, Jessica manages your front desk and scheduling, and our Sales Drive system follows up on leads automatically. Each agent integrates with your Google Calendar and works 24/7 to keep your business running smoothly.
                   </p>
                   <p className="text-muted-foreground mb-6">
-                    From customer service chatbots to workflow automation systems, we build intelligent tools that run 24/7, eliminating bottlenecks and ensuring consistent quality in every customer interaction.
+                    Whether you need someone to qualify prospects, book appointments, or ensure no call goes unanswered, ASAP Connect gives you a reliable team that never takes a day off and always represents your business professionally.
                   </p>
                   <motion.div 
                     className="bg-secondary rounded-lg p-6 relative group card-glow-effect"
@@ -59,14 +70,15 @@ const CreativeStrategy = () => {
             </motion.div>
           </div>
           
+          {/* Vertical text for desktop only */}
           <motion.div 
-            className="md:w-1/4 vertical-text text-6xl font-bold opacity-20 flex items-center justify-center text-accent uppercase tracking-widest"
+            className="hidden md:flex md:w-1/4 vertical-text text-6xl font-bold opacity-20 items-center justify-center text-accent uppercase tracking-widest"
             variants={staggerFadeIn}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
           >
-            AUTOMATE
+            CONNECT
           </motion.div>
         </div>
       </div>
