@@ -1,0 +1,7 @@
+# Netlify redirects file
+# Redirect all routes to index.html for SPA routing
+/*    /index.html   200
+
+# Ensure image paths are properly resolved
+/attached_assets/*  /images/:splat  200
+/images/*           /images/:splat  200

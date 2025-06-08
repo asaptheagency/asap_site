@@ -1,0 +1,342 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 180 5% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 180 5% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 160 30% 70%;  /* Light teal like the robot helmet */
+    --primary-foreground: 0 0% 10%;
+    --secondary: 180 10% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 180 5% 20%;
+    --muted-foreground: 180 5% 65%;
+    --accent: 30 100% 50%;  /* Orange like the robot face */
+    --accent-foreground: 0 0% 10%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 180 10% 20%;
+    --input: 180 10% 20%;
+    --ring: 160 30% 70%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom classes */
+.glow-hover {
+  transition: all 0.3s ease;
+}
+
+.glow-hover:hover {
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.7); /* Orange glow effect */
+  text-shadow: 0 0 10px rgba(255, 140, 0, 0.7);
+}
+
+/* Enhanced card glow effects for all rectangles/cards */
+.card-glow-effect {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 1;
+}
+
+.card-glow-effect::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 50%,
+    hsl(var(--accent)) 150%,
+    hsl(var(--primary)) 200%
+  );
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card-glow-effect::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 140, 0, 0.5) -50%,
+    rgba(75, 184, 166, 0.5) 150%
+  );
+  z-index: -1;
+  opacity: 0;
+  filter: blur(16px);
+  transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card-glow-effect:hover {
+  transform: translateY(-2px) scale(1.01);
+}
+
+.card-glow-effect:hover::before {
+  opacity: 0.5;
+}
+
+.card-glow-effect:hover::after {
+  opacity: 0.7;
+}
+
+/* Custom variant for primary glow */
+.primary-glow::before,
+.primary-glow::after {
+  background: linear-gradient(
+    135deg,
+    rgba(75, 184, 166, 0.2) -50%,
+    rgba(75, 184, 166, 0.5) 150%
+  );
+}
+
+/* Custom variant for accent glow */
+.accent-glow::before,
+.accent-glow::after {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 140, 0, 0.2) -50%,
+    rgba(255, 140, 0, 0.5) 150%
+  );
+}
+
+/* Mouse glow effect */
+:root {
+  --cursor-x: 0px;
+  --cursor-y: 0px;
+  --cursor-trail-x: 0px;
+  --cursor-trail-y: 0px;
+}
+
+/* Main cursor glow */
+body::before {
+  content: '';
+  position: fixed;
+  left: var(--cursor-x);
+  top: var(--cursor-y);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, 
+    rgba(255, 140, 0, 0.7) 0%, 
+    rgba(75, 184, 166, 0.4) 40%, 
+    rgba(255, 140, 0, 0) 80%);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  mix-blend-mode: screen;
+  filter: blur(8px);
+  box-shadow: 0 0 30px 10px rgba(255, 140, 0, 0.3);
+}
+
+/* Trailing glow effect */
+body::after {
+  content: '';
+  position: fixed;
+  left: var(--cursor-trail-x);
+  top: var(--cursor-trail-y);
+  width: 140px;
+  height: 80px; /* Elongated for trail effect */
+  border-radius: 50%;
+  background: radial-gradient(ellipse, 
+    rgba(75, 184, 166, 0.6) 0%, 
+    rgba(255, 140, 0, 0.3) 30%, 
+    rgba(75, 184, 166, 0) 70%);
+  pointer-events: none;
+  z-index: 9998; /* Behind the main cursor */
+  transform: translate(-50%, -50%) rotate(var(--cursor-angle, 0deg)) scale(1, 1.5);
+  opacity: 0;
+  transition: opacity 0.1s ease, transform 0.2s ease;
+  mix-blend-mode: screen;
+  filter: blur(12px);
+}
+
+body.has-cursor-glow::before,
+body.has-cursor-glow::after {
+  opacity: 1;
+}
+
+body.enhanced-glow::before {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, 
+    rgba(255, 140, 0, 0.85) 0%,
+    rgba(75, 184, 166, 0.6) 30%,
+    rgba(255, 140, 0, 0) 70%);
+  filter: blur(12px);
+  box-shadow: 0 0 40px 20px rgba(255, 140, 0, 0.5);
+}
+
+body.enhanced-glow::after {
+  width: 160px;
+  height: 80px;
+  background: radial-gradient(ellipse, 
+    rgba(75, 184, 166, 0.7) 0%,
+    rgba(255, 140, 0, 0.3) 40%,
+    rgba(75, 184, 166, 0) 70%);
+  filter: blur(15px);
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: hsl(var(--accent));
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.section-highlight {
+  border-left: 2px solid hsl(var(--accent));
+}
+
+/* Section gradient transitions */
+.gradient-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top gradient overlay for smooth section transitions */
+.gradient-section:before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to top, var(--section-color, #000000), transparent);
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+/* Bottom gradient overlay for smooth section transitions */
+.gradient-section:after {
+  content: '';
+  position: absolute;
+  bottom: -200px;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to bottom, var(--section-color, #000000), transparent);
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+/* Gradient backgrounds for each section */
+.gradient-section-1 {
+  --section-color: #000000;
+  background: linear-gradient(170deg, #000000 0%, rgba(75, 184, 166, 0.2) 100%);
+}
+
+.gradient-section-2 {
+  --section-color: rgba(75, 184, 166, 0.2);
+  background: linear-gradient(170deg, rgba(75, 184, 166, 0.2) 0%, rgba(75, 184, 166, 0.3) 100%);
+}
+
+.gradient-section-3 {
+  --section-color: rgba(75, 184, 166, 0.3);
+  background: linear-gradient(170deg, rgba(75, 184, 166, 0.3) 0%, #000000 100%);
+}
+
+.gradient-section-4 {
+  --section-color: #000000;
+  background: linear-gradient(170deg, #000000 0%, rgba(75, 184, 166, 0.15) 100%);
+}
+
+/* Add a global gradient overlay to the body to enhance the effect */
+body:after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 15s linear infinite;
+}
+
+/* Scroll to top button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s, transform 0.3s;
+  transform: translateY(10px);
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.scroll-to-top.visible {
+  opacity: 0.9;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  opacity: 1;
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.7); /* Orange glow effect */
+  transform: translateY(-3px);
+}
