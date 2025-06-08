@@ -34,12 +34,12 @@ const CreativeStrategy = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-4">The Problem with Traditional Sales</h3>
+                  <h3 className="text-2xl font-bold mb-4">The Problem with Traditional Business Communication</h3>
                   <p className="text-muted-foreground mb-6">
-                    You're losing 67% of potential customers because nobody answers the phone after hours. Your best leads come in at the worst times - weekends, evenings, holidays. By Monday morning, they've already called your competitor.
+                    You're losing 67% of potential opportunities because nobody answers the phone after hours. Your best inquiries come in at the worst times - weekends, evenings, holidays. By Monday morning, they've already found another solution.
                   </p>
                   <p className="text-muted-foreground mb-6">
-                    Meanwhile, your sales team is burning out from manual follow-ups, missed callbacks, and the endless cycle of phone tag. Every missed opportunity costs you thousands in lost revenue.
+                    Meanwhile, your team is burning out from manual follow-ups, missed callbacks, and the endless cycle of phone tag. Every missed interaction costs you valuable relationships and revenue.
                   </p>
                   <motion.div 
                     className="bg-secondary rounded-lg p-6 relative group card-glow-effect"
