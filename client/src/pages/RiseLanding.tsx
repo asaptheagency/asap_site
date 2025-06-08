@@ -358,6 +358,89 @@ const RiseLanding: React.FC = () => {
         </div>
       </section>
 
+      {/* Video Testimonials Section */}
+      <section className="py-20 relative bg-gradient-to-b from-black via-gray-900/50 to-black">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="max-w-6xl mx-auto"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.h2
+              className="text-4xl md:text-5xl font-bold mb-4 text-center bg-gradient-to-r from-teal-400 to-orange-500 bg-clip-text text-transparent"
+              variants={slideFromBottom}
+            >
+              Real Success Stories
+            </motion.h2>
+
+            <motion.p
+              className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto"
+              variants={fadeIn}
+            >
+              Don't just take our word for it. Hear from real business owners
+              who've turned their dead leads into serious revenue with RISE.
+            </motion.p>
+
+            <motion.div
+              className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+              variants={staggerFadeIn}
+            >
+              {/* Testimonial Video 1 */}
+              <div className="bg-gradient-to-b from-gray-900/80 to-gray-800/80 border border-teal-500/30 rounded-lg p-6 hover:border-teal-500/50 transition-all duration-300">
+                <div
+                  className="w-full mb-4 bg-gray-800 rounded-lg overflow-hidden"
+                  style={{ aspectRatio: "9/16", maxHeight: "500px" }}
+                >
+                  <iframe
+                    src="https://drive.google.com/file/d/1RjExqfltLCj7uC35peiv2L-Ytn1sz7hJ/preview"
+                    width="100%"
+                    height="100%"
+                    allow="autoplay"
+                    className="w-full h-full"
+                    title="RISE Customer Testimonial 1"
+                  ></iframe>
+                </div>
+                <h3 className="text-xl font-bold text-teal-400 mb-2">Taylor</h3>
+                <p className="text-gray-300 text-sm mb-2">
+                  Owner/Operator, "Pacific Public Adjusters"
+                </p>
+                <p className="text-gray-400 text-sm">
+                  His testimonial about their RISE experience and results
+                </p>
+              </div>
+
+              {/* Testimonial Video 2 */}
+              <div className="bg-gradient-to-b from-gray-900/80 to-gray-800/80 border border-orange-500/30 rounded-lg p-6 hover:border-orange-500/50 transition-all duration-300">
+                <div
+                  className="w-full mb-4 bg-gray-800 rounded-lg overflow-hidden"
+                  style={{ aspectRatio: "9/16", maxHeight: "500px" }}
+                >
+                  <iframe
+                    src="https://drive.google.com/file/d/1XoJQ8OcZmLD1ZPNYKRxpfzUDh0w8egZ2/preview"
+                    width="100%"
+                    height="100%"
+                    allow="autoplay"
+                    className="w-full h-full"
+                    title="RISE Customer Testimonial 2"
+                  ></iframe>
+                </div>
+                <h3 className="text-xl font-bold text-orange-400 mb-2">
+                  Hogan
+                </h3>
+                <p className="text-gray-300 text-sm mb-2">
+                  Owner/Operator, "Hail Brothers"
+                </p>
+                <p className="text-gray-400 text-sm">
+                  His testimonial about their RISE experience and results
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Guarantee Section */}
       <section
         id="guarantee"
@@ -377,7 +460,7 @@ const RiseLanding: React.FC = () => {
             >
               <div className="text-6xl mb-6">🛡️</div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-teal-400">
-                Our Iron-Clad Guarantee
+                Our Guarantee
               </h2>
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
                 If we don't get you{" "}
