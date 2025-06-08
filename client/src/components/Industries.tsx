@@ -8,10 +8,10 @@ import { scrollToSection } from '../lib/scrollUtils';
 import ImageWithFallback from './ImageWithFallback';
 
 // Import automation service images
-import riseImage from '../assets/rise.webp';
-import salesDriveImage from '../assets/asap_connect_sales.webp';
-import followUpImage from '../assets/asap_connect_outbound.webp';
-import frontDeskImage from '../assets/asap_connect_front_desk.webp';
+import riseImage from '../assets/rise_new.webp';
+import salesDriveImage from '../assets/connect_sales.webp';
+import followUpImage from '../assets/connect_outreachPro.webp';
+import frontDeskImage from '../assets/connect_frontDesk.webp';
 
 // COMMENTED OUT - Legacy industry images
 // import robotLawImage from '../assets/robot_law.webp';
@@ -129,12 +129,13 @@ const Industries: React.FC = () => {
                   onClick={() => handleIndustryClick(service.route)}
                 >
                   <div className="h-full flex flex-col w-full">
-                    <div className="w-full h-48 mb-4 overflow-hidden rounded-lg group-hover:scale-105 transition-transform duration-300">
+                    <div className="w-full h-40 sm:h-48 md:h-52 mb-4 overflow-hidden rounded-lg group-hover:scale-105 transition-transform duration-300">
                       <ImageWithFallback
                         src={service.image}
                         fallbackSrc="/robot_placeholder.webp"
                         alt={`${service.title} Agent`}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-center"
+                        style={{ objectPosition: service.id === 'rise' ? 'center 20%' : 'center center' }}
                       />
                     </div>
                     

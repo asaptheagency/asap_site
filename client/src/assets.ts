@@ -21,11 +21,11 @@ import newAppsnapImage from './assets/new_images/_app_development.jpg';
 import newHyperiseImage from './assets/new_images/_marketing.jpg';
 import newReviewGeneratorsImage from './assets/new_images/_review_generators.jpg';
 
-// New automation service images
-import riseImage from './assets/rise.webp';
-import salesDriveImage from './assets/asap_connect_sales.webp';
-import followUpImage from './assets/asap_connect_outbound.webp';
-import frontDeskImage from './assets/asap_connect_front_desk.webp';
+// New automation service images - Updated with new professional photos
+import riseImage from './assets/rise_new.webp';
+import salesDriveImage from './assets/connect_sales.webp';
+import followUpImage from './assets/connect_outreachPro.webp';
+import frontDeskImage from './assets/connect_frontDesk.webp';
 
 // Industry robot images
 import robotLawImage from './assets/robot_law.webp';
