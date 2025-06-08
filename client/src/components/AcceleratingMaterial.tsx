@@ -34,12 +34,12 @@ const CreativeStrategy = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-4">ASAP Connect</h3>
+                  <h3 className="text-2xl font-bold mb-4">The Problem with Traditional Sales</h3>
                   <p className="text-muted-foreground mb-6">
-                    Meet your new AI team: Veronica handles outbound calls with perfect consistency, Jessica manages your front desk and scheduling, and our Sales Drive system follows up on leads automatically. Each agent integrates with your Google Calendar and works 24/7 to keep your business running smoothly.
+                    You're losing 67% of potential customers because nobody answers the phone after hours. Your best leads come in at the worst times - weekends, evenings, holidays. By Monday morning, they've already called your competitor.
                   </p>
                   <p className="text-muted-foreground mb-6">
-                    Whether you need someone to qualify prospects, book appointments, or ensure no call goes unanswered, ASAP Connect gives you a reliable team that never takes a day off and always represents your business professionally.
+                    Meanwhile, your sales team is burning out from manual follow-ups, missed callbacks, and the endless cycle of phone tag. Every missed opportunity costs you thousands in lost revenue.
                   </p>
                   <motion.div 
                     className="bg-secondary rounded-lg p-6 relative group card-glow-effect"

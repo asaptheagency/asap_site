@@ -182,7 +182,7 @@ const Hero = () => {
                 </h1>
                 
                 <h2 className="text-2xl md:text-3xl font-medium text-white/80 mt-4 mb-6">
-                  AI voice agents that handle calls, texts that revive dead leads, automation that works 24/7.
+                  Stop losing leads while you sleep. Start converting them.
                 </h2>
               </div>
             </SimpleParallax>
@@ -190,7 +190,7 @@ const Hero = () => {
             <SimpleParallax speed={0.1} direction="diagonal-down-left" opacityEffect={true}>
               <div style={getParallaxStyle(0.05)}>
                 <p className="text-lg text-muted-foreground mb-8">
-                  Your leads are slipping away while you're busy running your business. Our AI voice agents Veronica and Jessica handle your calls and appointments around the clock, while our text agent Alina revives dead leads automatically. No more missed opportunities. No more manual follow-ups. Just consistent growth while you focus on what matters most.
+                  Your business runs 9-5. Your competition runs 24/7. What if your sales team never took a break, never missed a call, and never forgot to follow up? What if every lead got immediate attention, even at 2 AM?
                 </p>
               </div>
             </SimpleParallax>

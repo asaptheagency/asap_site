@@ -146,7 +146,7 @@ const FrictionlessScaling = () => {
                       className="text-2xl font-bold mb-4 drop-shadow-md"
                       style={getParallaxStyle(0.1)}
                     >
-                      R.I.S.E.
+                      What About Your Dead Leads?
                     </h3>
                   </SimpleParallax>
                   
@@ -155,7 +155,7 @@ const FrictionlessScaling = () => {
                       className="text-muted-foreground mb-6"
                       style={getParallaxStyle(0.05)}
                     >
-                      Don't let old leads die in your CRM. Our R.I.S.E. system (Revive Inactive Sales Engagements) uses Alina, our intelligent text agent, to automatically reach out to dormant prospects with personalized messages that feel human and convert consistently.
+                      Your CRM is a graveyard of potential customers. Leads that showed interest, then went cold. Prospects who said "maybe later" and never heard from you again. What if those dormant contacts could become your biggest revenue source?
                     </p>
                   </SimpleParallax>
                   
@@ -164,7 +164,7 @@ const FrictionlessScaling = () => {
                       className="text-muted-foreground mb-6"
                       style={getParallaxStyle(0.07)}
                     >
-                      Alina analyzes your lead database, crafts compelling follow-up sequences, and schedules appointments automatically. Every message is tailored to the prospect's history and needs, turning cold leads into warm conversations that book appointments on your calendar.
+                      Most businesses write off old leads as lost forever. But the average lead needs 8-12 touchpoints before they're ready to buy. Your competitors gave up after 2. That's your opportunity.
                     </p>
                   </SimpleParallax>
                   
