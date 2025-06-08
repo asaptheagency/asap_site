@@ -27,10 +27,10 @@ import salesDriveImage from './assets/asap_connect_sales.webp';
 import followUpImage from './assets/asap_connect_outbound.webp';
 import frontDeskImage from './assets/asap_connect_front_desk.webp';
 
-// COMMENTED OUT - Legacy industry images
-// import robotLawImage from './assets/robot_law.webp';
-// import robotPdrImage from './assets/robot_pdr.webp';
-// import robotRooferImage from './assets/robot_roofer.webp';
+// Industry robot images
+import robotLawImage from './assets/robot_law.webp';
+import robotPdrImage from './assets/robot_pdr.webp';
+import robotRooferImage from './assets/robot_roofer.webp';
 
 export {
   // Basic assets
@@ -60,10 +60,10 @@ export {
   riseImage,
   salesDriveImage,
   followUpImage,
-  frontDeskImage
+  frontDeskImage,
 
-  // COMMENTED OUT - Legacy industry images
-  // robotLawImage,
-  // robotPdrImage,
-  // robotRooferImage
+  // Industry robot images
+  robotLawImage,
+  robotPdrImage,
+  robotRooferImage
 };
