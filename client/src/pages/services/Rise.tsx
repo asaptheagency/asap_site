@@ -5,7 +5,7 @@ import ContactButton from "../../components/ContactButton";
 import SEOHead from "../../components/SEOHead";
 import FloatingElements from "../../components/FloatingElements";
 import ImageWithFallback from "../../components/ImageWithFallback";
-import riseImage from "../../assets/rise.webp";
+import riseImage from "../../assets/rise_new.webp";
 
 const Rise: React.FC = () => {
   return (

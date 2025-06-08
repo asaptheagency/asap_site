@@ -17,6 +17,9 @@ const SalesDrive = lazy(() => import("./pages/services/SalesDrive"));
 const FollowUp = lazy(() => import("./pages/services/FollowUp"));
 const FrontDesk = lazy(() => import("./pages/services/FrontDesk"));
 
+// Standalone landing pages
+const RiseLanding = lazy(() => import("./pages/RiseLanding"));
+
 // COMMENTED OUT - Legacy service pages
 // const WebDesign = lazy(() => import("./pages/services/WebDesign"));
 // const AutoMate = lazy(() => import("./pages/services/AutoMate"));
@@ -94,7 +97,8 @@ function Router() {
                         location.includes("/client-key-review-generator") ||
                         location.includes("/client-iframe-review-generator") ||
                         location.includes("/services/review-generators") ||
-                        location.includes("/review-launch");
+                        location.includes("/review-launch") ||
+                        location.includes("/rise-launch");
   
   return (
     <Suspense fallback={<LoadingHandler />}>
@@ -113,6 +117,9 @@ function Router() {
             <Route path="/client-key-review-generator" component={AdvancedReviewGenerator} />
             {/* <Route path="/services/review-generators" component={ReviewGeneratorsSimple} /> */}
             <Route path="/review-launch" component={ReviewLaunch} />
+            
+            {/* Standalone landing pages */}
+            <Route path="/rise-launch" component={RiseLanding} />
             
             {/* Industry pages */}
             <Route path="/industries/law-firms" component={LawFirms} />

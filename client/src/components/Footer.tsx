@@ -47,7 +47,7 @@ const Footer = () => {
                 <span className="text-2xl font-bold">ASAP</span>
               </a>
               <p className="text-muted-foreground mb-6">
-                Pioneering automation-first solutions that streamline business operations and enable sustainable growth through effective promotion strategies.
+                AI-powered automation that handles your business communications 24/7. From lead follow-ups to appointment scheduling and customer outreach - let our AI agents work while you focus on growth.
               </p>
               <div className="flex space-x-4">
                 <a href="https://www.facebook.com/chriscastanuela" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition duration-300 glow-hover">

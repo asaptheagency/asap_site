@@ -5,7 +5,7 @@ import ContactButton from "../../components/ContactButton";
 import SEOHead from "../../components/SEOHead";
 import FloatingElements from "../../components/FloatingElements";
 import ImageWithFallback from "../../components/ImageWithFallback";
-import followUpImage from "../../assets/asap_connect_outbound.webp";
+import followUpImage from "../../assets/connect_outreachPro.webp";
 
 const FollowUp: React.FC = () => {
   return (

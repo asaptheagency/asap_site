@@ -182,7 +182,7 @@ const Hero = () => {
                 </h1>
                 
                 <h2 className="text-2xl md:text-3xl font-medium text-white/80 mt-4 mb-6">
-                  Stop losing leads while you sleep. Start converting them.
+                  Stop missing opportunities while you sleep. Start automating everything.
                 </h2>
               </div>
             </SimpleParallax>
@@ -190,7 +190,7 @@ const Hero = () => {
             <SimpleParallax speed={0.1} direction="diagonal-down-left" opacityEffect={true}>
               <div style={getParallaxStyle(0.05)}>
                 <p className="text-lg text-muted-foreground mb-8">
-                  Your business runs 9-5. Your competition runs 24/7. What if your sales team never took a break, never missed a call, and never forgot to follow up? What if every lead got immediate attention, even at 2 AM?
+                  Your business runs 9-5. Your competition runs 24/7. What if your communication never stopped, your follow-ups were always timely, and your appointments got scheduled automatically? What if every customer interaction was handled perfectly, even at 2 AM?
                 </p>
               </div>
             </SimpleParallax>

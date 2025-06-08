@@ -5,7 +5,7 @@ import ContactButton from "../../components/ContactButton";
 import SEOHead from "../../components/SEOHead";
 import FloatingElements from "../../components/FloatingElements";
 import ImageWithFallback from "../../components/ImageWithFallback";
-import salesDriveImage from "../../assets/asap_connect_sales.webp";
+import salesDriveImage from "../../assets/connect_sales.webp";
 
 const SalesDrive: React.FC = () => {
   return (
