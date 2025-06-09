@@ -582,6 +582,10 @@ const RiseLanding: React.FC = () => {
             <motion.div className="space-y-6" variants={staggerFadeIn}>
               {[
                 {
+                  q: "What's my next step?",
+                  a: "Be sure to include your best email address when you sign up using the secure Stripe checkout. After you sign up you send we will send you an email and book a quick 15 minute call to get you started.",
+                },
+                {
                   q: "How quickly will I see results?",
                   a: "Most clients see their first appointments booked within 48-72 hours of launch. Alina works 24/7, so she starts texting your leads immediately after setup.",
                 },
