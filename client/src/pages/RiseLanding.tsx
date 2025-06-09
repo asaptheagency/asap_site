@@ -467,8 +467,7 @@ const RiseLanding: React.FC = () => {
                 <strong className="text-teal-400">
                   10 booked appointments
                 </strong>{" "}
-                out of your first 100 leads, we'll keep our RISE system running
-                until we do.{" "}
+                out of your first 100 leads, we’ll keep fine-tuning Alina for you until you get them.{" "}
                 <strong className="text-orange-400">
                   At no extra cost to you.
                 </strong>
