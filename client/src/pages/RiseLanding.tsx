@@ -124,7 +124,7 @@ const RiseLanding: React.FC = () => {
           </motion.div>
 
           {/* Pricing */}
-          <motion.div className="mb-8" variants={fadeIn}>
+          {/* <motion.div className="mb-8" variants={fadeIn}>
             <div className="text-center">
               <p className="text-gray-400 line-through text-xl">
                 Regular Price: $2,000
@@ -136,7 +136,7 @@ const RiseLanding: React.FC = () => {
                 Conversion fees of $200 waived (first 10 conversions)
               </p>
             </div>
-          </motion.div>
+          </motion.div> */}
 
           {/* CTA Button */}
           <motion.div className="mb-8" variants={slideFromBottom}>
