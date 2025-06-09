@@ -11,7 +11,10 @@ import ImageWithFallback from "./ImageWithFallback";
 import riseImage from "../assets/rise_new.webp";
 import salesDriveImage from "../assets/connect_sales.webp";
 import followUpImage from "../assets/connect_outreachPro.webp";
-import frontDeskImage from "../assets/connect_frontDesk.webp";
+import frontDeskImage from "../assets/connect_frontDesk_new.jpg";
+import dmDispatchImage from "../assets/chat_dmDispatch_new.jpg";
+import siteSupportImage from "../assets/chat_siteSupport_new.webp";
+import leadLinkImage from "../assets/chat_leadLink.webp";
 
 // COMMENTED OUT - Legacy industry images
 // import robotLawImage from '../assets/robot_law.webp';
@@ -55,6 +58,30 @@ const Industries: React.FC = () => {
         "Veronica makes sales calls for you, books directly in your Google calendar, and schedules appointments automatically.",
       image: salesDriveImage,
       route: "/services/sales-drive",
+    },
+    {
+      id: "dm-dispatch",
+      title: "ASAP Chat - DM Dispatch",
+      subtitle:
+        "Sophie automates your direct messages across social media platforms, providing instant responses and engaging potential leads 24/7 to boost conversions.",
+      image: dmDispatchImage,
+      route: "/services/dm-dispatch",
+    },
+    {
+      id: "site-support",
+      title: "ASAP Chat - Site Support",
+      subtitle:
+        "Your AI-powered customer service assistant providing instant, 24/7 support for website visitors with intelligent responses and seamless integration.",
+      image: siteSupportImage,
+      route: "/services/site-support",
+    },
+    {
+      id: "lead-link",
+      title: "ASAP Chat - LeadLink",
+      subtitle:
+        "Sophie automates lead qualification on your website, capturing prospect data and sending qualified leads directly to Google Sheets for seamless follow-up.",
+      image: leadLinkImage,
+      route: "/services/lead-link",
     },
   ];
 
@@ -112,7 +139,7 @@ const Industries: React.FC = () => {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={staggerContainer}
         >
           {services.map((service, index) => (

@@ -114,6 +114,42 @@ const Footer = () => {
                     ASAP Connect - Front Desk
                   </a>
                 </li>
+                <li>
+                  <a 
+                    href="/services/dm-dispatch" 
+                    className="text-muted-foreground hover:text-accent"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setLocation("/services/dm-dispatch");
+                    }}
+                  >
+                    ASAP Chat - DM Dispatch
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="/services/site-support" 
+                    className="text-muted-foreground hover:text-accent"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setLocation("/services/site-support");
+                    }}
+                  >
+                    ASAP Chat - Site Support
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="/services/lead-link" 
+                    className="text-muted-foreground hover:text-accent"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setLocation("/services/lead-link");
+                    }}
+                  >
+                    ASAP Chat - LeadLink
+                  </a>
+                </li>
               </ul>
             </div>
 

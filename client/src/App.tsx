@@ -17,6 +17,11 @@ const SalesDrive = lazy(() => import("./pages/services/SalesDrive"));
 const FollowUp = lazy(() => import("./pages/services/FollowUp"));
 const FrontDesk = lazy(() => import("./pages/services/FrontDesk"));
 
+// ASAP Chat service pages
+const DmDispatch = lazy(() => import("./pages/services/DmDispatch"));
+const SiteSupport = lazy(() => import("./pages/services/SiteSupport"));
+const LeadLink = lazy(() => import("./pages/services/LeadLink"));
+
 // Standalone landing pages
 const RiseLanding = lazy(() => import("./pages/RiseLanding"));
 
@@ -136,6 +141,11 @@ function Router() {
               <Route path="/services/sales-drive" component={SalesDrive} />
               <Route path="/services/outreach-pro" component={FollowUp} />
               <Route path="/services/front-desk" component={FrontDesk} />
+              
+              {/* ASAP Chat service routes */}
+              <Route path="/services/dm-dispatch" component={DmDispatch} />
+              <Route path="/services/site-support" component={SiteSupport} />
+              <Route path="/services/lead-link" component={LeadLink} />
 
               {/* COMMENTED OUT - Legacy service routes */}
               {/* <Route path="/services/web-design" component={WebDesign} /> */}

@@ -5,7 +5,7 @@ import ContactButton from "../../components/ContactButton";
 import SEOHead from "../../components/SEOHead";
 import FloatingElements from "../../components/FloatingElements";
 import ImageWithFallback from "../../components/ImageWithFallback";
-import frontDeskImage from "../../assets/connect_frontDesk.webp";
+import frontDeskImage from "../../assets/connect_frontDesk_new.jpg";
 
 const FrontDesk: React.FC = () => {
   return (

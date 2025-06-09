@@ -126,6 +126,42 @@ const Header = () => {
                 >
                   ASAP Connect - Front Desk
                 </a>
+                <a 
+                  href="/services/dm-dispatch" 
+                  className="block px-4 py-2 text-sm hover:text-accent"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation("/services/dm-dispatch");
+                    setDropdownOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  ASAP Chat - DM Dispatch
+                </a>
+                <a 
+                  href="/services/site-support" 
+                  className="block px-4 py-2 text-sm hover:text-accent"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation("/services/site-support");
+                    setDropdownOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  ASAP Chat - Site Support
+                </a>
+                <a 
+                  href="/services/lead-link" 
+                  className="block px-4 py-2 text-sm hover:text-accent"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation("/services/lead-link");
+                    setDropdownOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  ASAP Chat - LeadLink
+                </a>
               </div>
             </div>
 
