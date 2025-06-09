@@ -133,7 +133,7 @@ const RiseLanding: React.FC = () => {
                 Flash Sale: $1,000
               </p>
               <p className="text-orange-400 font-semibold">
-                + Only $200 per conversion (industry average: $600)
+                Conversion fees of $200 waived (first 10 conversions)
               </p>
             </div>
           </motion.div>
@@ -510,7 +510,10 @@ const RiseLanding: React.FC = () => {
                   Flash Sale: $1,000
                 </p>
                 <p className="text-orange-400 font-semibold text-lg">
-                  Save $1,000 when you act today
+                  First 10 conversion fees waived ($2,000 value)
+                </p>
+                <p className="text-orange-400 font-semibold text-lg">
+                  Save $3,000 when you act today!
                 </p>
 
                 {/* Discount Code Notice */}
@@ -583,11 +586,11 @@ const RiseLanding: React.FC = () => {
               {[
                 {
                   q: "What's my next step?",
-                  a: "Be sure to include your best email address when you sign up using the secure Stripe checkout. After you sign up we will send you an email and book a quick 15 minute call to get you started.",
+                  a: "Be sure to include your best email address when you sign up using the secure Stripe checkout. After you sign up we will send you an email and book a quick 15 minute call to get you started. You can also feel free to email us after at inbox@asaptheagency.com",
                 },
                 {
                   q: "How quickly will I see results?",
-                  a: "Most clients see their first appointments booked within 48-72 hours of launch. Alina works 24/7, so she starts texting your leads immediately after setup.",
+                  a: "Most clients see their first appointments booked within 48-72 hours of launch. Alina works 24/7, so she starts texting your leads immediately after setup",
                 },
                 {
                   q: "What if I don't have many dead leads?",
