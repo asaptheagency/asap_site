@@ -128,10 +128,10 @@ const Industries: React.FC = () => {
       >
         <motion.div className="text-center mb-16" variants={fadeIn}>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-teal-400 to-orange-500 bg-clip-text text-transparent">
-            Introducing Your New Sales Team
+            Introducing Your New AI Team
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            What if you could hire the perfect sales team that never sleeps,
+            What if you could hire the perfect team that never sleeps,
             never calls in sick, and converts leads at 3x your current rate?
             Meet the solution thousands of businesses are using to automate
             their growth.
