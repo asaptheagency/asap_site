@@ -583,7 +583,7 @@ const RiseLanding: React.FC = () => {
               {[
                 {
                   q: "What's my next step?",
-                  a: "Be sure to include your best email address when you sign up using the secure Stripe checkout. After you sign up you send we will send you an email and book a quick 15 minute call to get you started.",
+                  a: "Be sure to include your best email address when you sign up using the secure Stripe checkout. After you sign up we will send you an email and book a quick 15 minute call to get you started.",
                 },
                 {
                   q: "How quickly will I see results?",
