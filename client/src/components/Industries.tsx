@@ -131,10 +131,9 @@ const Industries: React.FC = () => {
             Introducing Your New AI Team
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            What if you could hire the perfect team that never sleeps,
-            never calls in sick, and converts leads at 3x your current rate?
-            Meet the solution other businesses are using to automate
-            their growth.
+            What if you could hire the perfect team that never sleeps, never
+            calls in sick, and converts leads at 3x your current rate? Meet the
+            solution other businesses are using to automate their growth.
           </p>
         </motion.div>
 

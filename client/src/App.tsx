@@ -24,6 +24,7 @@ const LeadLink = lazy(() => import("./pages/services/LeadLink"));
 
 // Standalone landing pages
 const RiseLanding = lazy(() => import("./pages/RiseLanding"));
+const ChatLaunch = lazy(() => import("./pages/ChatLaunch"));
 
 // COMMENTED OUT - Legacy service pages
 // const WebDesign = lazy(() => import("./pages/services/WebDesign"));
@@ -103,7 +104,8 @@ function Router() {
                         location.includes("/client-iframe-review-generator") ||
                         location.includes("/services/review-generators") ||
                         location.includes("/review-launch") ||
-                        location.includes("/rise-launch");
+                        location.includes("/rise-launch") ||
+                        location.includes("/chat-launch");
   
   return (
     <Suspense fallback={<LoadingHandler />}>
@@ -125,6 +127,7 @@ function Router() {
             
             {/* Standalone landing pages */}
             <Route path="/rise-launch" component={RiseLanding} />
+            <Route path="/chat-launch" component={ChatLaunch} />
             
             {/* Industry pages */}
             <Route path="/industries/law-firms" component={LawFirms} />
