@@ -133,7 +133,7 @@ const ChatLaunch: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 p-6 rounded-lg border border-blue-400/30">
                   {/* <p className="text-gray-400 line-through text-lg">
-                    Regular: $1,198 setup
+                    Regular: $1,198 setup, $100/month
                   </p> */}
                   <p className="text-3xl font-bold text-teal-400 mb-2">
                     Engagement Bundle
@@ -165,8 +165,7 @@ const ChatLaunch: React.FC = () => {
                 if (element) {
                   const elementPosition =
                     element.getBoundingClientRect().top + window.pageYOffset;
-                  const offsetPosition =
-                    elementPosition - 100; // Add some top padding
+                  const offsetPosition = elementPosition - 100; // Add some top padding
                   window.scrollTo({
                     top: offsetPosition,
                     behavior: "smooth",
@@ -458,13 +457,13 @@ const ChatLaunch: React.FC = () => {
                     </h4>
                     <div className="mb-6">
                       <p className="text-gray-400 line-through text-lg">
-                        Regular: $1,198 setup
+                        Regular: $1,198 setup, $100/month
                       </p>
                       <p className="text-4xl font-bold text-teal-400 mb-2">
-                        Flash Sale: $299
+                        Flash Sale: $0 setup, $100/month
                       </p>
                       <p className="text-orange-400 font-semibold">
-                        Save $899 Today!
+                        Save $1,198 Today!
                       </p>
                     </div>
 
@@ -478,25 +477,13 @@ const ChatLaunch: React.FC = () => {
                       </ul>
                     </div>
 
-                    <div className="bg-gradient-to-r from-teal-500/20 to-blue-500/20 border border-teal-400/50 rounded-lg p-4 mb-6">
-                      <p className="text-teal-400 font-bold text-sm mb-1">
-                        Discount Code:
-                      </p>
-                      <p className="text-white text-lg font-bold">
-                        chatEngagement
-                      </p>
-                    </div>
-
                     <a
-                      href="https://buy.stripe.com/5kQ00icf68g3e6tey00VO06"
+                      href="https://buy.stripe.com/7sYcN43IAgMzaUhblO0VO07"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-xl"
                     >
-                      <div>Get Engagement Bundle - $299</div>
-                      <div className="text-sm mt-1 opacity-90">
-                        Discount Code: 'chatEngagement'
-                      </div>
+                      <div>Get Engagement Bundle - $0 setup</div>
                     </a>
                   </div>
 
@@ -513,13 +500,13 @@ const ChatLaunch: React.FC = () => {
                     </h4>
                     <div className="mb-6">
                       <p className="text-gray-400 line-through text-lg">
-                        Regular: $1,498 setup
+                        Regular: $1,498 setup, $100/month
                       </p>
                       <p className="text-4xl font-bold text-teal-400 mb-2">
-                        Flash Sale: $499
+                        Flash Sale: $0 setup, $125/month
                       </p>
                       <p className="text-orange-400 font-semibold">
-                        Save $999 Today!
+                        Save 1,498 Today!
                       </p>
                     </div>
 
@@ -533,25 +520,13 @@ const ChatLaunch: React.FC = () => {
                       </ul>
                     </div>
 
-                    <div className="bg-gradient-to-r from-teal-500/20 to-green-500/20 border border-teal-400/50 rounded-lg p-4 mb-6">
-                      <p className="text-teal-400 font-bold text-sm mb-1">
-                        Discount Code:
-                      </p>
-                      <p className="text-white text-lg font-bold">
-                        chatConversion
-                      </p>
-                    </div>
-
                     <a
-                      href="https://buy.stripe.com/6oU7sKdja1RF9Qdey00VO05"
+                      href="https://buy.stripe.com/28E14ma6Y7bZ8M99dG0VO08"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-xl"
                     >
-                      <div>Get Lead Conversion - $499</div>
-                      <div className="text-sm mt-1 opacity-90">
-                        Discount Code: 'chatConversion'
-                      </div>
+                      <div>Get Lead Conversion - $0 setup</div>
                     </a>
                   </div>
                 </div>
