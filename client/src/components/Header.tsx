@@ -75,7 +75,7 @@ const Header = () => {
                 </svg>
               </button>
               <div 
-                className={`absolute left-0 mt-2 bg-secondary/90 backdrop-blur-md min-w-[250px] shadow-lg rounded-md border border-border ${dropdownOpen ? 'block' : 'hidden'}`}
+                className={`absolute left-0 mt-2 bg-secondary/90 backdrop-blur-md min-w-[280px] shadow-lg rounded-md border border-border ${dropdownOpen ? 'block' : 'hidden'}`}
                 onMouseLeave={() => setDropdownOpen(false)}
               >
                 <a 
@@ -90,18 +90,10 @@ const Header = () => {
                 >
                   R.I.S.E.
                 </a>
-                <a 
-                  href="/services/sales-drive" 
-                  className="block px-4 py-2 text-sm hover:text-accent"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLocation("/services/sales-drive");
-                    setDropdownOpen(false);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  ASAP Connect - Sales Drive
-                </a>
+                <div className="border-b border-gray-600 mb-2 pb-2">
+                  <span className="block px-4 py-1 text-xs font-semibold text-orange-400 uppercase tracking-wide">ASAP Connect</span>
+                </div>
+
                 <a 
                   href="/services/outreach-pro" 
                   className="block px-4 py-2 text-sm hover:text-accent"
@@ -112,7 +104,7 @@ const Header = () => {
                     window.scrollTo(0, 0);
                   }}
                 >
-                  ASAP Connect - OutreachPro
+                  OutreachPro
                 </a>
                 <a 
                   href="/services/front-desk" 
@@ -124,8 +116,11 @@ const Header = () => {
                     window.scrollTo(0, 0);
                   }}
                 >
-                  ASAP Connect - Front Desk
+                  Front Desk
                 </a>
+                <div className="border-b border-gray-600 mb-2 pb-2 mt-4">
+                  <span className="block px-4 py-1 text-xs font-semibold text-orange-400 uppercase tracking-wide">ASAP Chat</span>
+                </div>
                 <a 
                   href="/services/dm-dispatch" 
                   className="block px-4 py-2 text-sm hover:text-accent"
@@ -136,7 +131,7 @@ const Header = () => {
                     window.scrollTo(0, 0);
                   }}
                 >
-                  ASAP Chat - DM Dispatch
+                  DM Dispatch
                 </a>
                 <a 
                   href="/services/site-support" 
@@ -148,7 +143,7 @@ const Header = () => {
                     window.scrollTo(0, 0);
                   }}
                 >
-                  ASAP Chat - Site Support
+                  Site Support
                 </a>
                 <a 
                   href="/services/lead-link" 
@@ -160,7 +155,7 @@ const Header = () => {
                     window.scrollTo(0, 0);
                   }}
                 >
-                  ASAP Chat - LeadLink
+                  LeadLink
                 </a>
               </div>
             </div>
@@ -249,21 +244,10 @@ const Header = () => {
                 >
                   R.I.S.E.
                 </a>
-                <a 
-                  href="/services/sales-drive" 
-                  className="py-1 text-sm hover:text-accent"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLocation("/services/sales-drive");
-                    setMobileMenuOpen(false);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  ASAP Connect - Sales Drive
-                </a>
+                <p className="text-xs text-orange-400 font-semibold uppercase tracking-wide mt-2 mb-1">ASAP Connect</p>
                 <a 
                   href="/services/outreach-pro" 
-                  className="py-1 text-sm hover:text-accent"
+                  className="py-1 text-sm hover:text-accent pl-2"
                   onClick={(e) => {
                     e.preventDefault();
                     setLocation("/services/outreach-pro");
@@ -271,11 +255,11 @@ const Header = () => {
                     window.scrollTo(0, 0);
                   }}
                 >
-                  ASAP Connect - OutreachPro
+                  OutreachPro
                 </a>
                 <a 
                   href="/services/front-desk" 
-                  className="py-1 text-sm hover:text-accent"
+                  className="py-1 text-sm hover:text-accent pl-2"
                   onClick={(e) => {
                     e.preventDefault();
                     setLocation("/services/front-desk");
@@ -283,7 +267,44 @@ const Header = () => {
                     window.scrollTo(0, 0);
                   }}
                 >
-                  ASAP Connect - Front Desk
+                  Front Desk
+                </a>
+                <p className="text-xs text-orange-400 font-semibold uppercase tracking-wide mt-3 mb-1">ASAP Chat</p>
+                <a 
+                  href="/services/dm-dispatch" 
+                  className="py-1 text-sm hover:text-accent pl-2"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation("/services/dm-dispatch");
+                    setMobileMenuOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  DM Dispatch
+                </a>
+                <a 
+                  href="/services/site-support" 
+                  className="py-1 text-sm hover:text-accent pl-2"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation("/services/site-support");
+                    setMobileMenuOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  Site Support
+                </a>
+                <a 
+                  href="/services/lead-link" 
+                  className="py-1 text-sm hover:text-accent pl-2"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setLocation("/services/lead-link");
+                    setMobileMenuOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  LeadLink
                 </a>
               </div>
             </div>

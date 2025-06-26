@@ -13,7 +13,7 @@ import Footer from "./components/Footer";
 
 // New automation service pages
 const Rise = lazy(() => import("./pages/services/Rise"));
-const SalesDrive = lazy(() => import("./pages/services/SalesDrive"));
+
 const FollowUp = lazy(() => import("./pages/services/FollowUp"));
 const FrontDesk = lazy(() => import("./pages/services/FrontDesk"));
 
@@ -141,7 +141,7 @@ function Router() {
               
               {/* New automation service routes */}
               <Route path="/services/rise" component={Rise} />
-              <Route path="/services/sales-drive" component={SalesDrive} />
+
               <Route path="/services/outreach-pro" component={FollowUp} />
               <Route path="/services/front-desk" component={FrontDesk} />
               

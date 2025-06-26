@@ -9,7 +9,7 @@ import ImageWithFallback from "./ImageWithFallback";
 
 // Import automation service images
 import riseImage from "../assets/rise_new.webp";
-import salesDriveImage from "../assets/connect_sales.webp";
+
 import followUpImage from "../assets/connect_outreachPro.webp";
 import frontDeskImage from "../assets/connect_frontDesk_new.jpg";
 import dmDispatchImage from "../assets/chat_dmDispatch_new.jpg";
@@ -34,54 +34,53 @@ const Industries: React.FC = () => {
         "Revive Inactive Sales Engagements - Our text agent Alina texts your old dead leads and recaptures them, putting them back into your sales process.",
       image: riseImage,
       route: "/services/rise",
+      suite: null, // Standalone service
     },
     {
       id: "outreach-pro",
-      title: "ASAP Connect - OutreachPro",
+      title: "OutreachPro",
       subtitle:
         "Automated outbound calls for follow-ups, Google Calendar appointment booking, and vendor orders. Let Veronica handle all of your outbound business communications.",
       image: followUpImage,
       route: "/services/outreach-pro",
+      suite: "ASAP Connect",
     },
     {
       id: "front-desk",
-      title: "ASAP Connect - Front Desk",
+      title: "Front Desk",
       subtitle:
         "Inbound voice agent Jessica takes calls just like your receptionist would, books appointments in your Google calendar, and schedules appointments.",
       image: frontDeskImage,
       route: "/services/front-desk",
+      suite: "ASAP Connect",
     },
-    {
-      id: "sales-drive",
-      title: "ASAP Connect - Sales Drive",
-      subtitle:
-        "Veronica makes sales calls for you, books directly in your Google calendar, and schedules appointments automatically.",
-      image: salesDriveImage,
-      route: "/services/sales-drive",
-    },
+
     {
       id: "dm-dispatch",
-      title: "ASAP Chat - DM Dispatch",
+      title: "DM Dispatch",
       subtitle:
         "Sophie automates your direct messages across social media platforms, providing instant responses and engaging potential leads 24/7 to boost conversions.",
       image: dmDispatchImage,
       route: "/services/dm-dispatch",
+      suite: "ASAP Chat",
     },
     {
       id: "site-support",
-      title: "ASAP Chat - Site Support",
+      title: "Site Support",
       subtitle:
         "Your AI-powered customer service assistant providing instant, 24/7 support for website visitors with intelligent responses and seamless integration.",
       image: siteSupportImage,
       route: "/services/site-support",
+      suite: "ASAP Chat",
     },
     {
       id: "lead-link",
-      title: "ASAP Chat - LeadLink",
+      title: "LeadLink",
       subtitle:
         "Sophie automates lead qualification on your website, capturing prospect data and sending qualified leads directly to Google Sheets for seamless follow-up.",
       image: leadLinkImage,
       route: "/services/lead-link",
+      suite: "ASAP Chat",
     },
   ];
 
@@ -162,7 +161,7 @@ const Industries: React.FC = () => {
                   onClick={() => handleIndustryClick(service.route)}
                 >
                   <div className="h-full flex flex-col w-full">
-                    <div className="w-full h-40 sm:h-48 md:h-52 mb-4 overflow-hidden rounded-lg group-hover:scale-105 transition-transform duration-300">
+                    <div className="w-full h-40 sm:h-48 md:h-52 mb-4 overflow-hidden rounded-lg group-hover:scale-105 transition-transform duration-300 relative">
                       <ImageWithFallback
                         src={service.image}
                         fallbackSrc="/robot_placeholder.webp"
@@ -175,6 +174,11 @@ const Industries: React.FC = () => {
                               : "center center",
                         }}
                       />
+                      {service.suite && (
+                        <div className="absolute top-0 left-0 bg-gradient-to-r from-orange-500 to-orange-400 text-white text-xs font-bold px-3 py-1 rounded-br-lg shadow-lg z-10">
+                          {service.suite}
+                        </div>
+                      )}
                     </div>
 
                     <div className="flex-grow flex flex-col justify-between w-full">

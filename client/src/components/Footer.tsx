@@ -78,18 +78,7 @@ const Footer = () => {
                     R.I.S.E.
                   </a>
                 </li>
-                <li>
-                  <a 
-                    href="/services/sales-drive" 
-                    className="text-muted-foreground hover:text-accent"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setLocation("/services/sales-drive");
-                    }}
-                  >
-                    ASAP Connect - Sales Drive
-                  </a>
-                </li>
+
                 <li>
                   <a 
                     href="/services/outreach-pro" 
