@@ -36,9 +36,9 @@ const SimpleReviewGenerator = lazy(() => import("./pages/SimpleReviewGenerator")
 const AdvancedReviewGenerator = lazy(() => import("./pages/AdvancedReviewGenerator"));
 
 // Industry pages
-const LawFirms = lazy(() => import("./pages/industries/LawFirms"));
-const PdrShops = lazy(() => import("./pages/industries/PdrShops"));
-const Contractors = lazy(() => import("./pages/industries/Contractors"));
+// const LawFirms = lazy(() => import("./pages/industries/LawFirms"));
+// const PdrShops = lazy(() => import("./pages/industries/PdrShops"));
+// const Contractors = lazy(() => import("./pages/industries/Contractors"));
 
 
 // Handle scrolling to top on route changes
@@ -116,9 +116,9 @@ function Router() {
             <Route path="/chat-launch" component={ChatLaunch} />
             
             {/* Industry pages */}
-            <Route path="/industries/law-firms" component={LawFirms} />
+            {/* <Route path="/industries/law-firms" component={LawFirms} />
             <Route path="/industries/pdr-shops" component={PdrShops} />
-            <Route path="/industries/contractors" component={Contractors} />
+            <Route path="/industries/contractors" component={Contractors} /> */}
           </Switch>
         ) : (
           <MainLayout>
