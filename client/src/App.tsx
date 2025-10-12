@@ -139,9 +139,9 @@ function Router() {
 
 
               {/* Industry pages also available in main layout */}
-              <Route path="/industries/law-firms" component={LawFirms} />
+              {/* <Route path="/industries/law-firms" component={LawFirms} />
               <Route path="/industries/pdr-shops" component={PdrShops} />
-              <Route path="/industries/contractors" component={Contractors} />
+              <Route path="/industries/contractors" component={Contractors} /> */}
               
               <Route component={NotFound} />
             </Switch>
