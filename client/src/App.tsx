@@ -6,6 +6,8 @@ import NotFound from "./pages/not-found";
 import Home from "./pages/Home";
 import { LanguageProvider } from "./context/LanguageContext";
 import { useEffect, lazy, Suspense, useState } from "react";
+
+const HomeSwiss = lazy(() => import("./pages/HomeSwiss"));
 import { HomeSkeleton, ServicePageSkeleton, PageSkeleton } from "./components/SkeletonLoaders";
 import PageTransition from "./components/PageTransition";
 import Header from "./components/Header";
@@ -26,23 +28,10 @@ const LeadLink = lazy(() => import("./pages/services/LeadLink"));
 const RiseLanding = lazy(() => import("./pages/RiseLanding"));
 const ChatLaunch = lazy(() => import("./pages/ChatLaunch"));
 
-// COMMENTED OUT - Legacy service pages
-// const WebDesign = lazy(() => import("./pages/services/WebDesign"));
-// const AutoMate = lazy(() => import("./pages/services/AutoMate"));
-// const BotSpot = lazy(() => import("./pages/services/BotSpot"));
-// const AppSnap = lazy(() => import("./pages/services/AppSnap"));
-// const HypeRise = lazy(() => import("./pages/services/HypeRise"));
-// const ReviewGenerators = lazy(() => import("./pages/services/ReviewGenerators"));
-// const ReviewGeneratorsSimple = lazy(() => import("./pages/services/ReviewGeneratorsSimple"));
-// const TestPage = lazy(() => import("./pages/services/TestPage"));
+// Review landing page
 const ReviewLaunch = lazy(() => import("./pages/ReviewLaunch"));
 
-// Hidden review generator pages
-const ReviewGenerator = lazy(() => import("./pages/ReviewGenerator"));
-const EmbeddableReviewGenerator = lazy(() => import("./pages/EmbeddableReviewGenerator"));
-const ClientKeyReviewGenerator = lazy(() => import("./pages/ClientKeyReviewGenerator"));
-const ClientIframeReviewGenerator = lazy(() => import("./pages/ClientIframeReviewGenerator"));
-const ProductionReviewGenerator = lazy(() => import("./pages/ProductionReviewGenerator"));
+// Active review generator pages
 const SimpleReviewGenerator = lazy(() => import("./pages/SimpleReviewGenerator"));
 const AdvancedReviewGenerator = lazy(() => import("./pages/AdvancedReviewGenerator"));
 
@@ -51,8 +40,6 @@ const LawFirms = lazy(() => import("./pages/industries/LawFirms"));
 const PdrShops = lazy(() => import("./pages/industries/PdrShops"));
 const Contractors = lazy(() => import("./pages/industries/Contractors"));
 
-// Preload the ReviewGeneratorsSimple component to avoid 404 flash
-import("./pages/services/ReviewGeneratorsSimple");
 
 // Handle scrolling to top on route changes
 function RouteChangeListener() {
@@ -122,7 +109,6 @@ function Router() {
             {/* Premium version with customization options */}
             <Route path="/review-generator" component={AdvancedReviewGenerator} />
             <Route path="/client-key-review-generator" component={AdvancedReviewGenerator} />
-            {/* <Route path="/services/review-generators" component={ReviewGeneratorsSimple} /> */}
             <Route path="/review-launch" component={ReviewLaunch} />
             
             {/* Standalone landing pages */}
@@ -138,6 +124,7 @@ function Router() {
           <MainLayout>
             <Switch>
               <Route path="/" component={Home} />
+              <Route path="/swiss" component={HomeSwiss} />
               
               {/* New automation service routes */}
               <Route path="/services/rise" component={Rise} />
@@ -150,13 +137,6 @@ function Router() {
               <Route path="/services/site-support" component={SiteSupport} />
               <Route path="/services/lead-link" component={LeadLink} />
 
-              {/* COMMENTED OUT - Legacy service routes */}
-              {/* <Route path="/services/web-design" component={WebDesign} /> */}
-              {/* <Route path="/services/automate" component={AutoMate} /> */}
-              {/* <Route path="/services/botspot" component={BotSpot} /> */}
-              {/* <Route path="/services/appsnap" component={AppSnap} /> */}
-              {/* <Route path="/services/hyperise" component={HypeRise} /> */}
-              {/* <Route path="/services/test" component={TestPage} /> */}
 
               {/* Industry pages also available in main layout */}
               <Route path="/industries/law-firms" component={LawFirms} />

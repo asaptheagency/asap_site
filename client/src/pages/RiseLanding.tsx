@@ -72,11 +72,31 @@ const RiseLanding: React.FC = () => {
           initial="initial"
           animate="animate"
         >
-          {/* Flash Sale Badge */}
-          <motion.div className="inline-block mb-6" variants={fadeIn}>
-            <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider shadow-lg">
-              🔥 FLASH SALE - 50% OFF - LIMITED TIME 🔥
-            </div>
+          {/* Badge */}
+          <motion.div className="mb-8" variants={slideFromBottom}>
+            <button
+              onClick={() => {
+                const element = document.getElementById("calendar-section");
+                if (element) {
+                  const elementPosition =
+                    element.getBoundingClientRect().top + window.pageYOffset;
+                  const offsetPosition =
+                    elementPosition -
+                    window.innerHeight / 2 +
+                    element.offsetHeight / 2;
+                  window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth",
+                  });
+                }
+              }}
+              className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-3 px-8 rounded-full text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-orange-500/25"
+            >
+              BOOK YOUR FREE STRATEGY SESSION NOW
+            </button>
+            <p className="text-sm text-gray-400 mt-3">
+              ⚡ Only 10 spots available - 7 already taken
+            </p>
           </motion.div>
 
           {/* Main Headline */}
@@ -104,9 +124,7 @@ const RiseLanding: React.FC = () => {
           {/* Countdown Timer */}
           <motion.div className="mb-8" variants={fadeIn}>
             <div className="text-center mb-4">
-              <p className="text-orange-400 font-semibold text-lg">
-                FLASH SALE ENDS IN:
-              </p>
+              <p className="text-orange-400 font-semibold text-lg">ENDS IN:</p>
             </div>
             <div className="flex justify-center space-x-4">
               {Object.entries(timeLeft).map(([unit, value]) => (
@@ -123,17 +141,14 @@ const RiseLanding: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Pricing */}
+          {/* Value Proposition */}
           <motion.div className="mb-8" variants={fadeIn}>
             <div className="text-center">
-              <p className="text-gray-400 line-through text-xl">
-                Regular Price: $2,000
-              </p>
               <p className="text-4xl md:text-5xl font-bold text-teal-400 mb-2">
-                Flash Sale: $1,000
+                Limited Time Offer
               </p>
-              <p className="text-orange-400 font-semibold">
-                Conversion fees of $200 waived (first 10 conversions)
+              <p className="text-orange-400 font-semibold text-xl">
+                Special bonuses for early adopters!
               </p>
             </div>
           </motion.div>
@@ -142,7 +157,7 @@ const RiseLanding: React.FC = () => {
           <motion.div className="mb-8" variants={slideFromBottom}>
             <button
               onClick={() => {
-                const element = document.getElementById("payment-button");
+                const element = document.getElementById("calendar-section");
                 if (element) {
                   const elementPosition =
                     element.getBoundingClientRect().top + window.pageYOffset;
@@ -158,7 +173,7 @@ const RiseLanding: React.FC = () => {
               }}
               className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-6 px-12 rounded-full text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-orange-500/25"
             >
-              CLAIM YOUR 50% DISCOUNT NOW
+              BOOK YOUR FREE STRATEGY SESSION NOW
             </button>
             <p className="text-sm text-gray-400 mt-3">
               ⚡ Only 10 spots available - 7 already taken
@@ -334,10 +349,10 @@ const RiseLanding: React.FC = () => {
 
               <div className="bg-gradient-to-b from-gray-900/80 to-gray-800/80 border border-orange-500/30 rounded-lg p-8 hover:border-orange-500/50 transition-all duration-300">
                 <div className="text-4xl font-bold text-orange-400 mb-2">
-                  $127K
+                  6-Figure Revenue
                 </div>
                 <p className="text-gray-300 text-lg">
-                  in revenue from previously dead leads
+                  generated from previously dead leads
                 </p>
                 <p className="text-sm text-gray-400 mt-2">Roofing contractor</p>
               </div>
@@ -503,61 +518,64 @@ const RiseLanding: React.FC = () => {
             {/* Final CTA */}
             <motion.div variants={slideFromBottom}>
               <div className="text-center mb-6">
-                <p className="text-gray-400 line-through text-xl">
-                  Regular Price: $2,000
+                <p className="text-4xl md:text-5xl font-bold text-teal-400 mb-4">
+                  Your Dead Leads Are Waiting
                 </p>
-                <p className="text-5xl font-bold text-teal-400 mb-2">
-                  Flash Sale: $1,000
-                </p>
-                <p className="text-orange-400 font-semibold text-lg">
-                  First 10 conversion fees waived ($2,000 value)
-                </p>
-                <p className="text-orange-400 font-semibold text-lg">
-                  Save $3,000 when you act today!
+                <p className="text-orange-400 font-semibold text-xl mb-4">
+                  Let's turn them into revenue together!
                 </p>
 
-                {/* Discount Code Notice */}
+                {/* Call to Action Notice */}
                 <div className="bg-gradient-to-r from-teal-500/20 to-orange-500/20 border border-teal-400/50 rounded-lg p-4 mt-6 mb-4">
                   <p className="text-teal-400 font-bold text-lg mb-2">
-                    💰 Don't Forget Your Discount Code!
+                    🎯 What You'll Discover On This Call
                   </p>
                   <p className="text-white text-base">
-                    Use code{" "}
-                    <span className="bg-teal-400 text-black px-3 py-1 rounded font-bold">
-                      riseLaunch
-                    </span>{" "}
-                    at checkout to claim your $1,000 discount
+                    Exactly how many leads you're leaving on the table • A
+                    custom revival strategy for your industry • Real ROI
+                    projections based on your data
                   </p>
                 </div>
               </div>
 
-              <a
+              <button
                 id="payment-button"
-                href="https://buy.stripe.com/bJe5kCa6Y9k78M90Ha0VO02"
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => {
+                  const element = document.getElementById("calendar-section");
+                  if (element) {
+                    const elementPosition =
+                      element.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition =
+                      elementPosition -
+                      window.innerHeight / 2 +
+                      element.offsetHeight / 2;
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: "smooth",
+                    });
+                  }
+                }}
                 className="inline-block bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-6 px-16 rounded-full text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-orange-500/25 mb-4"
               >
-                <div className="text-center">
-                  <div>SECURE YOUR SPOT FOR $1,000</div>
-                  <div className="text-sm mt-1">
-                    USE DISCOUNT CODE 'riseLaunch'
-                  </div>
-                </div>
-              </a>
+                SCHEDULE YOUR FREE CONSULTATION
+              </button>
 
               <p className="text-sm text-gray-400">
-                ⚡ 3 spots remaining • Secure payment via Stripe
+                ⚡ 3 spots remaining • Book your meeting now
               </p>
 
               <div className="flex justify-center items-center space-x-8 mt-6 text-gray-400 text-sm">
                 <div className="flex items-center space-x-1">
                   <Check size={16} className="text-teal-400" />
-                  <span>Secure payment</span>
+                  <span>15-minute discovery call</span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <Check size={16} className="text-teal-400" />
-                  <span>Setup within 48 hours</span>
+                  <span>Custom strategy for your business</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <Check size={16} className="text-teal-400" />
+                  <span>No pressure, just solutions</span>
                 </div>
               </div>
             </motion.div>
@@ -586,7 +604,7 @@ const RiseLanding: React.FC = () => {
               {[
                 {
                   q: "What's my next step?",
-                  a: "Be sure to include your best email address when you sign up using the secure Stripe checkout. After you sign up we will send you an email and book a quick 15 minute call to get you started. You can also feel free to email us after at inbox@asaptheagency.com",
+                  a: "Simply book a free 15-minute strategy session using the calendar above. We'll discuss your dead leads, how Alina can revive them, and create a custom plan for your business. No commitment required - just expert guidance tailored to your needs.",
                 },
                 {
                   q: "How quickly will I see results?",
@@ -617,6 +635,55 @@ const RiseLanding: React.FC = () => {
                 </motion.div>
               ))}
             </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Calendar Scheduling Section */}
+      <section
+        id="calendar-section"
+        className="py-20 relative bg-gradient-to-b from-black via-gray-900/50 to-black"
+      >
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="max-w-4xl mx-auto"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <div className="text-center mb-8">
+              <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                Transform Your Sales Pipeline Today
+              </h3>
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                Ready to witness the power of R.I.S.E.? Schedule your
+                complimentary strategy session and discover how we can revive
+                your dormant leads into profitable conversions. Our automation
+                experts are standing by to craft a custom solution that fits
+                your business perfectly.
+              </p>
+              <div className="bg-gradient-to-r from-teal-500/20 to-orange-500/20 rounded-xl p-8 border border-teal-400/30">
+                <h4 className="text-2xl font-bold text-teal-400 mb-4">
+                  Book Your Free Consultation
+                </h4>
+                <p className="text-lg text-white mb-6">
+                  Join hundreds of businesses who've already transformed their
+                  sales with our AI-powered lead revival system.
+                </p>
+
+                <div className="rounded-lg overflow-hidden shadow-2xl border border-gray-700 bg-white">
+                  <iframe
+                    src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1drKUCVOMA5usQoGlPHT9SYyEk777PMSRkNh2OvjkNbHkazJ-UwXZ-tzU3sk-FEgPNTMJXB7H0?gv=true"
+                    style={{ border: 0, backgroundColor: "white" }}
+                    width="100%"
+                    height="600"
+                    frameBorder="0"
+                    title="Schedule Your R.I.S.E. Consultation"
+                  />
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
