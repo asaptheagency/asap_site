@@ -160,7 +160,6 @@ const Home = () => {
                   </div>
 
                   <a
-                    // href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1w-btxYSNa7lHJt-kCKF8FqpqcZSiCWjHmKJhtWEuvCQvLUBM4L8t7xKRJXKI5oe3L_hU6_5XH"
                     href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1drKUCVOMA5usQoGlPHT9SYyEk777PMSRkNh2OvjkNbHkazJ-UwXZ-tzU3sk-FEgPNTMJXB7H0?gv=true"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -183,3 +182,5 @@ const Home = () => {
 };
 
 export default Home;
+
+                    // href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1w-btxYSNa7lHJt-kCKF8FqpqcZSiCWjHmKJhtWEuvCQvLUBM4L8t7xKRJXKI5oe3L_hU6_5XH"
