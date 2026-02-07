@@ -1,262 +1,27 @@
-import { Switch, Route, useLocation, useRoute } from "wouter";
-import { QueryClientProvider } from "@tanstack/react-query";
+import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
-import { Toaster } from "./components/ui/toaster";
-import NotFound from "./pages/not-found";
-import Home from "./pages/Home";
-import { LanguageProvider } from "./context/LanguageContext";
-import { useEffect, lazy, Suspense, useState } from "react";
-
-const HomeSwiss = lazy(() => import("./pages/HomeSwiss"));
-import { HomeSkeleton, ServicePageSkeleton, PageSkeleton } from "./components/SkeletonLoaders";
-import PageTransition from "./components/PageTransition";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-
-// New automation service pages
-const Rise = lazy(() => import("./pages/services/Rise"));
-
-const FollowUp = lazy(() => import("./pages/services/FollowUp"));
-const FrontDesk = lazy(() => import("./pages/services/FrontDesk"));
-
-// ASAP Chat service pages
-const DmDispatch = lazy(() => import("./pages/services/DmDispatch"));
-const SiteSupport = lazy(() => import("./pages/services/SiteSupport"));
-const LeadLink = lazy(() => import("./pages/services/LeadLink"));
-
-// Standalone landing pages
-const RiseLanding = lazy(() => import("./pages/RiseLanding"));
-const ChatLaunch = lazy(() => import("./pages/ChatLaunch"));
-
-// Review landing page
-const ReviewLaunch = lazy(() => import("./pages/ReviewLaunch"));
-
-// Active review generator pages
-const SimpleReviewGenerator = lazy(() => import("./pages/SimpleReviewGenerator"));
-const AdvancedReviewGenerator = lazy(() => import("./pages/AdvancedReviewGenerator"));
-
-// Industry pages
-// const LawFirms = lazy(() => import("./pages/industries/LawFirms"));
-// const PdrShops = lazy(() => import("./pages/industries/PdrShops"));
-// const Contractors = lazy(() => import("./pages/industries/Contractors"));
-
-
-// Handle scrolling to top on route changes
-function RouteChangeListener() {
-  const [location] = useLocation();
-  
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    console.log('Route changed, scrolling to top');
-  }, [location]);
-  
-  return null;
-}
-
-// Custom loading handler that selects appropriate skeleton based on route
-function LoadingHandler() {
-  const [location] = useLocation();
-  const isHomePage = useRoute("/")[0];
-  const isServicePage = location.includes("/services/");
-  const isReviewGenerator = location.includes("/review-generator") || location.includes("/embed/review-generator");
-  
-  if (isHomePage) {
-    return <HomeSkeleton />;
-  } else if (isServicePage) {
-    return <ServicePageSkeleton />;
-  } else if (isReviewGenerator) {
-    // Review generator pages don't show header/footer, so use a simple skeleton
-    return <PageSkeleton />;
-  } else {
-    return <PageSkeleton />;
-  }
-}
-
-// Layout with header and footer
-const MainLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </>
-  );
-};
+import { QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import Home from "@/pages/home";
+import NotFound from "@/pages/not-found";
 
 function Router() {
-  const [location] = useLocation();
-  const isSpecialPage = location.includes("/review-generator") || 
-                        location.includes("/embed/review-generator") ||
-                        location.includes("/client-key-review-generator") ||
-                        location.includes("/client-iframe-review-generator") ||
-                        location.includes("/services/review-generators") ||
-                        location.includes("/review-launch") ||
-                        location.includes("/rise-launch") ||
-                        location.includes("/chat-launch");
-  
   return (
-    <Suspense fallback={<LoadingHandler />}>
-      <RouteChangeListener />
-      <PageTransition>
-        {/* Apply the main layout conditionally */}
-        {isSpecialPage ? (
-          <Switch>
-            {/* Standard version (simple embed) */}
-            <Route path="/embed/review-generator" component={SimpleReviewGenerator} />
-            <Route path="/client-iframe-review-generator" component={SimpleReviewGenerator} />
-            <Route path="/client/review-generator" component={SimpleReviewGenerator} />
-            
-            {/* Premium version with customization options */}
-            <Route path="/review-generator" component={AdvancedReviewGenerator} />
-            <Route path="/client-key-review-generator" component={AdvancedReviewGenerator} />
-            <Route path="/review-launch" component={ReviewLaunch} />
-            
-            {/* Standalone landing pages */}
-            <Route path="/rise-launch" component={RiseLanding} />
-            <Route path="/chat-launch" component={ChatLaunch} />
-            
-            {/* Industry pages */}
-            {/* <Route path="/industries/law-firms" component={LawFirms} />
-            <Route path="/industries/pdr-shops" component={PdrShops} />
-            <Route path="/industries/contractors" component={Contractors} /> */}
-          </Switch>
-        ) : (
-          <MainLayout>
-            <Switch>
-              <Route path="/" component={Home} />
-              <Route path="/swiss" component={HomeSwiss} />
-              
-              {/* New automation service routes */}
-              <Route path="/services/rise" component={Rise} />
-
-              <Route path="/services/outreach-pro" component={FollowUp} />
-              <Route path="/services/front-desk" component={FrontDesk} />
-              
-              {/* ASAP Chat service routes */}
-              <Route path="/services/dm-dispatch" component={DmDispatch} />
-              <Route path="/services/site-support" component={SiteSupport} />
-              <Route path="/services/lead-link" component={LeadLink} />
-
-
-              {/* Industry pages also available in main layout */}
-              {/* <Route path="/industries/law-firms" component={LawFirms} />
-              <Route path="/industries/pdr-shops" component={PdrShops} />
-              <Route path="/industries/contractors" component={Contractors} /> */}
-              
-              <Route component={NotFound} />
-            </Switch>
-          </MainLayout>
-        )}
-      </PageTransition>
-    </Suspense>
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route component={NotFound} />
+    </Switch>
   );
 }
 
 function App() {
-  useEffect(() => {
-    // Cursor glow effect with trailing effect
-    let lastMove = 0;
-    let lastX = 0;
-    let lastY = 0;
-    let trailTimeout: number | null = null;
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      // Only enable cursor effect on desktop (lg and above)
-      if (window.innerWidth < 1024) return;
-      
-      const now = Date.now();
-      // Throttle updates to every 5ms for more responsive glow
-      if (now - lastMove < 5) return;
-      
-      const currentX = e.clientX;
-      const currentY = e.clientY;
-      
-      // Calculate angle for the trail based on movement direction
-      if (lastX !== 0 && lastY !== 0) {
-        const deltaX = currentX - lastX;
-        const deltaY = currentY - lastY;
-        
-        if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
-          const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-          document.body.style.setProperty('--cursor-angle', `${angle + 90}deg`);
-        }
-      }
-      
-      // Main cursor glow
-      document.body.classList.add('has-cursor-glow');
-      document.body.style.setProperty('--cursor-x', `${currentX}px`);
-      document.body.style.setProperty('--cursor-y', `${currentY}px`);
-      
-      // Set trail position with a delay
-      if (trailTimeout) clearTimeout(trailTimeout);
-      trailTimeout = window.setTimeout(() => {
-        document.body.style.setProperty('--cursor-trail-x', `${currentX}px`);
-        document.body.style.setProperty('--cursor-trail-y', `${currentY}px`);
-      }, 120); // Increased delay for more noticeable trail effect
-      
-      // Create larger glow effect when hovering over interactive elements
-      const target = e.target as HTMLElement;
-      const isInteractive = 
-        target.tagName === 'A' || 
-        target.tagName === 'BUTTON' || 
-        target.tagName === 'INPUT' ||
-        target.closest('.card-glow-effect') !== null ||
-        target.classList.contains('glow-hover');
-      
-      if (isInteractive) {
-        document.body.classList.add('enhanced-glow');
-      } else {
-        document.body.classList.remove('enhanced-glow');
-      }
-      
-      // Store current position for next calculation
-      lastX = currentX;
-      lastY = currentY;
-      lastMove = now;
-    };
-
-    // Add scroll-to-top button
-    const createScrollToTopButton = () => {
-      const button = document.createElement('button');
-      button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>';
-      button.className = 'scroll-to-top';
-      button.setAttribute('aria-label', 'Scroll to top');
-      button.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-      document.body.appendChild(button);
-
-      // Show button only when scrolled down
-      const toggleButtonVisibility = () => {
-        if (window.scrollY > 500) {
-          button.classList.add('visible');
-        } else {
-          button.classList.remove('visible');
-        }
-      };
-
-      window.addEventListener('scroll', toggleButtonVisibility);
-      toggleButtonVisibility(); // Initial check
-    };
-
-    // Add event listeners
-    document.addEventListener('mousemove', handleMouseMove);
-    createScrollToTopButton();
-
-    // Cleanup
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      const scrollButton = document.querySelector('.scroll-to-top');
-      if (scrollButton) {
-        document.body.removeChild(scrollButton);
-      }
-    };
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <Router />
+      <TooltipProvider>
         <Toaster />
-      </LanguageProvider>
+        <Router />
+      </TooltipProvider>
     </QueryClientProvider>
   );
 }

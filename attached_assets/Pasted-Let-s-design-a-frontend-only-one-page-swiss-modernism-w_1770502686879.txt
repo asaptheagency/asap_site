@@ -1,0 +1,161 @@
+Let’s design a frontend only one-page swiss modernism website. I will provide details of the company that this website is intended for at the end of this prompt. The design must be modern, design-forward, responsive and funnel‑oriented, guiding visitors to interact with the embedded chatbot for a free estimate or answers to their questions.  I will provide you with an aminos.ai script later which will embed the chatbot. No need to make a chatbot, it will appear in the bottom-left corner of the page after i give you the script.
+
+Use micro‑interactions, smooth scrolling, plenty of parallax animations, and accessible design elements to create an engaging experience.  Please make the cursor unique in some way that correlates to the overall design. 
+
+Please add some glowing and hovering effects on some of the appropriate divs, use https://nicolasfol.webflow.io/ and https://blazetype.eu/blog/swiss-modernism for reference in regards to the overall design. animate upon mouse hovers. i want this webite to feel like someone spent $90,000 on it. It needs to look outstanding as if a billion dollar agency designed it.
+
+Please make the content of each section fade in upon scroll in an alternating manner; the hero and nav text fade in from the left to their current positions when the page loads, the text from the next section fades in from the right when it comes into view, etc.
+
+Please utilize a funnel-style layout that engages users as they travel down the page, please write compelling copy
+
+Colors: red, #191919 (off-black), #e6e6e6 (white)
+
+The company:
+AspireIt Software Automation & Promotion (ASAP for short)
+Please make the name of the company take up the entire hero section. The name of the company should be in black font but make the first letters of each word red in an effort to show the user why we call it ASAP
+Please add the tagline “We can when we AspireIt” somewhere in the hero
+
+Services:
+I would like to have one section that houses all of the services with clickable tabs, each time a tab is selected the copy for that service will appear. I will provide you with the copy for the services here, please use each one verbatim:
+
+R.I.S.E. (Revive Inactive Sales Engagements)
+Is your sales pipeline filled with dead leads? Don't let them collect dust any longer!
+
+Introducing R.I.S.E. (Revive Inactive Sales Engagements) — the game-changing service that re-engages your old leads and puts them back into your sales process.
+
+💬 How it Works:
+You provide your old leads: Send us the list of leads that have gone cold or weren't followed up on.
+Our AI-powered system gets to work: Using Alina, our advanced text agent, we reinitiate contact with these leads and strategically nurture them with personalized messages.
+We put the leads back into your sales process: Once we've re-engaged them, we seamlessly place these revitalized leads into your active sales funnel, giving you another chance to close the deal.
+Why Choose R.I.S.E.?
+Turn Dead Leads into Dollars: Stop letting your old leads slip away. With R.I.S.E., we breathe new life into them and give you a second shot at success.
+Save Time and Effort: Let Alina do the heavy lifting by automating the re-engagement process. No need to waste hours manually reaching out to old prospects.
+Increase Conversions: Reconnecting with cold leads can increase your sales opportunities and conversion rates. Some of your best customers might have just slipped through the cracks.
+Front Desk
+📞 Elevate Your Customer Experience with ASAP Connect - Front Desk
+Say goodbye to missed calls and overloaded receptionists with ASAP Connect - Front Desk! Our inbound AI voice agent, Jessica, works just like a receptionist, handling customer calls seamlessly, scheduling appointments, and providing the information your clients need – all without lifting a finger.
+
+How it works:
+Professional Call Handling
+Jessica answers incoming calls, offering a polished, friendly greeting to each caller. She can assist with basic inquiries, book appointments, and direct customers to the right department.
+
+Appointment Scheduling
+Direct access to your Google Calendar means Jessica can check availability, schedule appointments, and confirm bookings – all in real-time.
+
+24/7 Availability
+No more worrying about after-hours calls. Jessica is always available to ensure your customers are never left hanging.
+
+Customer Experience at its Best
+With Jessica, your clients get the same level of service they would expect from a human receptionist—without the need for someone to be physically available at all times.
+
+Why Choose ASAP Connect - Front Desk?
+Cost Savings
+Reduce the need for a full-time receptionist while still offering top-notch customer service.
+
+Efficiency & Accuracy
+With seamless integration to your calendar, Jessica ensures appointments are scheduled promptly and accurately.
+
+Scalability
+Whether you're a small business or a growing enterprise, Jessica can handle as many calls as you need—keeping things efficient as your business scales.
+
+DM Dispatch
+📲 Boost Your Engagement, Automate Your DMs, and Save Time!
+
+Do you find yourself overwhelmed by endless direct messages on social media? Are you missing out on valuable conversations simply because you can't keep up with the volume? Say hello to ASAP Chat – DM Dispatch, your solution for automating direct messages, powered by Alina, our intelligent AI assistant.
+
+Alina is designed to respond to DMs quickly, effectively, and in a personalized way. Whether it's answering common questions, providing product info, or engaging with potential leads, Alina's got it covered.
+
+How Does It Work?
+• Automated Responses
+Alina answers DMs on your behalf, providing fast, relevant answers to your customers.
+
+• Instant Engagement
+Don't leave your customers waiting! Alina responds immediately, creating a seamless experience that boosts engagement and keeps your brand in the spotlight.
+
+• Customized Conversations
+With Alina's ability to adapt, you can set up specific flows and responses tailored to your business, products, and customer needs.
+
+• 24/7 Availability
+Never miss a message. Alina operates around the clock, ensuring you never lose touch with a potential lead, even when you're asleep!
+
+Why Choose ASAP Chat – DM Dispatch?
+• Save Time
+Stop wasting hours each week responding to the same questions over and over. Let Alina handle it for you.
+
+• Increase Efficiency
+With automated responses, your team can focus on higher-value tasks and engage with customers in a more meaningful way.
+
+• Maximize Lead Conversion
+Faster response times mean higher chances of converting leads into customers. Alina qualifies and engages leads, giving you more opportunities to close deals.
+
+• Boost Your Brand Presence
+Stay top of mind with customers who appreciate immediate responses. Fast replies can build trust and enhance customer satisfaction.
+
+Site Support
+💬 Instant, 24/7 Support for Your Website Visitors
+
+Tired of missing out on customer inquiries because your team is busy, or worse—because the visitor just leaves before you can respond? With ASAP Chat – Site Support, your website gets a powerful, intelligent chatbot that's always ready to engage and answer questions — all while freeing up your team to focus on more important tasks.
+
+How Does ASAP Chat – Site Support Work?
+• Instant Responses
+As soon as a visitor lands on your website, Alina, your AI chatbot assistant, is there to respond. No more waiting. Just immediate answers to customer questions.
+
+• Answers Made Easy
+Alina is programmed to provide clear, accurate responses to common inquiries, helping customers get the information they need—fast.
+
+• 24/7 Availability
+Day or night, Alina is always on your website, ready to respond. You won't miss another customer interaction, even when you're not around.
+
+Why Choose ASAP Chat – Site Support?
+• Boost Customer Satisfaction
+Visitors appreciate fast, efficient support. With ASAP Chat, they'll never be left hanging.
+
+• Increase Conversions
+Engaging with users in real-time means you're more likely to convert them into leads or customers.
+
+• Save Time & Money
+Let Alina handle all of the repetitive questions, so your team can focus on more important tasks. No need to hire additional support staff.
+
+• Seamless Integration
+ASAP Chat integrates seamlessly into your website, providing a smooth, uninterrupted experience for your visitors. It's easy to set up and even easier to maintain.
+
+Lead Link
+💬 Qualify Leads Faster, Capture Data Instantly
+
+Tired of wasting time chasing down unqualified leads? With ASAP Chat – LeadLink, your website visitors will be greeted by Alina, the AI-powered chatbot, who'll not only engage with them but will qualify their interest and seamlessly send all the data over to your team in real-time via Google Sheets.
+
+How Does ASAP Chat – LeadLink Work?
+• Instant Lead Qualification
+Alina automatically engages with visitors as soon as they land on your website, asking the right questions to qualify leads on the spot. No more guessing or wasted time!
+
+• Smart Data Collection
+As leads are qualified, all the relevant information is gathered and sent straight to a Google Sheet. You can see the data in real-time, easily tracking leads and their journey through the qualification process.
+
+• Seamless Integration
+ASAP Chat – LeadLink works perfectly with your existing website and Google Sheets. Setting up and automating the process is simple, and all your leads are organized in one place, ready for follow-up.
+
+• 24/7 Lead Capture
+Whether it's 3 p.m. or 3 a.m., Alina is on duty, capturing and qualifying leads at all hours. Your business never misses a chance to connect with potential customers.
+
+Why Choose ASAP Chat – LeadLink?
+• Save Time on Lead Qualification
+Let Alina do the heavy lifting by handling the qualification process. Your team only deals with qualified leads, saving you time and effort.
+
+• Automated Lead Data Collection
+All lead information is instantly captured and logged in Google Sheets, ensuring nothing slips through the cracks. Your team has everything they need in one place to follow up efficiently.
+
+• Increase Conversion Rates
+With automated, efficient lead qualification, you're more likely to convert those leads into paying customers. No more wasting time on low-quality leads.
+
+• Easy Integration
+ASAP Chat – LeadLink integrates smoothly into your website, and Google Sheets is easy to manage. It's an all-in-one solution to streamline your lead generation process.
+
+The following services i need as well but i do not have copy for so please write it in similar fashion:
+Web design & development
+Software design & development (mobile & desktop apps)
+
+Screenshots:
+https://blazetype.eu/blog/swiss-modernism
+
+
+At the very bottom before the footer please make a button that links to this `https://calendar.app.google/VsFj1QWbVNASCKTm6` and make it so that it opens the link in a new page
