@@ -1,0 +1,133 @@
+Diagnosis
+
+Relevant log lines:
+
+Vite Node requirement warning: line 114.
+PostCSS warning (non-fatal): line 117.
+Fatal error — missing import: line 120 and line 121.
+Error type and cause:
+
+The build fails because Vite cannot resolve an import: client/src/pages/home (imported by client/src/App.tsx) — ENOENT no such file or directory. This means the path used by the import does not match any committed file in the repo (commonly caused by a wrong filename, wrong directory, missing file, or case mismatch on a case-sensitive filesystem like Netlify's).
+There is also a Node.js version mismatch: Netlify is using Node.js 18.20.8 but Vite v7 requires Node 20.19+ or 22.12+ (line 114). That is a separate issue you should fix to avoid runtime incompatibilities (see solution below). The PostCSS message on line 117 is a warning and not the build blocker.
+Solution
+
+Fix the missing import (primary cause)
+
+Verify the file exists in the repo and is committed:
+Check locally or in the GitHub repo that a file under client/src/pages exists. Example command locally:
+bash
+ls -la client/src/pages
+git ls-files client/src/pages
+If the file is missing, add/commit it (git add/commit/push) so Netlify can see it.
+If the file is present but the import path in App.tsx uses the wrong case or name, correct the import to match the exact filename (Linux is case-sensitive). Open client/src/App.tsx (repo link) and locate the import. Example:
+Link to file: https://github.com/asaptheagency/asap_site/blob/main/client/src/App.tsx
+Common fix examples — change the import to the exact filename/casing:
+If the real file is Home.tsx or Home/index.tsx:
+TypeScript/JS import change:
+tsx
+// wrong (causes ENOENT on case-sensitive builds)
+import Home from './pages/home';
+
+// correct (match file name exactly)
+import Home from './pages/Home';
+// or, if it's index under Home folder:
+import Home from './pages/Home/index';
+Commit and push the corrected import or the missing file.
+Fix the Node.js version used by Netlify (recommended)
+
+Vite printed that Node.js 18.20.8 is being used but Vite requires 20.19+ or 22.12+ (line 114). Update Netlify’s build Node version so it uses a compatible Node release.
+Ways to set Node on Netlify (choose one):
+Add an .nvmrc at repo root containing a supported version, e.g.:
+text
+20.19.0
+Or set the "engines" field in package.json:
+json
+"engines": {
+  "node": ">=20.19.0"
+}
+Or set the NODE_VERSION environment variable in Netlify UI or netlify.toml.
+Netlify docs for changing Node versions: https://docs.netlify.com/configure-builds/manage-dependencies/#node-js-and-javascript
+After changing, trigger a new deploy.
+Re-run build
+
+After applying the fix (corrected import or committed file) and updating Node version, push changes to trigger a new build on Netlify. The missing-import error should be resolved; if Vite still complains about Node, follow step (2) to ensure the build runs on Node 20.19+ (or 22.12+).
+Notes
+
+The PostCSS plugin message on line 117 is a warning and not the cause of the failure, but if you encounter styling/asset transform issues later, revisit your PostCSS configuration.
+
+Fix with agent
+
+Copy analysis
+Need more help? Go to Ask Netlify
+
+Retry diagnostics
+Netlify uses AI to analyze and generate solutions to fix deploy failures. It may not always understand the full context or produce a reliable, accurate answer. To learn more, please refer to our docs.
+
+Did you find this helpful? Your feedback helps improve this feature.
+
+
+
+Initializing
+Complete
+Building
+Failed
+4:01:29 PM: Netlify Build                                                 
+4:01:29 PM: ────────────────────────────────────────────────────────────────
+4:01:29 PM: ​
+4:01:29 PM: ❯ Version
+4:01:29 PM:   @netlify/build 35.5.9
+4:01:29 PM: ​
+4:01:29 PM: ❯ Flags
+4:01:29 PM:   accountId: 67083af7895bae79bdfade0b
+4:01:29 PM:   baseRelDir: true
+4:01:29 PM:   buildId: 6987c41d9c960f000851b1bb
+4:01:29 PM:   deployId: 6987c41d9c960f000851b1bd
+4:01:29 PM: ​
+4:01:29 PM: ❯ Current directory
+4:01:29 PM:   /opt/build/repo
+4:01:29 PM: ​
+4:01:29 PM: ❯ Config file
+4:01:29 PM:   /opt/build/repo/netlify.toml
+4:01:29 PM: ​
+4:01:29 PM: ❯ Context
+4:01:29 PM:   production
+4:01:29 PM: ​
+4:01:29 PM: build.command from netlify.toml                               
+4:01:29 PM: ────────────────────────────────────────────────────────────────
+4:01:29 PM: ​
+4:01:29 PM: $ npx vite build
+4:01:29 PM: You are using Node.js 18.20.8. Vite requires Node.js version 20.19+ or 22.12+. Please upgrade your Node.js version.
+4:01:29 PM: vite v7.3.0 building client environment for production...
+4:01:30 PM: transforming...
+4:01:30 PM: A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+✓ 11 modules transformed.
+4:01:30 PM: ✗ Build failed in 874ms
+4:01:30 PM: error during build:
+4:01:30 PM: [vite:load-fallback] Could not load /opt/build/repo/client/src/pages/home (imported by client/src/App.tsx): ENOENT: no such file or directory, open '/opt/build/repo/client/src/pages/home'
+4:01:30 PM: Error: Could not load /opt/build/repo/client/src/pages/home (imported by client/src/App.tsx): ENOENT: no such file or directory, open '/opt/build/repo/client/src/pages/home'
+4:01:30 PM: ​
+4:01:30 PM: "build.command" failed                                        
+4:01:30 PM: ────────────────────────────────────────────────────────────────
+4:01:30 PM: ​
+4:01:30 PM:   Error message
+4:01:30 PM:   Command failed with exit code 1: npx vite build (https://ntl.fyi/exit-code-1)
+4:01:30 PM: ​
+4:01:30 PM:   Error location
+4:01:30 PM:   In build.command from netlify.toml:
+4:01:30 PM:   npx vite build
+4:01:30 PM: ​
+4:01:30 PM:   Resolved config
+4:01:30 PM:   build:
+4:01:30 PM:     command: npx vite build
+4:01:30 PM:     commandOrigin: config
+4:01:30 PM:     publish: /opt/build/repo/dist/public
+4:01:30 PM:     publishOrigin: config
+4:01:30 PM:   redirects:
+4:01:31 PM: Failed during stage 'building site': Build script returned non-zero exit code: 2 (https://ntl.fyi/exit-code-2)
+4:01:31 PM:     - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config
+4:01:31 PM: Build failed due to a user error: Build script returned non-zero exit code: 2
+4:01:31 PM: Failing build: Failed to build site
+4:01:31 PM: Finished processing build request in 28.882s

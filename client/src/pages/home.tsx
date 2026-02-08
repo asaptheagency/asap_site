@@ -17,6 +17,7 @@ import {
   Smartphone,
   ChevronDown,
 } from "lucide-react";
+import { SiFacebook, SiInstagram } from "react-icons/si";
 
 function useCustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -1167,6 +1168,14 @@ function Footer() {
           >
             &copy; {new Date().getFullYear()} ASAP. All rights reserved.
           </p>
+          <div className="flex items-center gap-4">
+            <a href="https://www.facebook.com/chriscastanuela" target="_blank" rel="noopener noreferrer" className="text-[#e6e6e6]/40 hover:text-[#dc2626] transition-colors duration-300 cursor-none" data-hover data-testid="link-facebook">
+              <SiFacebook className="w-5 h-5" />
+            </a>
+            <a href="https://www.instagram.com/_thechriscast/" target="_blank" rel="noopener noreferrer" className="text-[#e6e6e6]/40 hover:text-[#dc2626] transition-colors duration-300 cursor-none" data-hover data-testid="link-instagram">
+              <SiInstagram className="w-5 h-5" />
+            </a>
+          </div>
           <p className="text-[#e6e6e6]/20 text-xs tracking-widest uppercase">
             We can when we AspireIt
           </p>
